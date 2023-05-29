@@ -1,4 +1,4 @@
-package dominio;
+package dominio.validadorContrasenia;
 
 
 import org.passay.CharacterRule;

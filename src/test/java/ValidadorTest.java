@@ -1,12 +1,8 @@
-import dominio.ValidadorContraseñas;
+import dominio.validadorContrasenia.ValidadorContraseñas;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class ValidadorTest {
-
-
-
-
 
     @Test
     public void contreaseñaValida() {
