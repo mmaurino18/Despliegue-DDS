@@ -10,7 +10,7 @@ public class Pruevas {
 
         CSV lectordearchivoCSV = new CSV();
 
-        String path = "C:\\Users\\Usuario\\Desktop\\diseño de sistemas\\2023-tpa-mama-grupo-16\\src\\main\\java\\dominio\\archivos\\archivo.csv";
+        String path = "";
 
         lectordearchivoCSV.leerArchivoCSV(path);
     }

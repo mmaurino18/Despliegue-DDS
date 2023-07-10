@@ -23,9 +23,8 @@ public class Notificador {
         notificacionesPorEnviar = new HashMap<>();
     }
 
-
     public void notificar(Notificacion notificacion) {
-        adapter.enviar(notificacion);
+        adapter.enviar(notificacion.getDestinatario(), notificacion.crearMensaje());
     }
 
     public void notificarAlInstante(Miembro persona, Incidente incidente){
@@ -95,7 +94,7 @@ public class Notificador {
 
         @Override
         public void run() {
-            adapter.enviar(notificacion);
+            adapter.enviar(notificacion.getDestinatario(), notificacion.crearMensaje());
         }
     }
 

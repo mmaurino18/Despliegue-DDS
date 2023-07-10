@@ -9,7 +9,7 @@ public class Miembro {
     private String nombre;
     private String apellido;
     private String mail;
-    private int numeroDeTelefono;
+    private String numeroDeTelefono;
     private String localizacion;
     private List<Comunidad> comunidades;
     private List<Servicio> servicios;
@@ -44,5 +44,12 @@ public class Miembro {
 
     public LocalTime getHorarioDeNotificaion() {
         return horarioDeNotificaion;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+    public String getNumeroDeTelefono(){
+        return numeroDeTelefono;
     }
 }

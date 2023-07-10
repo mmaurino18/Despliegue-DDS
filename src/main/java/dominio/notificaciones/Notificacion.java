@@ -7,14 +7,14 @@ import java.util.List;
 
 public class Notificacion {
 
-    private Miembro Destinatario;
+    private Miembro destinatario;
     private String correoDestinatario;
     private List<String> incidentesYaNotificados;
     private String asunto;
     private String mensaje;
 
     public Notificacion (Miembro destinatario, String nombreIncidente){
-        this.Destinatario = destinatario;
+        this.destinatario = destinatario;
         this.incidentesYaNotificados = new ArrayList<>();
         this.incidentesYaNotificados.add(nombreIncidente);
     }
@@ -38,6 +38,13 @@ public class Notificacion {
         }
     }
 
+    public String crearMensaje(){
+        // todo
+        return "mensaje de Prueva";
+    }
 
+    public Miembro getDestinatario(){
+        return destinatario;
+    }
 
 }
