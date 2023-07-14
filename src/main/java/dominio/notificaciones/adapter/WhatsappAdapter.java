@@ -2,7 +2,7 @@ package dominio.notificaciones.adapter;
 
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
-import dominio.servicios.Miembro;
+import dominio.comunidad.Miembro;
 
 public class WhatsappAdapter implements NotificadorAdapter{
 

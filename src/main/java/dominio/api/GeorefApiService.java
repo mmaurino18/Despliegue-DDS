@@ -21,7 +21,5 @@ public interface GeorefApiService {
     @GET("municipios")
     Call<ListaMunicipios> municipios(@Query("provincia") int idProvincia, @Query("campos") String campos, @Query("max") int max);
 
-    @GET("ubicacion")
-    Call<UbicacionResponse> obtenerUbicacion(@Query("lat") double latitud, @Query("lon") double longitud);
 
 }

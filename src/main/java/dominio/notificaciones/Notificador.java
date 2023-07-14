@@ -1,12 +1,15 @@
 package dominio.notificaciones;
 
+import dominio.comunidad.MedioDeNotificaion;
+import dominio.notificaciones.adapter.MailAdapter;
 import dominio.notificaciones.adapter.NotificadorAdapter;
-import dominio.servicios.FormaDeNotificacion;
+import dominio.comunidad.FormaDeNotificacion;
+import dominio.notificaciones.adapter.WhatsappAdapter;
 import dominio.servicios.Incidente;
-import dominio.servicios.Miembro;
+import dominio.comunidad.Miembro;
 
+import java.time.Duration;
 import java.time.LocalTime;
-import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -16,19 +19,22 @@ public class Notificador {
 
     HashMap<Miembro,Tarea> notificacionesPorEnviar;
     NotificadorAdapter adapter;
-    ScheduledExecutorService servicioPlanificador = Executors.newScheduledThreadPool(0);
+    ScheduledExecutorService servicioPlanificador;
 
     // contructor
     public Notificador(){
-        notificacionesPorEnviar = new HashMap<>();
+        this.notificacionesPorEnviar = new HashMap<>();
+        this.servicioPlanificador = Executors.newScheduledThreadPool(0);
     }
 
     public void notificar(Notificacion notificacion) {
-        adapter.enviar(notificacion.getDestinatario(), notificacion.crearMensaje());
+        System.out.println(notificacion.crearMensaje());
+        //this.adapter = this.medioDeNotificaion(notificacion);
+        //adapter.enviar(notificacion.getDestinatario(), notificacion.crearMensaje());
     }
 
     public void notificarAlInstante(Miembro persona, Incidente incidente){
-        Notificacion nuevaNotificacion = new Notificacion(persona, incidente.getNombreIcidente()); // se agregara mas cosas a la notificacion
+        Notificacion nuevaNotificacion = new Notificacion(persona, incidente); // se agregara mas cosas a la notificacion
         this.notificar(nuevaNotificacion);
     }
 
@@ -38,12 +44,13 @@ public class Notificador {
         }
         if(persona.getFormadenotificacion() == FormaDeNotificacion.SINAPUROS){
             miembroDisponibleParaNotificar(persona, incidente);
-            this.cerrarServicio(); // fijarse luego
+            //this.cerrarServicio(); // fijarse lu ego
+
         }
     }
 
     public void miembroDisponibleParaNotificar(Miembro miembro, Incidente incidente){
-        if( miembro.getHorarioDeNotificaion().compareTo(LocalTime.now()) > 0 ){
+        if( miembro.getHorarioDeNotificaion().compareTo(LocalTime.now()) < 0 ){
             notificarAlInstante(miembro, incidente);
         }
         else{
@@ -56,11 +63,24 @@ public class Notificador {
             notificacionesPorEnviar.get(persona).evaluarIncidente(incidente);
         }
         else{
-            Notificacion nuevaNotificacion = new Notificacion(persona, incidente.getNombreIcidente());
-            Tarea tarea = new Tarea(nuevaNotificacion);
+            Notificacion nuevaNotificacion = new Notificacion(persona, incidente);
+            Tarea tarea = new Tarea(nuevaNotificacion, medioDeNotificaion(nuevaNotificacion));
             servicioPlanificador.schedule(tarea, tarea.calcularTiempoRestante(persona.getHorarioDeNotificaion()), TimeUnit.SECONDS);
             notificacionesPorEnviar.put(persona,tarea);
         }
+    }
+
+    public NotificadorAdapter medioDeNotificaion(Notificacion notificacion){
+        if (notificacion.getDestinatario().getMedioDeNotificaion() == MedioDeNotificaion.MAIL){
+            return new MailAdapter("","");
+        }
+        else{
+            return new WhatsappAdapter("","","");
+        }
+    }
+
+    public ScheduledExecutorService getServicioPlanificador() {
+        return servicioPlanificador;
     }
 
     public void cerrarServicio(){
@@ -72,32 +92,29 @@ public class Notificador {
         private Notificacion notificacion;
         private NotificadorAdapter adapter;
 
-        public Tarea(Notificacion notificacion) {
+        public Tarea(Notificacion notificacion, NotificadorAdapter adapter) {
             this.notificacion = notificacion;
+            this.adapter = adapter;
         }
 
         public void evaluarIncidente(Incidente incidente) {
-            notificacion.evaluarIncidenteParaNotificar(incidente.getNombreIcidente());
+            notificacion.evaluarIncidenteParaNotificar(incidente);
         }
 
         public long calcularTiempoRestante(LocalTime tiempo){
-            LocalTime horaActual = LocalTime.now(); // hora actual
+            LocalTime horaActual = LocalTime.now();
+            Duration diferencia = Duration.between(horaActual, tiempo);
+            long diferenciaSegundos = diferencia.getSeconds();
 
-            long diferenciaHoras = horaActual.until(tiempo, ChronoUnit.HOURS); // Diferencia en horas
-            long diferenciaMinutos = horaActual.until(tiempo, ChronoUnit.MINUTES); // Diferencia en minutos
-            long diferenciaSegundos = horaActual.until(tiempo, ChronoUnit.SECONDS); // Diferencia en segundos
-
-            long diferenciaTotalSegundos = (diferenciaHoras * 3600) + (diferenciaMinutos * 60) + diferenciaSegundos;
-
-            return diferenciaTotalSegundos;
+            return diferenciaSegundos;
         }
 
         @Override
         public void run() {
-            adapter.enviar(notificacion.getDestinatario(), notificacion.crearMensaje());
+            System.out.println(notificacion.crearMensaje());
+            //adapter.enviar(notificacion.getDestinatario(), notificacion.crearMensaje());
         }
     }
-
 
 }
 

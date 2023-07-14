@@ -1,30 +1,31 @@
 package dominio.servicios;
 
+import dominio.comunidad.Miembro;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 
 public class Incidente {
 
     private String nombreIcidente;
-    private Servicio servicioIncidente;
+    private PrestacionDeServicio prestacionDeServicioIncidente;
     private String observaciones;
     private LocalDate fechaIncidente;
     private LocalTime horarioIncidente;
     private Boolean estadoIncidente;
-    private Miembro miembroNotificador;
 
-    public Incidente(String nombreincidente, Servicio servicioIncidente,
+    public Incidente(String nombreincidente,
+                     PrestacionDeServicio prestacionDeServicioIncidente,
                      String observaciones,
                      LocalTime horarioIncidente,
-                     Boolean estadoIncidente,
-                     Miembro miembroNotificador) {
+                     Boolean estadoIncidente) {
         this.nombreIcidente = nombreincidente;
-        this.servicioIncidente = servicioIncidente;
+        this.prestacionDeServicioIncidente = prestacionDeServicioIncidente;
         this.observaciones = observaciones;
         this.fechaIncidente = LocalDate.now();
         this.horarioIncidente = horarioIncidente;
         this.estadoIncidente = estadoIncidente;
-        this.miembroNotificador = miembroNotificador;
     }
 
     public Boolean getEstadoIncidente(){
@@ -35,21 +36,30 @@ public class Incidente {
         this.estadoIncidente = false;
     }
 
-    public Miembro getMiembroNotificador() {
-        return this.miembroNotificador;
-    }
-
-    public Servicio getServicioIncidente() {
-        return this.servicioIncidente;
+    public PrestacionDeServicio getServicioIncidente() {
+        return this.prestacionDeServicioIncidente;
     }
 
     public String getNombreIcidente(){
         return this.nombreIcidente;
     }
 
-    // hacer el calculo para saber si el incidente es de hoy o dentro de las 24 horas
     public Boolean incidenteActual(){
-        // todo
-        return true;
+        long horastranscurridad = this.horarioIncidente.until(LocalTime.now(), ChronoUnit.HOURS);
+        if (horastranscurridad < 24 && fechaIncidente.equals(LocalDate.now())){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public String estadoIncidente (){
+        if (this.estadoIncidente){
+            return "Con Incidentes";
+        }
+        else {
+            return "tuvo Incidentes pero fue Reestablecido";
+        }
     }
 }

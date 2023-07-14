@@ -1,4 +1,4 @@
-package dominio.servicios;
+package dominio.comunidad;
 
 public enum MedioDeNotificaion {
     WHATSAPP,

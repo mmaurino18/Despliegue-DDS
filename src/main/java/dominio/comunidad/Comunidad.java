@@ -1,6 +1,10 @@
-package dominio.servicios;
+package dominio.comunidad;
 
+import dominio.comunidad.Miembro;
 import dominio.notificaciones.Notificador;
+import dominio.notificaciones.adapter.MailAdapter;
+import dominio.notificaciones.adapter.WhatsappAdapter;
+import dominio.servicios.Incidente;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,25 +21,29 @@ public class Comunidad {
         this.notificador = new Notificador();
     }
 
-    public void reportarIncidente(Incidente nuevoIncidente) {
+    public void reportarIncidente(Incidente nuevoIncidente, Miembro miembroAvisante) {
         this.agregarIncidente(nuevoIncidente);
-        this.notificarMiembros(nuevoIncidente);
+        this.notificarMiembros(nuevoIncidente, miembroAvisante);
     }
 
-    public void cerrarIncidente(String nombreIncidente){
+    public void cerrarIncidente(String nombreIncidente, Miembro miembroAvisante){
         Incidente incidentEncontrado = this.buscarIncidente(nombreIncidente);
         incidentEncontrado.cerrarIncidente();
-        this.notificarMiembros(incidentEncontrado);
+        this.notificarMiembros(incidentEncontrado, miembroAvisante);
     }
 
     public void agregarIncidente(Incidente incidente){
         this.incidentesOcurridos.add(incidente);
     }
 
-    public void notificarMiembros(Incidente incidente){
-        for (Miembro persona : this.miembros){
-            if( !( persona == incidente.getMiembroNotificador() ) ){
-                this.notificador.notificarMiembroSegunSuForma(persona, incidente);
+    public void agregarMiembros(Miembro miembro){
+        this.miembros.add(miembro);
+    }
+
+    public void notificarMiembros(Incidente incidente, Miembro miembroAvisante){
+        for (Miembro miembro : this.miembros){
+            if( miembro != miembroAvisante ){
+                this.notificador.notificarMiembroSegunSuForma(miembro, incidente);
             }
         }
     }
@@ -51,6 +59,7 @@ public class Comunidad {
         return incidenteEncontrado;
     }
 
-
-
+    public Notificador getNotificador() {
+        return notificador;
+    }
 }

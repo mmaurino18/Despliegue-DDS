@@ -1,6 +1,6 @@
 package dominio.notificaciones.adapter;
 
-import dominio.servicios.Miembro;
+import dominio.comunidad.Miembro;
 
 public interface NotificadorAdapter {
 
