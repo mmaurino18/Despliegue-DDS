@@ -29,6 +29,15 @@ public class GeorefApi {
         return instancia;
     }
 
+    public UbicacionResponse obtenerUbicacion(double latitud, double longitud) throws IOException {
+        GeorefApiService georefService = this.retrofit.create(GeorefApiService.class);
+        Call<UbicacionResponse> requestUbicacion = georefService.obtenerUbicacion(latitud, longitud);
+        Response<UbicacionResponse> responseUbicacion = requestUbicacion.execute();
+        UbicacionResponse ubicacionResponse = responseUbicacion.body();
+
+        //System.out.println(ubicacionResponse);
+        return ubicacionResponse;
+    }
     public ListaProvincias listadoDeProvincias() throws IOException {
         GeorefApiService georefService = this.retrofit.create(GeorefApiService.class);
         Call<ListaProvincias> requestProvinciasArgentinas = georefService.provincias();
