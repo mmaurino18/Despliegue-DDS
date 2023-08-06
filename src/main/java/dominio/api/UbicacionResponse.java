@@ -1,4 +1,4 @@
-package api;
+package dominio.api;
 
 public class UbicacionResponse {
     private Municipio municipio;

@@ -7,6 +7,7 @@ public class PrestacionDeServicio {
     private String nombreServicioPrestado;
     private Servicio servicioPrestado;
     private Establecimiento establecimiento;
+    private Boolean estadoDeServicioPrestado;
 
     // test
     public PrestacionDeServicio(String nombreServicioPrestado, Establecimiento establecimiento){
@@ -30,5 +31,17 @@ public class PrestacionDeServicio {
 
     public String informacionDeServicioPrestado(){
         return (this.nombreServicioPrestado + " de " + this.deEstablecimiento());
+    }
+
+    public boolean getEstadoServicioPrestado(){
+        return this.estadoDeServicioPrestado;
+    }
+
+    public void servicioConIncidentes(){
+        this.estadoDeServicioPrestado = false;
+    }
+
+    public void reestablecerServicio(){
+        this.estadoDeServicioPrestado = true;
     }
 }

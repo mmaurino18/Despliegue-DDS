@@ -19,7 +19,6 @@ public class Notificacion {
         this.mensaje = destinatario.getNombre() + " -- ";
     }
 
-
     public void agregarIncidente(Incidente incidente){
         this.incidentesYaNotificados.add(incidente);
     }
@@ -29,7 +28,10 @@ public class Notificacion {
     }
 
     public Boolean incidenteYaRegistrado(Incidente incidente){
-        return this.incidentesYaNotificados.contains(incidente.getNombreIcidente());
+        return this.incidentesYaNotificados.
+                stream().
+                anyMatch(e -> e.getNombreIcidente().equals(incidente.getNombreIcidente()));
+        //return this.incidentesYaNotificados.contains(incidente);
     }
 
     public void evaluarIncidenteParaNotificar(Incidente incidente){
@@ -43,14 +45,13 @@ public class Notificacion {
         for (Incidente incidente : this.incidentesYaNotificados){
             this.agregarMensaje(incidente.getServicioIncidente().informacionDeServicioPrestado());
             this.agregarMensaje(" " + incidente.estadoIncidente());
-            this.agregarMensaje(" --");
-            return this.mensaje;
+            this.agregarMensaje(" -- ");
         }
-        return null;
+        return this.mensaje;
     }
 
     public Miembro getDestinatario(){
-        return destinatario;
+        return this.destinatario;
     }
 
 }

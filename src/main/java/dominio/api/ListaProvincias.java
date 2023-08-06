@@ -1,4 +1,4 @@
-package api;
+package dominio.api;
 
 import java.util.List;
 public class ListaProvincias {

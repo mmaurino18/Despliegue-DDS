@@ -1,5 +1,6 @@
 package dominio.comunidad;
 
+import dominio.entidades.Establecimiento;
 import dominio.servicios.*;
 
 import java.time.LocalTime;
@@ -28,9 +29,10 @@ public class Miembro {
     }
 
     // test
-    public Miembro(String nombre, String mail, FormaDeNotificacion forma, MedioDeNotificaion medio, int hora, int minuto){
+    public Miembro(String nombre, String mail, String numero, FormaDeNotificacion forma, MedioDeNotificaion medio, int hora, int minuto){
         this.nombre = nombre;
         this.mail = mail;
+        this.numeroDeTelefono = numero;
         this.formadenotificacion = forma;
         this.medioDeNotificaion = medio;
         this.horarioDeNotificaion = LocalTime.of(hora,minuto);
@@ -43,8 +45,8 @@ public class Miembro {
                 nombreIncidente,
                 prestacionDeServicio,
                 "observaciones",
-                LocalTime.now(),
-                true);
+                LocalTime.now());
+        nuevoIncidente.abrirIncidente();
         comunidad.reportarIncidente(nuevoIncidente, this);
     }
 
@@ -85,10 +87,12 @@ public class Miembro {
     public String getNombre() {
         return this.nombre;
     }
+
+
     public static Establecimiento encontrarCoordenadaMasCercana(List<Establecimiento> establecimientos, double x, double y) {
         Establecimiento establecimientoMasCercano = null;
         double distanciaMinima = Double.MAX_VALUE;
-    
+
         for (Establecimiento establecimiento : establecimientos) {
             double x2= Establecimiento.getCoordenadaX();
             double y2 = Establecimiento.getCoordenaY();
@@ -103,4 +107,5 @@ public class Miembro {
     public static double calcularDistancia(double x1, double y1, double x2, double y2) {
         return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
     }
+
 }

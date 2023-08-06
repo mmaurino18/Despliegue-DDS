@@ -18,22 +18,26 @@ public class Incidente {
     public Incidente(String nombreincidente,
                      PrestacionDeServicio prestacionDeServicioIncidente,
                      String observaciones,
-                     LocalTime horarioIncidente,
-                     Boolean estadoIncidente) {
+                     LocalTime horarioIncidente){
         this.nombreIcidente = nombreincidente;
         this.prestacionDeServicioIncidente = prestacionDeServicioIncidente;
         this.observaciones = observaciones;
         this.fechaIncidente = LocalDate.now();
         this.horarioIncidente = horarioIncidente;
-        this.estadoIncidente = estadoIncidente;
     }
 
     public Boolean getEstadoIncidente(){
         return this.estadoIncidente;
     }
 
+    public void abrirIncidente(){
+        this.estadoIncidente = true;
+        this.prestacionDeServicioIncidente.servicioConIncidentes();
+    }
+
     public void cerrarIncidente(){
         this.estadoIncidente = false;
+        this.prestacionDeServicioIncidente.reestablecerServicio();
     }
 
     public PrestacionDeServicio getServicioIncidente() {

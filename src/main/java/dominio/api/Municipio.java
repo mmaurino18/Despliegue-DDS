@@ -1,4 +1,4 @@
-package api;
+package dominio.api;
 
 public class Municipio {
     private int id;
