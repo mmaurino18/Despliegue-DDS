@@ -5,7 +5,7 @@ import dominio.notificaciones.Notificador;
 
 import java.util.List;
 
-public class RebicionDeIncidentes {
+public class RevicionDeIncidentes {
     public List<Incidente> incidentes;
 
     public void EnviarSugerencia(Ciudadano ciudadano, Notificador notificador){

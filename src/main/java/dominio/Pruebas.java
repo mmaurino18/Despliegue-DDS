@@ -12,7 +12,7 @@ import dominio.servicios.PrestacionDeServicio;
 import java.io.IOException;
 
 
-public class Pruevas {
+public class Pruebas {
 
     public static void main(String[] args) throws IOException {
 
