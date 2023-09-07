@@ -1,6 +1,6 @@
 package dominio.comunidad;
 
-public enum FormaDeNotificacion {
+public enum CuandoNotificar {
     CUANDOSUCEDEN,
     SINAPUROS
 }

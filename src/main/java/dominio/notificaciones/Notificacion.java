@@ -1,6 +1,6 @@
 package dominio.notificaciones;
 
-import dominio.comunidad.Miembro;
+import dominio.comunidad.Ciudadano;
 import dominio.servicios.Incidente;
 
 import java.util.ArrayList;
@@ -8,11 +8,11 @@ import java.util.List;
 
 public class Notificacion {
 
-    private Miembro destinatario;
+    private Ciudadano destinatario;
     private List<Incidente> incidentesYaNotificados;
     private String mensaje;
 
-    public Notificacion (Miembro destinatario, Incidente incidente){
+    public Notificacion (Ciudadano destinatario, Incidente incidente){
         this.destinatario = destinatario;
         this.incidentesYaNotificados = new ArrayList<>();
         this.incidentesYaNotificados.add(incidente);
@@ -50,7 +50,7 @@ public class Notificacion {
         return this.mensaje;
     }
 
-    public Miembro getDestinatario(){
+    public Ciudadano getDestinatario(){
         return this.destinatario;
     }
 

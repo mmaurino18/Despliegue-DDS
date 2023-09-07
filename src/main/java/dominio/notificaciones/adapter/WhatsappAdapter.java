@@ -2,7 +2,7 @@ package dominio.notificaciones.adapter;
 
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
-import dominio.comunidad.Miembro;
+import dominio.comunidad.Ciudadano;
 
 public class WhatsappAdapter implements NotificadorAdapter{
 
@@ -18,7 +18,7 @@ public class WhatsappAdapter implements NotificadorAdapter{
     }
 
     @Override
-    public void enviar(Miembro destinatario, String mensajeAEnviar) {
+    public void enviar(Ciudadano destinatario, String mensajeAEnviar) {
         Message message = Message.creator(
                 new com.twilio.type.PhoneNumber("whatsapp:+" + destinatario.getNumeroDeTelefono()),
                 new com.twilio.type.PhoneNumber("whatsapp:+" + PHONE_NUMBER_TWILIO),

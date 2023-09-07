@@ -1,8 +1,8 @@
 package dominio.notificaciones.adapter;
 
-import dominio.comunidad.Miembro;
+import dominio.comunidad.Ciudadano;
 
 public interface NotificadorAdapter {
 
-    void enviar(Miembro destinatario, String mensajeAEnviar);
+    void enviar(Ciudadano destinatario, String mensajeAEnviar);
 }

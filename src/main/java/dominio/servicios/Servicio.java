@@ -1,5 +1,5 @@
 package dominio.servicios;
 
-public interface Servicio {
+public class Servicio {
 
 }

@@ -3,15 +3,14 @@ package dominio.notificaciones;
 import dominio.comunidad.MedioDeNotificaion;
 import dominio.notificaciones.adapter.MailAdapter;
 import dominio.notificaciones.adapter.NotificadorAdapter;
-import dominio.comunidad.FormaDeNotificacion;
+import dominio.comunidad.CuandoNotificar;
 import dominio.notificaciones.adapter.WhatsappAdapter;
 import dominio.servicios.Incidente;
-import dominio.comunidad.Miembro;
+import dominio.comunidad.Ciudadano;
 
 import java.time.Duration;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -35,21 +34,21 @@ public class Notificador {
         //adapter.enviar(notificacion.getDestinatario(), notificacion.crearMensaje());
     }
 
-    public void notificarAlInstante(Miembro persona, Incidente incidente){
+    public void notificarAlInstante(Ciudadano persona, Incidente incidente){
         Notificacion nuevaNotificacion = new Notificacion(persona, incidente); // se agregara mas cosas a la notificacion
         this.notificar(nuevaNotificacion);
     }
 
-    public void notificarMiembroSegunSuForma(Miembro persona, Incidente incidente){
-        if (persona.getFormadenotificacion() == FormaDeNotificacion.CUANDOSUCEDEN){
+    public void notificarMiembroSegunSuForma(Ciudadano persona, Incidente incidente){
+        if (persona.getFormadenotificacion() == CuandoNotificar.CUANDOSUCEDEN){
             this.notificarAlInstante(persona,incidente);
         }
-        if(persona.getFormadenotificacion() == FormaDeNotificacion.SINAPUROS){
+        if(persona.getFormadenotificacion() == CuandoNotificar.SINAPUROS){
             miembroDisponibleParaNotificar(persona, incidente);
         }
     }
 
-    public void miembroDisponibleParaNotificar(Miembro miembro, Incidente incidente){
+    public void miembroDisponibleParaNotificar(Ciudadano miembro, Incidente incidente){
         if( this.horarioPasado(miembro) ){
             notificarAlInstante(miembro, incidente);
         }
@@ -58,7 +57,7 @@ public class Notificador {
         }
     }
 
-    public void programarNotificacion(Miembro persona, Incidente incidente){
+    public void programarNotificacion(Ciudadano persona, Incidente incidente){
         if( notificacionesPorEnviar.stream().anyMatch( m -> m.getDestinatario().equals(persona)) ){
             notificacionesPorEnviar.get( posicionDePersona(persona) ).evaluarIncidenteParaNotificar(incidente);
         }
@@ -90,11 +89,11 @@ public class Notificador {
         }
     }
 
-    public boolean horarioPasado(Miembro miembro){
+    public boolean horarioPasado(Ciudadano miembro){
         return miembro.getHorarioDeNotificaion().compareTo(LocalTime.now()) < 0;
     }
 
-    public int posicionDePersona( Miembro miembroBuscado ){
+    public int posicionDePersona( Ciudadano miembroBuscado ){
         int posicion = 0;
         for (Notificacion notificacion : this.notificacionesPorEnviar ){
             if(notificacion.getDestinatario().equals(miembroBuscado)){

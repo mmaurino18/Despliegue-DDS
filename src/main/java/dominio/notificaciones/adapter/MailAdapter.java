@@ -1,6 +1,6 @@
 package dominio.notificaciones.adapter;
 
-import dominio.comunidad.Miembro;
+import dominio.comunidad.Ciudadano;
 
 import javax.mail.*;
 import javax.mail.internet.AddressException;
@@ -32,7 +32,7 @@ public class MailAdapter implements NotificadorAdapter{
     }
 
     @Override
-    public void enviar(Miembro destinatario, String mensajeAEnviar) {
+    public void enviar(Ciudadano destinatario, String mensajeAEnviar) {
         try {
             Message mensaje = new MimeMessage(session);
             mensaje.setFrom(new InternetAddress(username));

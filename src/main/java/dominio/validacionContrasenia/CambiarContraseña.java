@@ -1,6 +1,5 @@
 package dominio.validacionContrasenia;
-import java.util.ArrayList;
-public class CambiarContraseña {
+import java.util.ArrayList;public class CambiarContraseña {
     public boolean puede_cambiar(String contra_nueva, String contra_actual, ArrayList<String> contra_antiguas) {
         ValidacionCaracteres validacion = new ValidacionCaracteres();
         PeoresContras peores_contras = new PeoresContras();

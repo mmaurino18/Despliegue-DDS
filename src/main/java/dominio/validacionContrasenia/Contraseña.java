@@ -8,6 +8,4 @@ public class Contraseña {
         this.contraseña= contra;
         this.contraseña_antiguas = contra_antiguas;
     }
-
-
 }

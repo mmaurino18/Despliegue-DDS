@@ -1,8 +1,7 @@
 package dominio.comunidad;
 
-import dominio.entidades.Entidad;
 import dominio.servicios.Servicio;
-
+import dominio.entidades.Entidad;
 import java.util.List;
 
 public class Interes {
