@@ -8,5 +8,7 @@ public class Interes {
 
     private List<Servicio> servicios;
     private List<Entidad> entidades;
+    public Interes(){}
+
 
 }

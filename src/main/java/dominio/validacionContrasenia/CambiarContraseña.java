@@ -1,7 +1,7 @@
 package dominio.validacionContrasenia;
 import java.util.ArrayList;
 public class CambiarContraseña {
-    public boolean puede_cambiar(String contra_nueva, String contra_actual) {
+    public boolean cambioDeContraseña(String contra_nueva, String contra_actual) {
         ValidacionCaracteres validacion = new ValidacionCaracteres();
         PeoresContras peores_contras = new PeoresContras();
         if(validacion.validar(contra_nueva) && !peores_contras.estaContenida(contra_nueva) && !this.sonIguales(contra_nueva,contra_actual)) {
@@ -16,7 +16,7 @@ public class CambiarContraseña {
     }
 
     private boolean sonIguales(String contra_nueva, String contra_actual){
-        if(contra_nueva == contra_actual){
+        if(contra_nueva == contra_actual) {
             //System.out.println("* Las contraseña nueva es igual a la actual.Tienen que ser diferentes");
             return true;
         }
