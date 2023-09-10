@@ -6,7 +6,7 @@ import dominio.notificaciones.adapter.NotificadorAdapter;
 import dominio.comunidad.CuandoNotificar;
 import dominio.notificaciones.adapter.WhatsappAdapter;
 import dominio.servicios.Incidente;
-import dominio.comunidad.Ciudadano;
+import dominio.actores.Ciudadano;
 
 import java.time.Duration;
 import java.time.LocalTime;

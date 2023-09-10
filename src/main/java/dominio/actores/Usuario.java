@@ -1,6 +1,5 @@
-package dominio.comunidad;
+package dominio.actores;
 
-import dominio.validacionContrasenia.ValidacionCaracteres;
 import dominio.validacionContrasenia.ValidadorContraseña;
 
 public class Usuario {

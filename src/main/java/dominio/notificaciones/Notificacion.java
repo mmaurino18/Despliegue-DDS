@@ -1,6 +1,6 @@
 package dominio.notificaciones;
 
-import dominio.comunidad.Ciudadano;
+import dominio.actores.Ciudadano;
 import dominio.servicios.Incidente;
 
 import java.util.ArrayList;

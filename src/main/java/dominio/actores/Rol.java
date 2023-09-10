@@ -1,4 +1,6 @@
-package dominio.comunidad;
+package dominio.actores;
+
+import dominio.actores.Permiso;
 
 import java.util.ArrayList;
 import java.util.List;

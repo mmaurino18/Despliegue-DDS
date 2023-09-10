@@ -1,4 +1,4 @@
-package dominio.comunidad;
+package dominio.actores;
 
 public enum TipoPropietario {
     ORGANISMO_DE_CONTROL,

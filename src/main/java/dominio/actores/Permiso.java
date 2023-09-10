@@ -1,4 +1,4 @@
-package dominio.comunidad;
+package dominio.actores;
 
 public class Permiso {
     public String nombre;

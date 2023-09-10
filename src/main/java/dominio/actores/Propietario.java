@@ -1,4 +1,4 @@
-package dominio.comunidad;
+package dominio.actores;
 
 import dominio.entidades.Entidad;
 

@@ -1,6 +1,6 @@
 package dominio.notificaciones.adapter;
 
-import dominio.comunidad.Ciudadano;
+import dominio.actores.Ciudadano;
 
 import javax.mail.*;
 import javax.mail.internet.AddressException;

@@ -1,5 +1,6 @@
 package dominio.comunidad;
 
+import dominio.actores.Ciudadano;
 import dominio.notificaciones.Notificador;
 import dominio.servicios.Incidente;
 

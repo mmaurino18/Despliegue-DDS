@@ -3,18 +3,17 @@ package dominio;
 import dominio.comunidad.Comunidad;
 import dominio.comunidad.CuandoNotificar;
 import dominio.comunidad.MedioDeNotificaion;
-import dominio.comunidad.Ciudadano;
+import dominio.actores.Ciudadano;
 import dominio.entidades.Establecimiento;
 import dominio.entidades.Estacion;
 import dominio.entidades.Sucursal;
 import dominio.servicios.PrestacionDeServicio;
 
-import java.io.IOException;
 
 
 public class Pruebas {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
         Ciudadano juan = new Ciudadano("juan", "ejemplo@gmail.com","123", CuandoNotificar.SINAPUROS, MedioDeNotificaion.MAIL,
                 0,0);

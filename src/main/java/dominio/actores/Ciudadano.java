@@ -1,5 +1,8 @@
-package dominio.comunidad;
+package dominio.actores;
 
+import dominio.comunidad.Comunidad;
+import dominio.comunidad.CuandoNotificar;
+import dominio.comunidad.MedioDeNotificaion;
 import dominio.servicios.*;
 
 import java.time.LocalTime;
@@ -14,7 +17,6 @@ public class Ciudadano {
     private String localizacion;
     private List<Comunidad> comunidades;
     private List<PrestacionDeServicio> prestacionDeServicios;
-    private Interes interes;
     private CuandoNotificar formadenotificacion;
     private MedioDeNotificaion medioDeNotificaion;
     private LocalTime horarioDeNotificaion;
