@@ -1,8 +1,8 @@
-package dominio.notificaciones.adapter;
+package dominio.notificaciones.strategys;
 
 import dominio.actores.Ciudadano;
 
-public interface NotificadorAdapter {
+public interface EstrategiaDeNotificacion {
 
     void enviar(Ciudadano destinatario, String mensajeAEnviar);
 }

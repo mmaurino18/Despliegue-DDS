@@ -11,12 +11,12 @@ public class Comunidad {
 
     public String nombre;
     private List<Incidente> incidentesOcurridos;
-    private List<Ciudadano> ciudadanos;
+    private List<Ciudadano> miembros;
     private Notificador notificador;
 
     public Comunidad(){
         this.incidentesOcurridos = new ArrayList<>();
-        this.ciudadanos = new ArrayList<>();
+        this.miembros = new ArrayList<>();
         this.notificador = new Notificador();
     }
 
@@ -36,11 +36,11 @@ public class Comunidad {
     }
 
     public void agregarMiembros(Ciudadano ciudadano){
-        this.ciudadanos.add(ciudadano);
+        this.miembros.add(ciudadano);
     }
 
     public void notificarMiembros(Incidente incidente, Ciudadano miembroAvisante){
-        for (Ciudadano miembro : this.ciudadanos){
+        for (Ciudadano miembro : this.miembros){
             if( miembro != miembroAvisante ){
                 this.notificador.notificarMiembroSegunSuForma(miembro, incidente);
             }

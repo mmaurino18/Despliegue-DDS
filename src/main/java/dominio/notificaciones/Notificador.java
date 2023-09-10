@@ -1,10 +1,12 @@
 package dominio.notificaciones;
 
 import dominio.comunidad.MedioDeNotificaion;
-import dominio.notificaciones.adapter.MailAdapter;
-import dominio.notificaciones.adapter.NotificadorAdapter;
+import dominio.notificaciones.adapter.AdapterJavaxMail;
+import dominio.notificaciones.strategys.EstrategiaDeNotificacion;
 import dominio.comunidad.CuandoNotificar;
-import dominio.notificaciones.adapter.WhatsappAdapter;
+import dominio.notificaciones.adapter.AdapterTwilio;
+import dominio.notificaciones.strategys.Mail;
+import dominio.notificaciones.strategys.Whatsapp;
 import dominio.servicios.Incidente;
 import dominio.actores.Ciudadano;
 
@@ -19,7 +21,7 @@ import java.util.concurrent.TimeUnit;
 public class Notificador {
 
     private List<Notificacion> notificacionesPorEnviar;
-    private NotificadorAdapter adapter;
+    private EstrategiaDeNotificacion strategy;
     private ScheduledExecutorService servicioPlanificador;
 
     // contructor
@@ -30,8 +32,8 @@ public class Notificador {
 
     public void notificar(Notificacion notificacion) {
         System.out.println(notificacion.crearMensaje());
-        //this.adapter = this.medioDeNotificaion(notificacion);
-        //adapter.enviar(notificacion.getDestinatario(), notificacion.crearMensaje());
+    //    this.cambiarEstrategia( medioDeNotificaion(notificacion) );
+    //    strategy.enviar(notificacion.getDestinatario(), notificacion.crearMensaje());
     }
 
     public void notificarAlInstante(Ciudadano persona, Incidente incidente){
@@ -67,13 +69,20 @@ public class Notificador {
         }
     }
 
-    public NotificadorAdapter medioDeNotificaion(Notificacion notificacion){
+    public EstrategiaDeNotificacion medioDeNotificaion(Notificacion notificacion){
         if (notificacion.getDestinatario().getMedioDeNotificaion() == MedioDeNotificaion.MAIL){
-            return new MailAdapter("","");
+            return new Mail("","");
         }
-        else{
-            return new WhatsappAdapter("","","");
+        if (notificacion.getDestinatario().getMedioDeNotificaion() == MedioDeNotificaion.WHATSAPP){
+            return new Whatsapp("","","");
         }
+        else {
+            return null;
+        }
+    }
+
+    public void cambiarEstrategia(EstrategiaDeNotificacion strategy){
+        this.strategy = strategy;
     }
 
     public void iniciarEnvioAsincronico(){
@@ -110,40 +119,6 @@ public class Notificador {
 
     public void cerrarServicio(){
         this.servicioPlanificador.shutdown();
-    }
-
-
-
-
-
-
-    // clase que nada mas la usaremos aca
-    static class Tarea implements Runnable {
-        private Notificacion notificacion;
-        private NotificadorAdapter adapter;
-
-        public Tarea(Notificacion notificacion, NotificadorAdapter adapter) {
-            this.notificacion = notificacion;
-            this.adapter = adapter;
-        }
-
-        public void evaluarIncidente(Incidente incidente) {
-            notificacion.evaluarIncidenteParaNotificar(incidente);
-        }
-
-        public long calcularTiempoRestante(LocalTime tiempo){
-            LocalTime horaActual = LocalTime.now();
-            Duration diferencia = Duration.between(horaActual, tiempo);
-            long diferenciaSegundos = diferencia.getSeconds();
-
-            return diferenciaSegundos;
-        }
-
-        @Override
-        public void run() {
-            System.out.println(notificacion.crearMensaje());
-            //adapter.enviar(notificacion.getDestinatario(), notificacion.crearMensaje());
-        }
     }
 
 }
