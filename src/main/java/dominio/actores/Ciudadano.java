@@ -1,30 +1,62 @@
 package dominio.actores;
 
+import dominio.api.Localizacion;
 import dominio.comunidad.Comunidad;
 import dominio.comunidad.CuandoNotificar;
 import dominio.comunidad.MedioDeNotificaion;
+import dominio.dataBase.Persistente;
 import dominio.servicios.*;
+import lombok.Getter;
+import lombok.Setter;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Ciudadano {
+@Entity
+@Table(name = "ciudadano")
+@Getter
+@Setter
+public class Ciudadano extends Persistente {
 
+    @Column(name = "nombre", columnDefinition = "VARCHAR(55)")
     private String nombre;
-    private String mail;
+    @Column(name = "numeroDeTelefono", columnDefinition = "VARCHAR(55)")
     private String numeroDeTelefono;
-    private String localizacion;
+    @Column(name = "mail", columnDefinition = "VARCHAR(55)")
+    private String mail;
+    @Transient
     private List<Comunidad> comunidades;
-    private List<PrestacionDeServicio> prestacionDeServicios;
+    @Transient
     private CuandoNotificar formadenotificacion;
+    @Transient
     private MedioDeNotificaion medioDeNotificaion;
+    @Transient
     private LocalTime horarioDeNotificaion;
+    @Transient
+    private List<PrestacionDeServicio> interes;
+    @Transient
+    private List<Incidente> incidentesReportados;
+    @Transient
+    private Localizacion localizacionDeInteres;
+    @Transient
+    private Ubicacion ubicacion;
 
+
+    public Ciudadano (){
+        this.comunidades = new ArrayList<>();
+        this.interes = new ArrayList<>();
+        this.incidentesReportados = new ArrayList<>();
+    }
 
     public Ciudadano(CuandoNotificar forma, MedioDeNotificaion medio){
         this.comunidades = new ArrayList<>();
-        this.prestacionDeServicios = new ArrayList<>();
+        this.interes = new ArrayList<>();
+        this.incidentesReportados = new ArrayList<>();
         this.formadenotificacion = forma;
         this.medioDeNotificaion = medio;
     }
@@ -37,8 +69,9 @@ public class Ciudadano {
         this.formadenotificacion = forma;
         this.medioDeNotificaion = medio;
         this.horarioDeNotificaion = LocalTime.of(hora,minuto);
-        this.prestacionDeServicios = new ArrayList<>();
+        this.interes = new ArrayList<>();
         this.comunidades = new ArrayList<>();
+        this.incidentesReportados = new ArrayList<>();
     }
 
     public void reportarIncidente(Comunidad comunidad, PrestacionDeServicio prestacionDeServicio, String nombreIncidente){
@@ -62,31 +95,10 @@ public class Ciudadano {
         // todo
     }
 
-    public CuandoNotificar getFormadenotificacion() {
-        return this.formadenotificacion;
+    public void agregarComunidad(Comunidad unacomunidad){
+        this.comunidades.add(unacomunidad);
     }
 
-    public MedioDeNotificaion getMedioDeNotificaion(){
-        return this.medioDeNotificaion;}
 
-    public LocalTime getHorarioDeNotificaion() {
-        return this.horarioDeNotificaion;
-    }
-
-    public String getMail() {
-        return this.mail;
-    }
-
-    public String getNumeroDeTelefono(){
-        return this.numeroDeTelefono;
-    }
-
-    public void agregarComunidad (Comunidad comunidad){
-        this.comunidades.add(comunidad);
-    }
-
-    public String getNombre() {
-        return this.nombre;
-    }
 
 }

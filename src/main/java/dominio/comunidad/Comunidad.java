@@ -47,7 +47,6 @@ public class Comunidad {
         }
     }
 
-
     public Incidente buscarIncidente(String nombreIncidente){
         Incidente incidenteEncontrado = null;
         for (Incidente incidente : this.incidentesOcurridos) {
@@ -58,6 +57,7 @@ public class Comunidad {
         }
         return incidenteEncontrado;
     }
+
 
 
 }

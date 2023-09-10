@@ -10,18 +10,29 @@ import dominio.entidades.Sucursal;
 import dominio.notificaciones.Notificador;
 import dominio.servicios.PrestacionDeServicio;
 
+import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;
+import javax.persistence.EntityTransaction;
 
+public class Pruebas implements WithSimplePersistenceUnit{
 
-public class Pruebas {
+    public static void main(String[] args)  {
+        new Pruebas().transaccion();
 
-    public static void main(String[] args) {
+    }
 
+    private void transaccion(){
+        EntityTransaction tx = entityManager().getTransaction();
+        tx.begin();
+        tx.commit();
+    }
+
+    private void pruevaNotificador(){
         Ciudadano juan = new Ciudadano("juan", "ejemplo@gmail.com","123", CuandoNotificar.SINAPUROS, MedioDeNotificaion.MAIL,
                 0,0);
         Ciudadano jose = new Ciudadano("jose", "ejemplo@gmail.com","123", CuandoNotificar.SINAPUROS, MedioDeNotificaion.MAIL,
-                13,05);
+                13,5);
         Ciudadano alicia = new Ciudadano("alicia", "ejemplo@gmail.com","123", CuandoNotificar.SINAPUROS, MedioDeNotificaion.MAIL,
-                13,06);
+                13,6);
 
         Notificador unNotificador = new Notificador();
         Comunidad unaComunidad = new Comunidad(unNotificador);
