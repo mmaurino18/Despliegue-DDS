@@ -7,6 +7,7 @@ import dominio.actores.Ciudadano;
 import dominio.entidades.Establecimiento;
 import dominio.entidades.Estacion;
 import dominio.entidades.Sucursal;
+import dominio.notificaciones.Notificador;
 import dominio.servicios.PrestacionDeServicio;
 
 
@@ -18,11 +19,12 @@ public class Pruebas {
         Ciudadano juan = new Ciudadano("juan", "ejemplo@gmail.com","123", CuandoNotificar.SINAPUROS, MedioDeNotificaion.MAIL,
                 0,0);
         Ciudadano jose = new Ciudadano("jose", "ejemplo@gmail.com","123", CuandoNotificar.SINAPUROS, MedioDeNotificaion.MAIL,
-                19,34);
+                13,05);
         Ciudadano alicia = new Ciudadano("alicia", "ejemplo@gmail.com","123", CuandoNotificar.SINAPUROS, MedioDeNotificaion.MAIL,
-                19,35);
+                13,06);
 
-        Comunidad unaComunidad = new Comunidad();
+        Notificador unNotificador = new Notificador();
+        Comunidad unaComunidad = new Comunidad(unNotificador);
 
         unaComunidad.agregarMiembros(juan);
         unaComunidad.agregarMiembros(jose);
@@ -30,7 +32,7 @@ public class Pruebas {
 
         juan.agregarComunidad(unaComunidad);
         jose.agregarComunidad(unaComunidad);
-        //alicia.agregarComunidad(unaComunidad);
+        alicia.agregarComunidad(unaComunidad);
 
         Establecimiento estacionRetiro = new Estacion("Estacion Retiro");
         Establecimiento sucursarAlmagro = new Sucursal("Sucursal Almagro");
@@ -49,7 +51,7 @@ public class Pruebas {
         //juan.cerrarIncidente(unaComunidad,"corte de luz");
         //juan.cerrarIncidente(unaComunidad,"se acabo el papel");
 
-        unaComunidad.getNotificador().iniciarEnvioAsincronico();
+        unNotificador.iniciarEnvioAsincronico();
 
         try {
             Thread.sleep(4 * 60 * 1000);
@@ -57,7 +59,7 @@ public class Pruebas {
             e.printStackTrace();
         }
 
-        unaComunidad.getNotificador().cerrarServicio();
+        unNotificador.cerrarServicio();
     }
 
 }

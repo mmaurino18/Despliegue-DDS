@@ -14,21 +14,21 @@ public class Comunidad {
     private List<Ciudadano> miembros;
     private Notificador notificador;
 
-    public Comunidad(){
+    public Comunidad(Notificador notificadorInyectado){
         this.incidentesOcurridos = new ArrayList<>();
         this.miembros = new ArrayList<>();
-        this.notificador = new Notificador();
+        this.notificador = notificadorInyectado;
     }
 
     public void reportarIncidente(Incidente nuevoIncidente, Ciudadano miembroAvisante) {
         this.agregarIncidente(nuevoIncidente);
-        this.notificarMiembros(nuevoIncidente, miembroAvisante);
+        this.notificarMiembros(nuevoIncidente, miembroAvisante, notificador);
     }
 
     public void cerrarIncidente(String nombreIncidente, Ciudadano miembroAvisante){
         Incidente incidentEncontrado = this.buscarIncidente(nombreIncidente);
         incidentEncontrado.cerrarIncidente();
-        this.notificarMiembros(incidentEncontrado, miembroAvisante);
+        this.notificarMiembros(incidentEncontrado, miembroAvisante, notificador);
     }
 
     public void agregarIncidente(Incidente incidente){
@@ -39,13 +39,14 @@ public class Comunidad {
         this.miembros.add(ciudadano);
     }
 
-    public void notificarMiembros(Incidente incidente, Ciudadano miembroAvisante){
+    public void notificarMiembros(Incidente incidente, Ciudadano miembroAvisante, Notificador notificador){
         for (Ciudadano miembro : this.miembros){
             if( miembro != miembroAvisante ){
-                this.notificador.notificarMiembroSegunSuForma(miembro, incidente);
+                notificador.notificarMiembroSegunSuForma(miembro, incidente);
             }
         }
     }
+
 
     public Incidente buscarIncidente(String nombreIncidente){
         Incidente incidenteEncontrado = null;
@@ -58,7 +59,5 @@ public class Comunidad {
         return incidenteEncontrado;
     }
 
-    public Notificador getNotificador() {
-        return notificador;
-    }
+
 }

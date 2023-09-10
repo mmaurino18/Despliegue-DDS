@@ -113,10 +113,6 @@ public class Notificador {
         return -1;
     }
 
-    public ScheduledExecutorService getServicioPlanificador() {
-        return servicioPlanificador;
-    }
-
     public void cerrarServicio(){
         this.servicioPlanificador.shutdown();
     }
