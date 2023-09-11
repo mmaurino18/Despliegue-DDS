@@ -1,17 +1,32 @@
 package dominio.comunidad;
 
 import dominio.actores.Ciudadano;
+import dominio.dataBase.Persistente;
 import dominio.notificaciones.Notificador;
 import dominio.servicios.Incidente;
+import lombok.Getter;
+import lombok.Setter;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Comunidad {
+@Entity
+@Table(name = "comunidad")
+@Getter
+@Setter
+public class Comunidad extends Persistente {
 
+    @Column(name = "nombre")
     public String nombre;
+
+    @Transient
     private List<Incidente> incidentesOcurridos;
+
+    @ManyToMany(mappedBy = "comunidades")
     private List<Ciudadano> miembros;
+
+    @Transient
     private Notificador notificador;
 
     public Comunidad(Notificador notificadorInyectado){

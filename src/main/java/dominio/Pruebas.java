@@ -15,7 +15,8 @@ import javax.persistence.EntityTransaction;
 
 public class Pruebas implements WithSimplePersistenceUnit{
 
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
+
         new Pruebas().transaccion();
 
     }
@@ -36,10 +37,6 @@ public class Pruebas implements WithSimplePersistenceUnit{
 
         Notificador unNotificador = new Notificador();
         Comunidad unaComunidad = new Comunidad(unNotificador);
-
-        unaComunidad.agregarMiembros(juan);
-        unaComunidad.agregarMiembros(jose);
-        unaComunidad.agregarMiembros(alicia);
 
         juan.agregarComunidad(unaComunidad);
         jose.agregarComunidad(unaComunidad);

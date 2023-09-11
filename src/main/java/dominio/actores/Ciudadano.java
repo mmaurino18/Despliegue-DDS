@@ -9,13 +9,11 @@ import dominio.servicios.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+
 
 @Entity
 @Table(name = "ciudadano")
@@ -25,12 +23,21 @@ public class Ciudadano extends Persistente {
 
     @Column(name = "nombre", columnDefinition = "VARCHAR(55)")
     private String nombre;
+
     @Column(name = "numeroDeTelefono", columnDefinition = "VARCHAR(55)")
     private String numeroDeTelefono;
+
     @Column(name = "mail", columnDefinition = "VARCHAR(55)")
     private String mail;
-    @Transient
+
+    // unidireccional
+    @OneToOne
+    @JoinColumn(name = "usuario_id", referencedColumnName = "id")
+    private Usuario usuario;
+
+    @ManyToMany
     private List<Comunidad> comunidades;
+
     @Transient
     private CuandoNotificar formadenotificacion;
     @Transient
@@ -97,6 +104,7 @@ public class Ciudadano extends Persistente {
 
     public void agregarComunidad(Comunidad unacomunidad){
         this.comunidades.add(unacomunidad);
+        unacomunidad.agregarMiembros(this); //
     }
 
 
