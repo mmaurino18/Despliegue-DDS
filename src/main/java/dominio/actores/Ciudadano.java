@@ -38,16 +38,22 @@ public class Ciudadano extends Persistente {
     @ManyToMany
     private List<Comunidad> comunidades;
 
-    @Transient
+    @Enumerated(EnumType.STRING)
+    @Column(name = "CuandoNotificar")
     private CuandoNotificar formadenotificacion;
-    @Transient
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "medioDeNotificacion")
     private MedioDeNotificaion medioDeNotificaion;
-    @Transient
+    @Column(name = "horarioDeNotificacion", columnDefinition = "TIME")
     private LocalTime horarioDeNotificaion;
     @Transient
     private List<PrestacionDeServicio> interes;
-    @Transient
+
+    @OneToMany
+    @JoinColumn(name = "ciudadano_id")
     private List<Incidente> incidentesReportados;
+
     @Transient
     private Localizacion localizacionDeInteres;
     @Transient
