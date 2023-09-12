@@ -1,11 +1,14 @@
 package dominio.servicios;
 
 import dominio.entidades.Establecimiento;
+import lombok.Getter;
 
 public class PrestacionDeServicio {
 
     private String nombreServicioPrestado;
+    @Getter
     private Servicio servicioPrestado;
+    @Getter
     private Establecimiento establecimiento;
     private Boolean estadoDeServicioPrestado;
 

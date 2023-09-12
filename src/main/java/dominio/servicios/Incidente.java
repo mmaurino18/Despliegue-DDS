@@ -1,5 +1,8 @@
 package dominio.servicios;
 
+import dominio.entidades.Establecimiento;
+import lombok.Getter;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
@@ -42,6 +45,7 @@ public class Incidente {
         return this.prestacionDeServicioIncidente;
     }
 
+
     public String getNombreIcidente(){
         return this.nombreIcidente;
     }
@@ -63,5 +67,11 @@ public class Incidente {
         else {
             return "tuvo Incidentes pero fue Reestablecido";
         }
+    }
+    public Servicio getServicio(){
+        return this.prestacionDeServicioIncidente.getServicioPrestado();
+    }
+    public Establecimiento getEstablecimiento(){
+        return this.prestacionDeServicioIncidente.getEstablecimiento();
     }
 }

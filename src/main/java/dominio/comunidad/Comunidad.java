@@ -1,9 +1,12 @@
 package dominio.comunidad;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import dominio.actores.Ciudadano;
 import dominio.dataBase.Persistente;
+import dominio.entidades.Establecimiento;
 import dominio.notificaciones.Notificador;
 import dominio.servicios.Incidente;
+import dominio.servicios.Servicio;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,8 +18,10 @@ import java.util.List;
 @Table(name = "comunidad")
 @Getter
 @Setter
+
 public class Comunidad extends Persistente {
 
+    @JsonProperty("nombre")
     @Column(name = "nombre")
     public String nombre;
 
@@ -24,6 +29,7 @@ public class Comunidad extends Persistente {
     private List<Incidente> incidentesOcurridos;
 
     @ManyToMany(mappedBy = "comunidades")
+    @JsonProperty("miembros")
     private List<Ciudadano> miembros;
 
     @Transient
@@ -72,7 +78,16 @@ public class Comunidad extends Persistente {
         }
         return incidenteEncontrado;
     }
-
-
-
+    @JsonProperty("establecimientos")
+    public List<Establecimiento> obtenerEstablecimientosObservados(){
+        List<Establecimiento> establecimientos = new ArrayList<>();
+        this.incidentesOcurridos.forEach(incidente -> establecimientos.add(incidente.getEstablecimiento()));
+        return establecimientos;
+    }
+    @JsonProperty("servicios")
+    public List<Servicio> obtenerServiciosObservados(){
+        List<Servicio> servicios = new ArrayList<>();
+        this.incidentesOcurridos.forEach(incidente -> servicios.add(incidente.getServicio()));
+        return servicios;
+    }
 }
