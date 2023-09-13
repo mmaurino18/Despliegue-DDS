@@ -11,6 +11,10 @@ public class Sucursal extends Establecimiento{
         this.nombre = nombre;
     }
 
+    public Sucursal() {
+
+    }
+
     @Override
     public String getNombre() {
         return this.nombre;

@@ -11,6 +11,10 @@ public class Estacion extends Establecimiento {
         this.nombre = nombre;
     }
 
+    public Estacion() {
+
+    }
+
     @Override
     public String getNombre() {
         return this.nombre;
