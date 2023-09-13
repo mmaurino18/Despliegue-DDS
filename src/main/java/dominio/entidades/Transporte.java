@@ -13,12 +13,6 @@ import java.util.List;
 @Setter
 public class Transporte extends Entidad{
 
-    @OneToOne
-    private Estacion estacionInicial;
-
-    @OneToOne
-    private Estacion estacionFinal;
-
     @OneToMany
     @JoinColumn(name = "transporte_id")
     private List<Estacion> recorrido;
