@@ -1,5 +1,6 @@
 package dominio.entidades;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import dominio.dataBase.Persistente;
 import dominio.servicios.PrestacionDeServicio;
 
@@ -11,7 +12,7 @@ import java.util.List;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "tipo")
 public abstract class Establecimiento extends Persistente {
-
+    @JsonProperty("nombre")
     @Column(name = "nombre", columnDefinition = "VARCHAR(55)")
     public String nombre;
 

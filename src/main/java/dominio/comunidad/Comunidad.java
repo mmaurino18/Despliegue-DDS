@@ -29,6 +29,9 @@ public class Comunidad extends Persistente {
     @JoinColumn(name = "comunidad_id")
     private List<Incidente> incidentesOcurridos;
 
+    @JsonProperty("gradoDeConfianza")
+    public float gradoDeConfianza;
+
     @JsonProperty("miembros")
     @ManyToMany(mappedBy = "comunidades")
     private List<Ciudadano> miembros;

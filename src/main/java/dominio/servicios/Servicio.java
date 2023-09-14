@@ -1,5 +1,6 @@
 package dominio.servicios;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import dominio.dataBase.Persistente;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,7 +14,7 @@ import javax.persistence.Table;
 @Getter
 @Setter
 public class Servicio extends Persistente {
-
+    @JsonProperty("nombre")
     @Column(name = "nombre", columnDefinition = "VARCHAR(55)")
     private String nombre;
 
