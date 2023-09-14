@@ -1,5 +1,6 @@
 package dominio.actores;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import dominio.api.Localizacion;
 import dominio.comunidad.Comunidad;
 import dominio.comunidad.CuandoNotificar;
@@ -20,7 +21,7 @@ import java.util.List;
 @Getter
 @Setter
 public class Ciudadano extends Persistente {
-
+    @JsonProperty("nombre")
     @Column(name = "nombre", columnDefinition = "VARCHAR(55)")
     private String nombre;
 

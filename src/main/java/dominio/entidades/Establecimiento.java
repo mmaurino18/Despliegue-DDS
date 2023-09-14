@@ -1,8 +1,11 @@
 package dominio.entidades;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 
 public abstract class Establecimiento {
+    @JsonProperty("nombre")
     public String nombre;
     //public Localizacion localizacion;
     private Double coordenadax;

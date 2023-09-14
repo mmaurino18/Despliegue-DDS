@@ -21,8 +21,9 @@ import java.util.List;
 
 public class Comunidad extends Persistente {
 
-    @JsonProperty("nombre")
+
     @Column(name = "nombre")
+    @JsonProperty("nombre")
     public String nombre;
 
     @Transient
