@@ -1,15 +1,34 @@
 package dominio.entidades;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import dominio.dataBase.Persistente;
+import dominio.servicios.PrestacionDeServicio;
 
+import javax.persistence.*;
 import java.util.List;
 
-public abstract class Establecimiento {
-    @JsonProperty("nombre")
+@Entity
+@Table(name = "establecimiento")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo")
+public abstract class Establecimiento extends Persistente {
+
+    @Column(name = "nombre", columnDefinition = "VARCHAR(55)")
     public String nombre;
+
+    @Column(name = "descripcion", columnDefinition = "TEXT")
+    public String descripcion;
+
+    @OneToMany(mappedBy = "establecimiento")
+    public List<PrestacionDeServicio> serviciosPrestados;
     //public Localizacion localizacion;
+
+    @Transient
     private Double coordenadax;
+
+    @Transient
     private Double coordenaday;
+
+    public abstract String getNombre();
 
     public static double getCoordenadaX() {
         return 0;
@@ -18,9 +37,6 @@ public abstract class Establecimiento {
     public static double getCoordenaY() {
         return 0;
     }
-
-    public abstract String  getnombre();
-    //private String nombre;
 
     public static Establecimiento encontrarCoordenadaMasCercana(List<Establecimiento> establecimientos, double x, double y) {
         Establecimiento establecimientoMasCercano = null;
@@ -39,6 +55,11 @@ public abstract class Establecimiento {
     }
     public static double calcularDistancia(double x1, double y1, double x2, double y2) {
         return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+    }
+
+    public void agregarServiciosPrestados(PrestacionDeServicio prestacionDeServicio){
+        this.serviciosPrestados.add(prestacionDeServicio);
+        prestacionDeServicio.setEstablecimiento(this);
     }
 
 }

@@ -1,19 +1,38 @@
 package dominio.servicios;
 
+import dominio.dataBase.Persistente;
 import dominio.entidades.Establecimiento;
 import lombok.Getter;
+import lombok.Setter;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 
-public class Incidente {
+@Entity
+@Table(name = "incidente")
+@Getter
+@Setter
+public class Incidente extends Persistente {
 
+    @Column(name = "nombre", columnDefinition = "VARCHAR(55)")
     private String nombreIcidente;
+
+    @ManyToOne
+    @JoinColumn(name = "prestacionDeServicio_id",referencedColumnName = "id")
     private PrestacionDeServicio prestacionDeServicioIncidente;
+
+    @Column(name = "observaciones", columnDefinition = "TEXT")
     private String observaciones;
+
+    @Transient
     private LocalDate fechaIncidente;
+
+    @Transient
     private LocalTime horarioIncidente;
+
+    @Transient
     private Boolean estadoIncidente;
 
     public Incidente(String nombreincidente,
@@ -41,15 +60,6 @@ public class Incidente {
         this.prestacionDeServicioIncidente.reestablecerServicio();
     }
 
-    public PrestacionDeServicio getServicioIncidente() {
-        return this.prestacionDeServicioIncidente;
-    }
-
-
-    public String getNombreIcidente(){
-        return this.nombreIcidente;
-    }
-
     public Boolean incidenteActual(){
         long horastranscurridad = this.horarioIncidente.until(LocalTime.now(), ChronoUnit.HOURS);
         if (horastranscurridad < 24 && fechaIncidente.equals(LocalDate.now())){
@@ -68,6 +78,7 @@ public class Incidente {
             return "tuvo Incidentes pero fue Reestablecido";
         }
     }
+
     public Servicio getServicio(){
         return this.prestacionDeServicioIncidente.getServicioPrestado();
     }

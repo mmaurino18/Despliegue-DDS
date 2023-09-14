@@ -1,15 +1,30 @@
 package dominio.servicios;
 
+import dominio.dataBase.Persistente;
 import dominio.entidades.Establecimiento;
 import lombok.Getter;
+import lombok.Setter;
 
-public class PrestacionDeServicio {
+import javax.persistence.*;
 
+@Entity
+@Table(name = "prestacion_de_servicio")
+@Getter
+@Setter
+public class PrestacionDeServicio extends Persistente {
+
+    @Column(name = "nombre", columnDefinition = "VARCHAR(55)")
     private String nombreServicioPrestado;
-    @Getter
+
+    @ManyToOne
+    @JoinColumn(name = "servicio_id", referencedColumnName = "id")
     private Servicio servicioPrestado;
-    @Getter
+
+    @ManyToOne
+    @JoinColumn(name = "establecimiento_id", referencedColumnName = "id")
     private Establecimiento establecimiento;
+
+    @Transient
     private Boolean estadoDeServicioPrestado;
 
     // test
@@ -28,16 +43,13 @@ public class PrestacionDeServicio {
         // todo
     }
 
+
     public String deEstablecimiento(){
-        return this.establecimiento.getnombre();
+        return this.establecimiento.getNombre();
     }
 
     public String informacionDeServicioPrestado(){
         return (this.nombreServicioPrestado + " de " + this.deEstablecimiento());
-    }
-
-    public boolean getEstadoServicioPrestado(){
-        return this.estadoDeServicioPrestado;
     }
 
     public void servicioConIncidentes(){

@@ -18,7 +18,6 @@ import java.util.List;
 @Table(name = "comunidad")
 @Getter
 @Setter
-
 public class Comunidad extends Persistente {
 
 
@@ -26,15 +25,21 @@ public class Comunidad extends Persistente {
     @JsonProperty("nombre")
     public String nombre;
 
-    @Transient
+    @OneToMany
+    @JoinColumn(name = "comunidad_id")
     private List<Incidente> incidentesOcurridos;
 
-    @ManyToMany(mappedBy = "comunidades")
     @JsonProperty("miembros")
+    @ManyToMany(mappedBy = "comunidades")
     private List<Ciudadano> miembros;
 
     @Transient
     private Notificador notificador;
+
+    public Comunidad(){
+        this.incidentesOcurridos = new ArrayList<>();
+        this.miembros = new ArrayList<>();
+    }
 
     public Comunidad(Notificador notificadorInyectado){
         this.incidentesOcurridos = new ArrayList<>();
@@ -79,6 +84,7 @@ public class Comunidad extends Persistente {
         }
         return incidenteEncontrado;
     }
+
     @JsonProperty("establecimientos")
     public List<Establecimiento> obtenerEstablecimientosObservados(){
         List<Establecimiento> establecimientos = new ArrayList<>();
@@ -91,4 +97,7 @@ public class Comunidad extends Persistente {
         this.incidentesOcurridos.forEach(incidente -> servicios.add(incidente.getServicio()));
         return servicios;
     }
+
+
+
 }

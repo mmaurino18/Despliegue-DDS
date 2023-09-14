@@ -1,15 +1,22 @@
 package dominio.entidades;
 
-public class Sucursal extends Establecimiento{
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
-    private String nombre;
+@Entity
+@DiscriminatorValue("sucursal")
+public class Sucursal extends Establecimiento{
 
     public Sucursal(String nombre) {
         this.nombre = nombre;
     }
 
+    public Sucursal() {
+
+    }
+
     @Override
-    public String getnombre() {
-        return nombre;
+    public String getNombre() {
+        return this.nombre;
     }
 }

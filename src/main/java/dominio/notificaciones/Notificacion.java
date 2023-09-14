@@ -43,7 +43,7 @@ public class Notificacion {
     // "ServicioPrestado + estado -> (con incidentes, reestablecido)"
     public String crearMensaje(){
         for (Incidente incidente : this.incidentesYaNotificados){
-            this.agregarMensaje(incidente.getServicioIncidente().informacionDeServicioPrestado());
+            this.agregarMensaje(incidente.getPrestacionDeServicioIncidente().informacionDeServicioPrestado());
             this.agregarMensaje(" " + incidente.estadoIncidente());
             this.agregarMensaje(" -- ");
         }
