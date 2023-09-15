@@ -29,6 +29,7 @@ public class Comunidad extends Persistente {
     @JoinColumn(name = "comunidad_id")
     private List<Incidente> incidentesOcurridos;
 
+    @Transient
     @JsonProperty("gradoDeConfianza")
     public float gradoDeConfianza;
 
