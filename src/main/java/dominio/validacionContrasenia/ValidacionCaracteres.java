@@ -14,14 +14,19 @@ public class ValidacionCaracteres {
         validator = new org.passay.PasswordValidator(lengthRule, upperCaseRule, lowerCaseRule, digitRule, specialCharRule);
     }
 
-    public void errores(String password) {
+    public String errores(String password) {
+        String error ="";
         org.passay.RuleResult result = validator.validate(new org.passay.PasswordData(password));
         if (!result.isValid()) {
             //System.out.println("La contraseña es incorrecta, tiene los siguientes errores:");
             for (org.passay.RuleResultDetail detail : result.getDetails()) {
-                System.out.println("* "+ tiposErrores(detail.getErrorCode()));
+                if (!error.isEmpty()) {
+                    error += "\n";
+                }
+                error += tiposErrores(detail.getErrorCode());
             }
         }
+        return error;
     }
     public boolean validar(String password) {
         org.passay.RuleResult result = validator.validate(new org.passay.PasswordData(password));

@@ -1,22 +1,18 @@
 package dominio.validacionContrasenia;
-import java.util.ArrayList;
+
 public class CambiarContraseña {
-    public boolean cambioDeContraseña(String contra_nueva, String contra_actual) {
-        ValidacionCaracteres validacion = new ValidacionCaracteres();
-        PeoresContras peores_contras = new PeoresContras();
-        if(validacion.validar(contra_nueva) && !peores_contras.estaContenida(contra_nueva) && !this.sonIguales(contra_nueva,contra_actual)) {
+    ValidacionContraseña validacion = new ValidacionContraseña();
+    public boolean puedeCambiar(String contra_nueva, String contra_actual) {
+
+        if(validacion.validar(contra_nueva)  && !this.sonIguales(contra_nueva,contra_actual)) {
             return true;
         } else {
-            System.out.println("Las contraseña contiene los siguientes errores:");
-            validacion.errores(contra_nueva);
-            peores_contras.error(contra_nueva);
-            this.errores(contra_nueva,contra_actual);
             return false;
         }
     }
 
     private boolean sonIguales(String contra_nueva, String contra_actual){
-        if(contra_nueva == contra_actual) {
+        if(contra_nueva.equals(contra_actual)) {
             //System.out.println("* Las contraseña nueva es igual a la actual.Tienen que ser diferentes");
             return true;
         }
@@ -33,9 +29,13 @@ public class CambiarContraseña {
             return false;
         }
     }*/
-    private void errores(String contra_nueva, String contra_actual){
+    public String errores(String contra_nueva, String contra_actual){
+        String error="";
         if(this.sonIguales(contra_nueva,contra_actual)){
-            System.out.println("* Las contraseña nueva es igual a la actual.Tienen que ser diferentes");
+            error = "Las contraseña nueva es igual a la actual.Tienen que ser diferentes";
         }
+        error += "\n";
+        error += validacion.errores(contra_nueva);
+        return error;
     }
 }

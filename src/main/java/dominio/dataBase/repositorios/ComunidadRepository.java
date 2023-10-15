@@ -1,6 +1,7 @@
 package dominio.dataBase.repositorios;
 
 import dominio.comunidad.Comunidad;
+import dominio.entidades.EntidadPrestadora;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -35,4 +36,6 @@ public class ComunidadRepository implements Repository<Comunidad> {
     public void delete(Comunidad comunidad) {
 
     }
+    @Override
+    public void update(Comunidad comunidad){}
 }

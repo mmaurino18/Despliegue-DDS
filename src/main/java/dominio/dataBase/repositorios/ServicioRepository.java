@@ -33,6 +33,18 @@ public class ServicioRepository implements Repository<Servicio> {
 
     @Override
     public void delete(Servicio servicio) {
+        if(!em.getTransaction().isActive())
+            em.getTransaction().begin();
 
+        em.remove(servicio);
+        em.getTransaction().commit();
+    }
+    @Override
+    public void update(Servicio servicio) {
+        if(!em.getTransaction().isActive())
+            em.getTransaction().begin();
+
+        em.merge(servicio);
+        em.getTransaction().commit();
     }
 }

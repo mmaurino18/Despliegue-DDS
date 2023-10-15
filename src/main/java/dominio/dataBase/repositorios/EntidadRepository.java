@@ -1,6 +1,7 @@
 package dominio.dataBase.repositorios;
 
 import dominio.entidades.Entidad;
+import dominio.entidades.EntidadPrestadora;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -35,4 +36,6 @@ public class EntidadRepository implements Repository<Entidad> {
     public void delete(Entidad entidad) {
 
     }
+    @Override
+    public void update(Entidad entidad){}
 }

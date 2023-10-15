@@ -1,6 +1,7 @@
 package dominio.dataBase.repositorios;
 
 import dominio.actores.Permiso;
+import dominio.entidades.EntidadPrestadora;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -35,4 +36,6 @@ public class PermisoRepository implements Repository<Permiso> {
     public void delete(Permiso permiso) {
 
     }
+    @Override
+    public void update(Permiso permiso){}
 }

@@ -35,9 +35,11 @@ public class PeoresContras {
         }
         return bandera;
     }
-    public void error(String contra){
+    public String error(String contra){
+        String error = "";
         if(estaContenida(contra)){
-            System.out.println("* La contraseña insegura.Esta en una lista de las peores contraseñas");
+            error = "La contraseña insegura.Esta en una lista de las peores contraseñas";
         }
+        return error;
     }
 }

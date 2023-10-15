@@ -12,6 +12,7 @@ import java.time.temporal.ChronoUnit;
 
 @Entity
 @Table(name = "incidente")
+
 @Getter
 @Setter
 public class Incidente extends Persistente {
@@ -34,6 +35,10 @@ public class Incidente extends Persistente {
 
     @Transient
     private Boolean estadoIncidente;
+
+    public Incidente(){
+
+    }
 
     public Incidente(String nombreincidente,
                      PrestacionDeServicio prestacionDeServicioIncidente,

@@ -1,5 +1,6 @@
 package dominio.dataBase.repositorios;
 
+import dominio.entidades.EntidadPrestadora;
 import dominio.entidades.OrganismoDeControl;
 
 import javax.persistence.EntityManager;
@@ -35,4 +36,6 @@ public class OrganismoControlRepository implements Repository<OrganismoDeControl
     public void delete(OrganismoDeControl organismoDeControl) {
 
     }
+    @Override
+    public void update(OrganismoDeControl organismoDeControl){}
 }

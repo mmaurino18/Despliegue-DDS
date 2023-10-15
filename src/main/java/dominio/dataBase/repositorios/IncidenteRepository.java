@@ -1,6 +1,8 @@
 package dominio.dataBase.repositorios;
 
+import dominio.entidades.EntidadPrestadora;
 import dominio.servicios.Incidente;
+import dominio.servicios.Servicio;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -33,6 +35,18 @@ public class IncidenteRepository implements Repository<Incidente> {
 
     @Override
     public void delete(Incidente incidente) {
+        if(!em.getTransaction().isActive())
+            em.getTransaction().begin();
 
+        em.remove(incidente);
+        em.getTransaction().commit();
+    }
+    @Override
+    public void update(Incidente incidente) {
+        if(!em.getTransaction().isActive())
+            em.getTransaction().begin();
+
+        em.merge(incidente);
+        em.getTransaction().commit();
     }
 }

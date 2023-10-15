@@ -2,6 +2,7 @@ package dominio.dataBase.repositorios;
 
 import dominio.actores.Rol;
 import dominio.actores.Usuario;
+import dominio.entidades.EntidadPrestadora;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -37,4 +38,6 @@ public class RolRepository implements Repository<Rol> {
     public void delete(Rol rol) {
 
     }
+    @Override
+    public void update(Rol rol){}
 }

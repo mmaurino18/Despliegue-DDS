@@ -24,4 +24,7 @@ public class Permiso extends Persistente {
     public Permiso(){
 
     }
+    public boolean coincideConNombreInterno(String nombre) {
+        return this.nombre.equals(nombre);
+    }
 }

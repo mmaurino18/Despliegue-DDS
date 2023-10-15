@@ -1,6 +1,7 @@
 package dominio.dataBase.repositorios;
 
 import dominio.actores.Ciudadano;
+import dominio.servicios.Servicio;
 import org.hibernate.Transaction;
 
 import javax.persistence.EntityManager;
@@ -41,4 +42,7 @@ public class CiudadanoRepository implements Repository<Ciudadano> {
     public void delete(Ciudadano ciudadano) {
 
     }
+
+    @Override
+    public void update(Ciudadano ciudadano){}
 }

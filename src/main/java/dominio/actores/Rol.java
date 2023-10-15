@@ -26,7 +26,10 @@ public class Rol extends Persistente {
         this.permisos = new ArrayList<>();
     }
 
-    public boolean TenesPermiso(Permiso permiso){
+    public boolean tenesPermiso(Permiso permiso){
         return true;
+    }
+    public boolean tenesPermiso(String nombreInterno) {
+        return this.permisos.stream().anyMatch(p -> p.coincideConNombreInterno(nombreInterno));
     }
 }

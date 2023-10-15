@@ -3,6 +3,7 @@ package dominio.dataBase.repositorios;
 import dominio.actores.Usuario;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import java.util.List;
 
 public class UsuarioRepository implements Repository<Usuario>{
@@ -37,4 +38,16 @@ public class UsuarioRepository implements Repository<Usuario>{
     public void delete(Usuario usuario) {
 
     }
+
+    public Usuario findByNombre(String nombre) {
+        try {
+            return em.createQuery("SELECT u FROM Usuario u WHERE u.nombre = :nombre", Usuario.class)
+                    .setParameter("nombre", nombre)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+    @Override
+    public void update(Usuario usuario){}
 }

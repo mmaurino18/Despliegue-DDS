@@ -20,10 +20,7 @@ import java.net.URL;
 import org.json.JSONObject;
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 public class FusionComunidades {
@@ -31,7 +28,6 @@ public class FusionComunidades {
 
     Comunidad comunidad ;
     public static void main(String[] args) {
-        FusionComunidades fusionComunidades = new FusionComunidades();
         Comunidad comunidad = new Comunidad(null);
         comunidad.setNombre("COMUNIDAD1");
         Comunidad comunidad2 = new Comunidad(null);
@@ -58,22 +54,28 @@ public class FusionComunidades {
         float gradoConfianza2 = 0.2f ;
         comunidad.setGradoDeConfianza(gradoConfianza);
         comunidad2.setGradoDeConfianza(gradoConfianza);
-        comunidad3.setGradoDeConfianza(gradoConfianza2);
+        comunidad3.setGradoDeConfianza(gradoConfianza);
         List<Comunidad> comunidades = new ArrayList<>();
         comunidades.add(comunidad);
         comunidades.add(comunidad2);
         comunidades.add(comunidad3);
-        fusionComunidades.sendCommunitiesToApi(comunidad, comunidades);
-        fusionComunidades.mostrarJson("http://localhost:8000/comunidades/fusionables/");
+        /*fusionComunidades.sendCommunitiesToApi(comunidad, comunidades);
+        fusionComunidades.mostrarJson("http://localhost:8000/propose_fusion/");*/
+        FusionComunidades fusionComunidades = new FusionComunidades();
+        List<Comunidad> comunidadesRetornadas = fusionComunidades.sendCommunitiesToApi(comunidad, comunidades);
+        if (comunidadesRetornadas != null) {
+            System.out.println("Comunidades retornadas por el servidor:");
+            for (Comunidad c : comunidadesRetornadas) {
+                System.out.println(c.getNombre());
+            }
+        }
     }
-    public void sendCommunitiesToApi(Comunidad comunidad, List<Comunidad> comunidades) {
+    /*public void sendCommunitiesToApi(Comunidad comunidad, List<Comunidad> comunidades) {
         RestTemplate restTemplate = new RestTemplate();
 
-        // Crear encabezados HTTP
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        // Convertir la comunidad y la lista de comunidades a JSON
         ObjectMapper objectMapper = new ObjectMapper();
         Map<String, Object> payload = new HashMap<>();
         try {
@@ -94,10 +96,8 @@ public class FusionComunidades {
             return;
         }
 
-        // Crear una entidad HTTP que contenga los encabezados y el cuerpo
         HttpEntity<String> request = new HttpEntity<>(jsonPayload, headers);
 
-        // Enviar la solicitud POST
         try {
             ResponseEntity<String> response = restTemplate.postForEntity("http://localhost:8000/propose_fusion/", request, String.class);
 
@@ -111,13 +111,13 @@ public class FusionComunidades {
             System.out.println("Excepción al realizar la solicitud POST");
         }
     }
-
+*/
 
     public void mostrarJson(String url1){
         try {
             URL url = new URL(url1);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("GET");
+            conn.setRequestMethod("POST");
             conn.setRequestProperty("Accept", "application/json");
 
             if (conn.getResponseCode() != 200) {
@@ -139,20 +139,13 @@ public class FusionComunidades {
     public JSONObject ObtenerJson(String url1){
         HttpURLConnection conn = null;
         try {
-            // URL del endpoint
             URL url = new URL(url1);
             conn = (HttpURLConnection) url.openConnection();
 
-            // Configuración de la solicitud HTTP
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
             conn.setRequestProperty("Accept", "application/json");
 
-            // Aquí deberías escribir el código para enviar el cuerpo de la solicitud
-            // que incluye los detalles de las comunidades a fusionar
-            // ...
-
-            // Leer la respuesta
             BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             String inputLine;
             StringBuffer response = new StringBuffer();
@@ -161,7 +154,6 @@ public class FusionComunidades {
             }
             in.close();
 
-            // Convertir la respuesta a JSON
             JSONObject jsonResponse = new JSONObject(response.toString());
             return  jsonResponse;
 
@@ -183,5 +175,52 @@ public class FusionComunidades {
     }
     public void eliminarComunidad(Comunidad comunidad){
 
+    }
+
+    public List<Comunidad> sendCommunitiesToApi(Comunidad comunidad, List<Comunidad> comunidades) {
+        RestTemplate restTemplate = new RestTemplate();
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        Map<String, Object> payload = new HashMap<>();
+        try {
+            payload.put("comunidad", comunidad);
+            payload.put("lista_comunidades", comunidades);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error al agregar comunidad y lista de comunidades al payload");
+            return null;
+        }
+
+        String jsonPayload = "";
+        try {
+            jsonPayload = objectMapper.writeValueAsString(payload);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            System.out.println("Error al convertir el payload a JSON");
+            return null;
+        }
+
+        HttpEntity<String> request = new HttpEntity<>(jsonPayload, headers);
+
+        try {
+            ResponseEntity<String> response = restTemplate.postForEntity("http://localhost:8000/propose_fusion/", request, String.class);
+
+            if (response.getStatusCodeValue() == 200) {
+                System.out.println("Solicitud POST exitosa: " + response.getBody());
+                Comunidad[] comunidadesArray = objectMapper.readValue(response.getBody(), Comunidad[].class);
+                return Arrays.asList(comunidadesArray);
+
+            } else {
+                System.out.println("Error en la solicitud POST: " + response.getStatusCodeValue());
+                return null;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Excepción al realizar la solicitud POST");
+            return null;
+        }
     }
 }
