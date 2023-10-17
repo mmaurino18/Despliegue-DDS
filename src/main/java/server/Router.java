@@ -11,8 +11,10 @@ public class Router {
     public static void init() {
         Server.app().get("/", ctx -> {
             ctx.sessionAttribute("item1", "Cosa 1");
-            ctx.result("Hola mundo");
+            ctx.result("Hola mundooooooo");
         });
+
+
         Server.app().get("/saluda", ctx -> {
             ctx.result("Hola "
                     + ctx.queryParam("nombre")

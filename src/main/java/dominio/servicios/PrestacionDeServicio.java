@@ -27,6 +27,10 @@ public class PrestacionDeServicio extends Persistente {
     @Transient
     private Boolean estadoDeServicioPrestado;
 
+    public PrestacionDeServicio(){
+        // para Hibernate
+    }
+
     // test
     public PrestacionDeServicio(String nombreServicioPrestado, Establecimiento establecimiento){
         this.nombreServicioPrestado = nombreServicioPrestado;

@@ -11,13 +11,15 @@ import dominio.notificaciones.Notificador;
 import dominio.servicios.PrestacionDeServicio;
 
 import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;
+import io.javalin.Javalin;
+
 import javax.persistence.EntityTransaction;
 
 public class Pruebas implements WithSimplePersistenceUnit{
 
     public static void main(String[] args) {
 
-        new Pruebas().transaccion();
+        new Pruebas().testJavalin();
 
     }
 
@@ -68,6 +70,14 @@ public class Pruebas implements WithSimplePersistenceUnit{
         }
 
         unNotificador.cerrarServicio();
+    }
+    private void testJavalin(){
+        Integer port = Integer.parseInt(System.getProperty("port", "8080"));
+
+        Javalin app = Javalin.create().start(port);
+        // Javalin app = Javalin.create(config()).start(port);
+
+        app.get("/", ctx -> ctx.result("Hola Mundo"));
     }
 
 }
