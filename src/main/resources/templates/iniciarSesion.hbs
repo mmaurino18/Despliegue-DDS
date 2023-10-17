@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesion</title>
+    <link rel="stylesheet" href="/public/css/styleiniciarsesion.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap" rel="stylesheet">
+</head>
+
+<body background ="/public/img/comunidad.jpg">
+<header>
+
+    <div class="contenedor">
+        <h1 class= "titulo">  Sistema de Comunidades</h1>
+        <!--input type="checkbox" id="menu-bar"-->
+
+        <nav class="menu">
+            <a href="/comunidad">Mis Comunidades</a>
+            <a href="/incidente">Incidentes</a>
+            <a href="/ranking">Rankings</a>
+            <a href="/servicios">Servicios</a>
+            <a href="/iniciarSesion">Cerrar Sesion</a>
+
+        </nav>
+
+
+    </div>
+</header>
+
+
+<form class="form-login" method="post" action="/comunidad">
+
+    <h5>Bienvenido!</h5>
+
+    <input class="controls" type="text" name="usuario" placeholder="ingrese usuario">
+
+    <input class="controls" type="password" name="Contrasenia" pattern=".{8,}" placeholder="ingrese contraseña">
+
+    <button class="buttons" type="submit"> Iniciar Sesion</button><!--entra a la app, falta direccionar a otra pag-->
+
+    <p><a href="#"> ¿olvido su contraseña? </a></p> <!--falta recuperacion por mail-->
+
+    <button class="buttons" type="button"><a href="/registrarusuario"> Registrarse </a></button><!--registro usuario nuevo-->
+
+</form>
+</body>
+</html>

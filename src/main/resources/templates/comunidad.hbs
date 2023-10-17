@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no ,initial-scale=1 ,maximum-scale=1 ,minimum-scale=1">
+    <title> Mi comunidad</title>
+
+    <link rel="stylesheet" href="/public/css/stylecomunidad.css">
+
+    <script src="https://kit.fontawesome.com/e15e8c34af.js" crossorigin="anonymous"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+</head>
+<body background ="/public/img/comunidad.jpg">
+<header>
+    <div class="contenedor">
+        <h1 class= "titulo"> Sistema de Comunidades </h1>
+        <input type="checkbox" id="menu-bar">
+
+        <nav class="menu">
+            <a href="/comunidad">Mis Comunidades</a>
+            <a href="/incidente">Incidentes</a>
+            <a href="/ranking">Rankings</a>
+            <a href="/servicios">Servicios</a>
+            <a href="/iniciarSesion">Cerrar Sesion</a>
+
+        </nav>
+
+    </div>
+</header>
+<div class="conteiner-tabla">
+    <table>
+        <thead>
+        <tr>
+            <th>Nombre del Servicio </th>
+            <th>Lugar </th>
+            <th>Fecha y hora </th>
+            <th>Comunidad </th>
+            <th> </th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each incidenteDTO}}
+            <tr>
+                <td>{{this.prestacionDServicio.getNombre}}</td>
+                <td>{{this.establecimiento.getNombre}}</td>
+                <td>{{this.fechaHora}}</td>
+                <td>{{this.comunidad}}</td>
+                <td><button class="buttons" type="submit"><a href="/comunidad">Cerrar incidente</a></button</td>
+            </tr>
+            {{/each}}
+    </table>
+    <button class="buttonConfig" type="submit"><a href="/configuracion">Configuración</a></button>
+</div>
+
+
+
+
+
+</body>
+
+</html>
