@@ -31,7 +31,7 @@ public class Pruebas implements WithSimplePersistenceUnit{
         //new Pruebas().transaccion();
         //new Pruebas().testJavalin();
         new Pruebas().testRepositorio();
-        new Pruebas().testController();
+       // new Pruebas().testController();
 
     }
 
