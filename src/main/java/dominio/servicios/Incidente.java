@@ -7,7 +7,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 
@@ -74,10 +73,6 @@ public class Incidente extends Persistente {
         else {
             return false;
         }
-    }
-
-    public String fechaHora (){
-        return LocalDateTime.of(fechaIncidente,horarioIncidente).toString();
     }
 
     public String estadoIncidente (){

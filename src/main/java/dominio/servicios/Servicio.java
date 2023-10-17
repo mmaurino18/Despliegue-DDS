@@ -14,6 +14,7 @@ import javax.persistence.Table;
 @Getter
 @Setter
 public class Servicio extends Persistente {
+
     @Column(name = "nombre", columnDefinition = "VARCHAR(55)")
     private String nombre;
 
@@ -21,7 +22,7 @@ public class Servicio extends Persistente {
     private String descripcion;
 
     public Servicio(){
-
+        // para hibernate
     }
 
 }

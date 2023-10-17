@@ -3,50 +3,60 @@ package dominio.dataBase.repositorios;
 import dominio.entidades.EntidadPrestadora;
 import dominio.servicios.Incidente;
 import dominio.servicios.Servicio;
+import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import java.util.List;
 
-public class IncidenteRepository implements Repository<Incidente> {
+public class IncidenteRepository implements Repository<Incidente>, WithSimplePersistenceUnit {
 
-    private final EntityManager em;
 
-    public IncidenteRepository(EntityManager em) {
-        this.em = em;
+    public IncidenteRepository(){
     }
 
     @Override
     public void save(Incidente incidente) {
+        EntityTransaction tx = entityManager().getTransaction();
+
+        if(!tx.isActive())
+            tx.begin();
         if (incidente.getId() == null)
-            em.persist(incidente);
+            entityManager().persist(incidente);
         else
-            em.merge(incidente);
+            entityManager().merge(incidente);
+
+        tx.commit();
     }
 
     @Override
     public List<Incidente> findAll() {
-        return em.createQuery("FROM incidente",Incidente.class).getResultList();
+        return entityManager().createQuery("FROM " + Incidente.class.getName()).getResultList();
     }
 
     @Override
     public Incidente findById(Long id) {
-        return em.find(Incidente.class,id);
+        return entityManager().find(Incidente.class, id);
     }
 
     @Override
     public void delete(Incidente incidente) {
-        if(!em.getTransaction().isActive())
-            em.getTransaction().begin();
+        EntityTransaction tx = entityManager().getTransaction();
+        if(!tx.isActive())
+            tx.begin();
 
-        em.remove(incidente);
-        em.getTransaction().commit();
+        entityManager().remove(incidente);
+        tx.commit();
     }
+
     @Override
     public void update(Incidente incidente) {
-        if(!em.getTransaction().isActive())
-            em.getTransaction().begin();
+        EntityTransaction tx = entityManager().getTransaction();
 
-        em.merge(incidente);
-        em.getTransaction().commit();
+        if(!tx.isActive())
+            tx.begin();
+
+        entityManager().merge(incidente);
+        tx.commit();
     }
 }

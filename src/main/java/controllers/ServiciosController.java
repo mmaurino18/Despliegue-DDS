@@ -19,12 +19,21 @@ public class ServiciosController extends Controller implements ICrudViewsHandler
         this.repositorioDeServicios = repositorioDeServicios;
     }
 
+    public void test(){
+        List<Servicio> servicios = this.repositorioDeServicios.findAll();
+        for (Servicio elemento : servicios) {
+            System.out.println("servicio => " + elemento.getNombre());
+            System.out.println("descripcion => " + elemento.getDescripcion());
+        }
+    }
+
     @Override
     public void index(Context context) {
         Map<String, Object> model = new HashMap<>();
         List<Servicio> servicios = this.repositorioDeServicios.findAll();
         model.put("servicios", servicios);
         context.render("servicios/servicios.hbs", model);
+
     }
 
     @Override
