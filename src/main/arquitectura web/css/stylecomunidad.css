@@ -1,0 +1,93 @@
+@import url(stylenavegacion.css);
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-size: 100%;
+}
+
+.container-tabla{
+    border: solid 1px  rgba(255,255,255, 0.2);
+}
+
+table {
+    color: white;
+    font-size: 14px;
+    table-layout: fixed;
+    border-collapse: collapse;
+    background: linear-gradient(#2315f1, #1890c0);
+    font-family: sans-serif;
+}
+
+thead{
+    background: rgba(243, 140, 210, 0.4);
+}
+
+th{
+    padding: 20px 15px;
+    font-weight: 700px;
+    text-transform: uppercase;
+}
+
+td{
+    padding: 15px;
+    border-bottom: solid 1px rgba(255,255,255, 0.2);
+
+}
+
+tbody tr{
+    cursor: pointer;
+}
+
+tbody tr:hover{
+    background: rgba(243, 103, 199, 0.4);
+}
+
+
+
+
+
+.buttons{
+    width: 90%;
+    height: 40px;
+    text-align: center;
+    background: #017bab;
+    border-color: #314ff8;
+    border-radius: 4px;
+    color: white;
+   
+    font-size: 12px;
+    
+}
+
+.buttons a{
+    color:#ffffff;
+    text-decoration: none;
+}
+
+.buttonConfi {
+    position: absolute;
+    left: 45%;
+    top: 75%;
+    width: 140px;
+    height: 40px;
+    background: #2040f1;
+    border-color: #368df0;
+   
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.buttonConfi a{
+    text-decoration: none;
+    color:#ffffff;
+}

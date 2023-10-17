@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar nuevo usuario</title>
+    <link rel="stylesheet" href="css/registrar_usuario.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap" rel="stylesheet">
+
+</head>
+<body background ="imagenes/comunidad.jpg">
+      <header>  
+        
+            <div class="contenedor">
+                       <h1 class= "titulo"> Sistema de Comunidades</h1>
+                       <input type="checkbox" id="menu-bar">
+                      
+                    <nav class="menu">
+                        <a href="#">Mi Comunidad</a>
+                        <a href="#">Incidentes</a>
+                        <a href="#">Rankings</a>
+                        <a href="#">Servicios</a>
+                        <a href="iniciarSesion.html">Cerrar Sesion</a>
+                        
+                   </nav>
+                  
+                      
+            </div>
+        </header>
+
+	<section class="form-registro">
+		
+		<h5>Registro nuevo usuario</h5>
+
+		<p>Nombre de Usuario: </p>
+            <input class="controls" type="text" name="usuario">
+
+		<p>Nombre:</p>
+            <input class="controls" type="text" name="nombre">
+
+		<p>Apellido:</p>
+            <input class="controls" type="text" name="apellido">
+
+	    <p>Contraseña:</p>
+            <input class="controls" type="password" name="contrasenia" pattern=".{6,}">
+
+		<p>E-mail:</p>
+            <input class="controls" type="text" name="email"> 
+		
+		<button class="buttons" type="submit"><a href="comunidad.html"> Registrarse</a></button> <!--entra al usuario q corresponde propietario o ciudadano-->
+
+        <button class="buttons" type="submit"><a href="iniciarSesion.html">Volver</a></button>
+
+	</section>
+</body>
+</html>

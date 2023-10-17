@@ -1,0 +1,74 @@
+@import url(stylenavegacion.css);
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Gochi Hand', cursive;
+    background-size: 100%;
+}
+
+
+.form-registro{
+    width: 420px;
+    height: 630px;
+    background: rgb(219, 218, 218);
+    margin: auto;
+    margin-top: 70px;
+    box-shadow: 5px 12px 20px #4d4c4c;
+    padding: 20px 30px;
+    border-top: 4px solid rgb(36, 103, 248);
+    color: rgb(10, 10, 10);
+    text-align: center;
+}
+
+
+.form-registro h5{
+    margin: 0;
+    text-align: center;
+    border-bottom: 1px solid;
+    font-size: 27px;
+    margin-bottom: 30px;
+    height: 60px;
+}
+
+.controls{
+    width: 100%;
+    border: 1px solid #2ba9db;
+    margin-bottom: 5%;
+    padding: 11px 10px;
+    background: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.buttons{
+    width: 80%;
+    height: 40px;
+    text-align: center;
+    background: #017bab;
+    border-color: #314ff8;
+    border-radius: 4px;
+    color: white;
+    margin-bottom: 16px;
+    font-size: 15px;
+    
+}
+
+.form-registro p{
+    height: 10px;
+    text-align: left;
+    font-weight: bold;
+    margin-bottom:10px;
+    font-weight: lighter;
+    font-size: 20px;
+}
+
+.buttons a{
+    color:#ffffff;
+    text-decoration: none;
+}
