@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no ,initial-scale=1 ,maximum-scale=1 ,minimum-scale=1">
+    <title> Ranking</title>
+
+    <link rel="stylesheet" href="/public/css/styleranking.css">
+
+    <script src="https://kit.fontawesome.com/e15e8c34af.js" crossorigin="anonymous"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+</head>
+<body background ="/public/img/comunidad.jpg">
+<header>
+    <div class="contenedor">
+        <h1 class= "titulo"> Sistema de Comunidades </h1>
+
+        <nav class="menu">
+            <a href="/comunidad">Mis Comunidades</a>
+            <a href="/incidente">Incidentes</a>
+            <a href="/ranking">Rankings</a>
+            <a href="/servicios">Servicios</a>
+            <a href="/iniciarSesion">Cerrar Sesion</a>
+
+        </nav>
+
+    </div>
+</header>
+
+<main>
+    <form class="form-login" method="post" action="/ranking">
+
+        <h5>Solicitud de ranking semanal</h5>
+        <label>Criterios para generar ranking semanal</label><br/>
+        <div class="controls">
+            <input type="radio" id="ranking" name="ranking" value="">
+            <label for="ranking"> Entidades con mayor promedio de incidentes.</label><br>
+            <input type="radio" id="ranking" name="ranking" value="">
+            <label for="ranking"> Entidades con mayor cantidad de incidentes.</label><br>
+            <input type="radio" id="ranking" name="ranking" value="">
+            <label for="ranking"> Mayor grado de impacto de las problematicas.</label><br>
+        </div>
+
+        <button class="buttons" type="submit"><a href="/ranking"> Solicitar ranking semanal</a></button><!--registro usuario nuevo-->
+
+    </form>
+</main>
+
+
+</body>
+</html>

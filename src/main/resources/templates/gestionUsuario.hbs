@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no ,initial-scale=1 ,maximum-scale=1 ,minimum-scale=1">
+    <title> Configuración</title>
+
+    <link rel="stylesheet" href="/public/css/styleconfiguracion.css">
+
+    <script src="https://kit.fontawesome.com/e15e8c34af.js" crossorigin="anonymous"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+</head>
+<body background ="/public/img/comunidad.jpg">
+<header>
+    <div class="contenedor">
+        <h1 class= "titulo"> Sistema de Comunidades </h1>
+
+        <nav class="menu">
+            <a href="/comunidad">Mis Comunidades</a>
+            <a href="/incidente">Incidentes</a>
+            <a href="/ranking">Rankings</a>
+            <a href="/servicios">Servicios</a>
+            <a href="/iniciarSesion">Cerrar Sesion</a>
+        </nav>
+
+    </div>
+</header>
+
+<main>
+
+    <form class="form-login" method="post" action="/comunidad">
+
+        <h5>Configuración de Notificación</h5>
+        <label>Medio de Notificación</label><br/>
+        <div class="controls">
+            <input type="radio" name="category" value="whatsapp" checked>  Whatsapp </label><br/>
+            <input type="radio" name="category" value="mail">  Mail </label><br/>
+        </div>
+        <label>Forma de Notificación</label><br/>
+        <div class="controls">
+            <input type="radio" name="category1" value="cuandoSuceden" checked> Cuando suceden <br/>
+            <input type="radio" name="category1" value="sinApuro">   Sin Apuros </label><br/>
+        </div>
+
+        <h5>Configuración de Usuario </h5>
+        <label>Tipo de usuario</label><br/>
+        <div class="controls">
+            <input type="radio" name="category2" value="afectado" checked>  Afectado </label><br/>
+            <input type="radio" name="category2" value="observador"> Observador </label><br/>
+        </div>
+        <button class="buttons" type="submit"><a href="/comunidad"> Guardar </a></button><!--registro usuario nuevo-->
+
+    </form>
+
+</main>
+</body>
+</html>

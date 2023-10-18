@@ -28,17 +28,16 @@ public class Incidente extends Persistente {
     @Column(name = "observaciones", columnDefinition = "TEXT")
     private String observaciones;
 
-    @Transient
+    @Column(name = "fecha", columnDefinition = "DATE")
     private LocalDate fechaIncidente;
 
-    @Transient
+    @Column(name = "hora", columnDefinition = "TIME")
     private LocalTime horarioIncidente;
 
-    @Transient
+    @Column(name = "estadoIncidente", columnDefinition = "BOOLEAN")
     private Boolean estadoIncidente;
 
     public Incidente(){
-
     }
 
     public Incidente(String nombreincidente,

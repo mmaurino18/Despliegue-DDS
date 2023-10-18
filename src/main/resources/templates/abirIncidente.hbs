@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no ,initial-scale=1 ,maximum-scale=1 ,minimum-scale=1">
+    <title> Incidentes </title>
+
+    <link rel="stylesheet" href="/public/css/styleincidentes.css">
+
+    <script src="https://kit.fontawesome.com/e15e8c34af.js" crossorigin="anonymous"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+</head>
+
+<body  background ="/public/img/comunidad.jpg">
+<header>
+
+    <div class="contenedor">
+        <h1 class= "titulo"> Sistema de Comunidades </h1>
+        <input type="checkbox" id="menu-bar">
+
+        <nav class="menu">
+            <a href="/comunidad">Mis Comunidades</a>
+            <a href="/incidente">Incidentes</a>
+            <a href="/ranking">Rankings</a>
+            <a href="/servicios">Servicios</a>
+            <a href="/iniciarSesion">Cerrar Sesion</a>
+
+        </nav>
+
+    </div>
+</header>
+
+
+<main>
+
+    <form class="form-login" method="post" action="/comunidad">
+
+        <h5>Apertura de incidente </h5>
+
+        <label>nombre del Incidente:</label>
+        <input class="controls" type="text" name="nombreIncidente" placeholder="ingrese breve descripción">
+
+        <label>Servicio:</label>
+        <select class="controls"  name="servicio">
+            {{#each servicio}}
+                <option>{{this.getNombre}}</option>
+                {{/each}}
+        </select>
+
+        <br>
+
+        <textarea name="mensaje" placeholder="Escriba aquí una observación..."></textarea>
+
+        <br>
+        <button class="buttons" type="submit"><a href="/comunidad"> Agregar incidente </a></button><!--registro usuario nuevo-->
+
+    </form>
+
+</main>
+
+</body>
+
+</html>
