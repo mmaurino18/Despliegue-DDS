@@ -25,6 +25,9 @@ public class Ciudadano extends Persistente {
     @Column(name = "nombre", columnDefinition = "VARCHAR(55)")
     private String nombre;
 
+    @Column(name = "apellido", columnDefinition = "VARCHAR(55)")
+    private String apellido;
+
     @Column(name = "numeroDeTelefono", columnDefinition = "VARCHAR(55)")
     private String numeroDeTelefono;
 
@@ -32,7 +35,7 @@ public class Ciudadano extends Persistente {
     private String mail;
 
     // unidireccional
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     private Usuario usuario;
 
@@ -46,8 +49,10 @@ public class Ciudadano extends Persistente {
     @Enumerated(EnumType.STRING)
     @Column(name = "medioDeNotificacion")
     private MedioDeNotificaion medioDeNotificaion;
+
     @Column(name = "horarioDeNotificacion", columnDefinition = "TIME")
     private LocalTime horarioDeNotificaion;
+
     @Transient
     private List<PrestacionDeServicio> interes;
 
@@ -62,6 +67,15 @@ public class Ciudadano extends Persistente {
 
 
     public Ciudadano (){
+        this.comunidades = new ArrayList<>();
+        this.interes = new ArrayList<>();
+        this.incidentesReportados = new ArrayList<>();
+    }
+
+    public Ciudadano(String nombre, Usuario usuario, String mail){
+        this.nombre = nombre;
+        this.usuario = usuario;
+        this.mail = mail;
         this.comunidades = new ArrayList<>();
         this.interes = new ArrayList<>();
         this.incidentesReportados = new ArrayList<>();

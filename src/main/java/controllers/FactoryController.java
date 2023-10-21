@@ -1,5 +1,6 @@
 package controllers;
 
+import dominio.dataBase.repositorios.CiudadanoRepository;
 import dominio.dataBase.repositorios.IncidenteRepository;
 import dominio.dataBase.repositorios.ServicioRepository;
 
@@ -12,8 +13,9 @@ public class FactoryController {
     public static Object controller(String nombre) {
         Object controller = null;
         switch (nombre) {
-            case "Servicios": controller = new ServiciosController(new ServicioRepository()); break;
+            case "Servicios": controller = new ServiciosController(new ServicioRepository());break;
             case "Incidentes": controller = new IncidentesController(new IncidenteRepository());break;
+            case "registroCiudadano": controller = new RegistroCiudadanoController(new CiudadanoRepository());break;
         }
         return controller;
     }

@@ -6,7 +6,6 @@ import dominio.comunidad.Comunidad;
 import dominio.comunidad.CuandoNotificar;
 import dominio.comunidad.MedioDeNotificaion;
 import dominio.actores.Ciudadano;
-import dominio.dataBase.repositorios.Repository;
 import dominio.dataBase.repositorios.ServicioRepository;
 import dominio.entidades.Establecimiento;
 import dominio.entidades.Estacion;
@@ -18,19 +17,18 @@ import dominio.servicios.Servicio;
 import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;
 import io.javalin.Javalin;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
 import java.util.List;
+
+import static io.javalin.apibuilder.ApiBuilder.get;
 
 public class Pruebas implements WithSimplePersistenceUnit{
 
     public static void main(String[] args) {
 
-        //new Pruebas().transaccion();
+        new Pruebas().transaccion();
         //new Pruebas().testJavalin();
-        new Pruebas().testRepositorio();
+        //new Pruebas().testRepositorio();
        // new Pruebas().testController();
 
     }
@@ -114,7 +112,6 @@ public class Pruebas implements WithSimplePersistenceUnit{
         Integer port = Integer.parseInt(System.getProperty("port", "8080"));
 
         Javalin app = Javalin.create().start(port);
-        // Javalin app = Javalin.create(config()).start(port);
 
         app.get("/", ctx -> ctx.result("Hola Mundo"));
     }

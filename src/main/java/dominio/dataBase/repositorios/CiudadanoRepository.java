@@ -2,47 +2,60 @@ package dominio.dataBase.repositorios;
 
 import dominio.actores.Ciudadano;
 import dominio.servicios.Servicio;
+import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;
 import org.hibernate.Transaction;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import java.util.List;
 
-public class CiudadanoRepository implements Repository<Ciudadano> {
+public class CiudadanoRepository implements Repository<Ciudadano>, WithSimplePersistenceUnit {
 
-    private final EntityManager em;
-
-    public CiudadanoRepository(EntityManager em) {
-        this.em = em;
-    }
-
-    @Override
-    public void save(Ciudadano ciudadano) {
-        if (ciudadano.getId() == null)
-            em.persist(ciudadano);
-        else
-            em.merge(ciudadano);
+    public CiudadanoRepository() {
     }
 
     @Override
     public List<Ciudadano> findAll() {
-
-        List<Ciudadano> ciudadanos = em.createQuery("from ciudadano", Ciudadano.class).getResultList();
-        return ciudadanos;
+        return entityManager().createQuery("FROM " + Ciudadano.class.getName()).getResultList();
+    }
+    @Override
+    public Ciudadano findById(Long id) {
+        return entityManager().find(Ciudadano.class, id);
     }
 
     @Override
-    public Ciudadano findById(Long id) {
+    public void save(Ciudadano ciudadano) {
+        EntityTransaction tx = entityManager().getTransaction();
 
-        return em.find(Ciudadano.class, id);
+        if(!tx.isActive())
+            tx.begin();
+        if (ciudadano.getId() == null)
+            entityManager().persist(ciudadano);
+        else
+            entityManager().merge(ciudadano);
+
+        tx.commit();
     }
 
+    @Override
+    public void update(Ciudadano ciudadano){
+        EntityTransaction tx = entityManager().getTransaction();
+
+        if(!tx.isActive())
+            tx.begin();
+
+        entityManager().merge(ciudadano);
+        tx.commit();
+    }
 
     @Override
     public void delete(Ciudadano ciudadano) {
+        EntityTransaction tx = entityManager().getTransaction();
+        if(!tx.isActive())
+            tx.begin();
 
+        entityManager().remove(ciudadano);
+        tx.commit();
     }
 
-    @Override
-    public void update(Ciudadano ciudadano){}
 }

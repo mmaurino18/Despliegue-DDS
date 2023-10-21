@@ -27,6 +27,11 @@ public class Usuario extends Persistente {
 
     }
 
+    public Usuario(String nombre, String contrasenia){
+        this.nombre = nombre;
+        this.contrasenia = contrasenia;
+    }
+
     public boolean contraseniaValida(String contraseña , ValidadorContraseña validadorContraseña){
         return validadorContraseña.validarContraseña(contraseña);
     }
