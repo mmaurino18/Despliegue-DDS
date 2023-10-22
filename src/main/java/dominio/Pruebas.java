@@ -2,11 +2,13 @@ package dominio;
 
 import controllers.FactoryController;
 import controllers.ServiciosController;
+import dominio.actores.Usuario;
 import dominio.comunidad.Comunidad;
 import dominio.comunidad.CuandoNotificar;
 import dominio.comunidad.MedioDeNotificaion;
 import dominio.actores.Ciudadano;
 import dominio.dataBase.repositorios.ServicioRepository;
+import dominio.dataBase.repositorios.UsuarioRepository;
 import dominio.entidades.Establecimiento;
 import dominio.entidades.Estacion;
 import dominio.entidades.Sucursal;
@@ -26,7 +28,8 @@ public class Pruebas implements WithSimplePersistenceUnit{
 
     public static void main(String[] args) {
 
-        new Pruebas().transaccion();
+        new Pruebas().testrepoUsuario();
+        //new Pruebas().transaccion();
         //new Pruebas().testJavalin();
         //new Pruebas().testRepositorio();
        // new Pruebas().testController();
@@ -114,6 +117,16 @@ public class Pruebas implements WithSimplePersistenceUnit{
         Javalin app = Javalin.create().start(port);
 
         app.get("/", ctx -> ctx.result("Hola Mundo"));
+    }
+
+    private void testrepoUsuario(){
+        UsuarioRepository repository = new UsuarioRepository();
+
+        Usuario usuario = repository.findByNombre("DDS16");
+
+        System.out.println(usuario.getNombre());
+        System.out.println(usuario.getContrasenia());
+
     }
 
 }

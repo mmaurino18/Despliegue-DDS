@@ -11,7 +11,7 @@ import java.util.List;
 public class UsuarioRepository implements Repository<Usuario>, WithSimplePersistenceUnit {
 
 
-    public UsuarioRepository(EntityManager em) {
+    public UsuarioRepository() {
     }
 
     @Override

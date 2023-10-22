@@ -37,7 +37,7 @@ public class RegistroCiudadanoController extends Controller implements ICrudView
         this.asignarParametros(ciudadano, context);
         this.repositorioCiudadano.save(ciudadano);
         context.status(HttpStatus.CREATED);
-        context.redirect("/registroOk");
+        context.render("registroOk.hbs");
     }
 
     @Override

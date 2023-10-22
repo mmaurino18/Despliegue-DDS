@@ -12,7 +12,7 @@ public class ValidadorContraseña {
     public ValidacionContraseña validacionContraseña;
     private UsuarioRepository usuarioRepository;
     public ValidadorContraseña(EntityManager em) {
-        this.usuarioRepository = new UsuarioRepository(em);
+        this.usuarioRepository = new UsuarioRepository();
     }
     public static void main(String[] args) {
 
