@@ -1,5 +1,7 @@
 @import url(stylenavegacion.css);
 
+
+
 * {
     margin: 0;
     padding: 0;
@@ -9,6 +11,8 @@
 body {
     font-family: 'Gochi Hand', cursive;
     background-size: 100%;
+    Background-image: url("../img/comunidad.jpg");
+    Background-size: 100%;
 }
 
 .form-login{

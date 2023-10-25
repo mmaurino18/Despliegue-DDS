@@ -25,7 +25,7 @@ public class IncidentesController extends Controller implements ICrudViewsHandle
         Map<String, Object> model = new HashMap<>();
         List<Incidente> incidentes = this.repositorioDeIncidentes.findAll();
         model.put("incidentes", incidentes);
-        context.render("incidentes/incidentes.hbs", model);
+        context.render("comunidad.hbs", model);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class IncidentesController extends Controller implements ICrudViewsHandle
         Incidente incidente = null;
         Map<String, Object> model = new HashMap<>();
         model.put("incidente", incidente);
-        context.render("incidentes/incidentes.hbs", model);
+        context.render("abrirIncidente.hbs", model);
     }
 
     @Override
