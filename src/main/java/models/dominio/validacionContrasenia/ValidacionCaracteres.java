@@ -1,4 +1,4 @@
-package dominio.validacionContrasenia;
+package models.dominio.validacionContrasenia;
 
 import org.passay.*;
 

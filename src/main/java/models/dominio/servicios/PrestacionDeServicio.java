@@ -1,7 +1,7 @@
-package dominio.servicios;
+package models.dominio.servicios;
 
-import dominio.dataBase.Persistente;
-import dominio.entidades.Establecimiento;
+import models.dataBase.Persistente;
+import models.dominio.entidades.Establecimiento;
 import lombok.Getter;
 import lombok.Setter;
 

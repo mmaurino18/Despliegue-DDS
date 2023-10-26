@@ -1,11 +1,10 @@
-package dominio.entidades;
+package models.dominio.entidades;
 
-import dominio.dataBase.Persistente;
+import models.dataBase.Persistente;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NavigableMap;
 
 @Entity
 @Table(name = "entidad_prestadora")

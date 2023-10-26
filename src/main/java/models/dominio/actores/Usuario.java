@@ -1,7 +1,7 @@
-package dominio.actores;
+package models.dominio.actores;
 
-import dominio.dataBase.Persistente;
-import dominio.validacionContrasenia.ValidadorContraseña;
+import models.dataBase.Persistente;
+import models.dominio.validacionContrasenia.ValidadorContraseña;
 import lombok.Getter;
 import lombok.Setter;
 

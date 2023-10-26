@@ -1,21 +1,21 @@
-package dominio;
+package models.dominio;
 
 import controllers.FactoryController;
 import controllers.ServiciosController;
-import dominio.actores.Usuario;
-import dominio.comunidad.Comunidad;
-import dominio.comunidad.CuandoNotificar;
-import dominio.comunidad.MedioDeNotificaion;
-import dominio.actores.Ciudadano;
-import dominio.dataBase.repositorios.ServicioRepository;
-import dominio.dataBase.repositorios.UsuarioRepository;
-import dominio.entidades.Establecimiento;
-import dominio.entidades.Estacion;
-import dominio.entidades.Sucursal;
-import dominio.notificaciones.Notificador;
-import dominio.servicios.PrestacionDeServicio;
+import models.dominio.actores.Usuario;
+import models.dominio.comunidad.Comunidad;
+import models.dominio.comunidad.CuandoNotificar;
+import models.dominio.comunidad.MedioDeNotificaion;
+import models.dominio.actores.Ciudadano;
+import models.dataBase.repositorios.ServicioRepository;
+import models.dataBase.repositorios.UsuarioRepository;
+import models.dominio.entidades.Establecimiento;
+import models.dominio.entidades.Estacion;
+import models.dominio.entidades.Sucursal;
+import models.dominio.notificaciones.Notificador;
+import models.dominio.servicios.PrestacionDeServicio;
 
-import dominio.servicios.Servicio;
+import models.dominio.servicios.Servicio;
 import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;
 import io.javalin.Javalin;
 

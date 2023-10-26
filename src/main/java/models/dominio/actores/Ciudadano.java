@@ -1,14 +1,16 @@
-package dominio.actores;
+package models.dominio.actores;
 
 
-import dominio.api.Localizacion;
-import dominio.comunidad.Comunidad;
-import dominio.comunidad.CuandoNotificar;
-import dominio.comunidad.MedioDeNotificaion;
-import dominio.dataBase.Persistente;
-import dominio.servicios.*;
+import models.dominio.api.Localizacion;
+import models.dominio.comunidad.Comunidad;
+import models.dominio.comunidad.CuandoNotificar;
+import models.dominio.comunidad.MedioDeNotificaion;
+import models.dataBase.Persistente;
 import lombok.Getter;
 import lombok.Setter;
+import models.dominio.servicios.Incidente;
+import models.dominio.servicios.PrestacionDeServicio;
+import models.dominio.servicios.Ubicacion;
 
 import javax.persistence.*;
 import java.time.LocalTime;

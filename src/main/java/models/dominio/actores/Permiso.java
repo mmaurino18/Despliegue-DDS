@@ -1,7 +1,7 @@
-package dominio.actores;
+package models.dominio.actores;
 
 
-import dominio.dataBase.Persistente;
+import models.dataBase.Persistente;
 import lombok.Getter;
 import lombok.Setter;
 

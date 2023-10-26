@@ -1,8 +1,8 @@
 package controllers;
 
-import dominio.actores.Usuario;
-import dominio.dataBase.repositorios.ServicioRepository;
-import dominio.servicios.Servicio;
+import models.dominio.actores.Usuario;
+import models.dataBase.repositorios.ServicioRepository;
+import models.dominio.servicios.Servicio;
 import io.javalin.http.Context;
 import io.javalin.http.HttpStatus;
 import java.util.HashMap;

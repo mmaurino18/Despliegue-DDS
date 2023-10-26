@@ -1,4 +1,4 @@
-package models.dominio.dataBase.repositorios;
+package models.dataBase.repositorios;
 
 import models.dominio.actores.Permiso;
 import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;

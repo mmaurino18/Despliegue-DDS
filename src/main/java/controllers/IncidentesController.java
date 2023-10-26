@@ -1,8 +1,8 @@
 package controllers;
 
-import dominio.actores.Usuario;
-import dominio.dataBase.repositorios.IncidenteRepository;
-import dominio.servicios.Incidente;
+import models.dominio.actores.Usuario;
+import models.dataBase.repositorios.IncidenteRepository;
+import models.dominio.servicios.Incidente;
 import io.javalin.http.Context;
 import io.javalin.http.HttpStatus;
 import server.exception.AccessDeniedException;

@@ -1,7 +1,7 @@
 package controllers;
 
-import dominio.actores.Usuario;
-import dominio.dataBase.repositorios.UsuarioRepository;
+import models.dominio.actores.Usuario;
+import models.dataBase.repositorios.UsuarioRepository;
 import io.javalin.http.Context;
 import server.utils.ICrudViewsHandler;
 

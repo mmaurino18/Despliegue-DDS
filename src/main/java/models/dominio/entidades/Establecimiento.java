@@ -1,8 +1,8 @@
-package dominio.entidades;
+package models.dominio.entidades;
 
 
-import dominio.dataBase.Persistente;
-import dominio.servicios.PrestacionDeServicio;
+import models.dataBase.Persistente;
+import models.dominio.servicios.PrestacionDeServicio;
 
 import javax.persistence.*;
 import java.util.List;

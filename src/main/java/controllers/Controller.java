@@ -1,6 +1,6 @@
 package controllers;
 
-import dominio.actores.Usuario;
+import models.dominio.actores.Usuario;
 import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;
 import io.javalin.http.Context;
 

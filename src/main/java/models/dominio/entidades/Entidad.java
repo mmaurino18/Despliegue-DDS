@@ -1,7 +1,7 @@
-package dominio.entidades;
+package models.dominio.entidades;
 
-import dominio.api.Localizacion;
-import dominio.dataBase.Persistente;
+import models.dominio.api.Localizacion;
+import models.dataBase.Persistente;
 
 import javax.persistence.*;
 import java.util.ArrayList;

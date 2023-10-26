@@ -1,4 +1,4 @@
-package dominio.api;
+package models.dominio.api;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

@@ -1,8 +1,8 @@
-package dominio.notificaciones.strategys;
+package models.dominio.notificaciones.strategys;
 
-import dominio.actores.Ciudadano;
-import dominio.notificaciones.adapter.AdapterJavaxMail;
-import dominio.notificaciones.adapter.MailAdapter;
+import models.dominio.actores.Ciudadano;
+import models.dominio.notificaciones.adapter.AdapterJavaxMail;
+import models.dominio.notificaciones.adapter.MailAdapter;
 
 public class Mail implements EstrategiaDeNotificacion{
 

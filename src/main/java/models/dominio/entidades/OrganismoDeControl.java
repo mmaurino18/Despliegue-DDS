@@ -1,7 +1,6 @@
-package dominio.entidades;
+package models.dominio.entidades;
 
-import dominio.dataBase.Persistente;
-import dominio.entidades.EntidadPrestadora;
+import models.dataBase.Persistente;
 
 import javax.persistence.*;
 import java.util.ArrayList;

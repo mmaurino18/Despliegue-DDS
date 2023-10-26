@@ -1,4 +1,4 @@
-package dominio.validacionContrasenia;
+package models.dominio.validacionContrasenia;
 import java.util.Scanner;
 
 public class Temporizador {

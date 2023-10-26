@@ -1,7 +1,7 @@
-package dominio.servicios;
+package models.dominio.servicios;
 
-import dominio.actores.Ciudadano;
-import dominio.notificaciones.Notificador;
+import models.dominio.actores.Ciudadano;
+import models.dominio.notificaciones.Notificador;
 
 import java.util.List;
 

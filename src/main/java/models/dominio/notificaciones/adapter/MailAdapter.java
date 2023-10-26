@@ -1,6 +1,6 @@
-package dominio.notificaciones.adapter;
+package models.dominio.notificaciones.adapter;
 
-import dominio.actores.Ciudadano;
+import models.dominio.actores.Ciudadano;
 
 public interface MailAdapter {
 

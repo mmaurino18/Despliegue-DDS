@@ -1,14 +1,13 @@
 package server.middlewares;
 
-import dominio.actores.TipoRol;
-import dominio.dataBase.repositorios.UsuarioRepository;
+import models.dominio.actores.TipoRol;
+import models.dataBase.repositorios.UsuarioRepository;
 import io.javalin.config.JavalinConfig;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
 import io.javalin.security.RouteRole;
 import server.exception.AccessDeniedException;
 
-import java.util.List;
 import java.util.Set;
 
 public class AuthMiddleware {

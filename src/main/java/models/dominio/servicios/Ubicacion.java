@@ -1,4 +1,4 @@
-package dominio.servicios;
+package models.dominio.servicios;
 
 public class Ubicacion {
     public double latitud ;

@@ -1,4 +1,4 @@
-package dominio.api;
+package models.dominio.api;
 import java.io.IOException;
 import java.util.Scanner;
 

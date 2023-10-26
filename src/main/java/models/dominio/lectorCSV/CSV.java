@@ -1,4 +1,4 @@
-package dominio.lectorCSV;
+package models.dominio.lectorCSV;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;

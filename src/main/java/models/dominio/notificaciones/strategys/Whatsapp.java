@@ -1,8 +1,8 @@
-package dominio.notificaciones.strategys;
+package models.dominio.notificaciones.strategys;
 
-import dominio.actores.Ciudadano;
-import dominio.notificaciones.adapter.AdapterTwilio;
-import dominio.notificaciones.adapter.WhatsappAdapter;
+import models.dominio.actores.Ciudadano;
+import models.dominio.notificaciones.adapter.AdapterTwilio;
+import models.dominio.notificaciones.adapter.WhatsappAdapter;
 
 public class Whatsapp implements EstrategiaDeNotificacion{
 

@@ -1,16 +1,13 @@
-package dominio.notificaciones;
+package models.dominio.notificaciones;
 
-import dominio.comunidad.MedioDeNotificaion;
-import dominio.notificaciones.adapter.AdapterJavaxMail;
-import dominio.notificaciones.strategys.EstrategiaDeNotificacion;
-import dominio.comunidad.CuandoNotificar;
-import dominio.notificaciones.adapter.AdapterTwilio;
-import dominio.notificaciones.strategys.Mail;
-import dominio.notificaciones.strategys.Whatsapp;
-import dominio.servicios.Incidente;
-import dominio.actores.Ciudadano;
+import models.dominio.comunidad.MedioDeNotificaion;
+import models.dominio.notificaciones.strategys.EstrategiaDeNotificacion;
+import models.dominio.comunidad.CuandoNotificar;
+import models.dominio.notificaciones.strategys.Mail;
+import models.dominio.notificaciones.strategys.Whatsapp;
+import models.dominio.servicios.Incidente;
+import models.dominio.actores.Ciudadano;
 
-import java.time.Duration;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;

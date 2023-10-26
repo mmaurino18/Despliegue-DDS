@@ -1,4 +1,4 @@
-package dominio.validacionContrasenia;
+package models.dominio.validacionContrasenia;
 
 public class ValidacionContraseña {
     private ValidacionCaracteres validacion = new ValidacionCaracteres();

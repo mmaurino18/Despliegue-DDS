@@ -1,4 +1,4 @@
-package dominio.actores;
+package models.dominio.actores;
 
 import io.javalin.security.RouteRole;
 

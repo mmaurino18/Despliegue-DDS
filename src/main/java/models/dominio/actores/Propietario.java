@@ -1,6 +1,6 @@
-package dominio.actores;
+package models.dominio.actores;
 
-import dominio.entidades.Entidad;
+import models.dominio.entidades.Entidad;
 
 import java.util.List;
 

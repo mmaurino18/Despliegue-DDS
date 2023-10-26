@@ -1,7 +1,6 @@
 package server;
 import controllers.*;
-import dominio.actores.Rol;
-import dominio.actores.TipoRol;
+import models.dominio.actores.TipoRol;
 
 import static io.javalin.apibuilder.ApiBuilder.*;
 

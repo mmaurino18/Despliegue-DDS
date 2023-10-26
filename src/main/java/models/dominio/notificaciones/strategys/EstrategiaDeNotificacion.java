@@ -1,6 +1,6 @@
-package dominio.notificaciones.strategys;
+package models.dominio.notificaciones.strategys;
 
-import dominio.actores.Ciudadano;
+import models.dominio.actores.Ciudadano;
 
 public interface EstrategiaDeNotificacion {
 

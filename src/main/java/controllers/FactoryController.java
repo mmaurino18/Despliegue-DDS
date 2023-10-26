@@ -1,13 +1,9 @@
 package controllers;
 
-import dominio.dataBase.repositorios.CiudadanoRepository;
-import dominio.dataBase.repositorios.IncidenteRepository;
-import dominio.dataBase.repositorios.ServicioRepository;
-import dominio.dataBase.repositorios.UsuarioRepository;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import models.dataBase.repositorios.CiudadanoRepository;
+import models.dataBase.repositorios.IncidenteRepository;
+import models.dataBase.repositorios.ServicioRepository;
+import models.dataBase.repositorios.UsuarioRepository;
 
 public class FactoryController {
 

@@ -1,12 +1,10 @@
-package dominio.comunidad;
+package models.dominio.comunidad;
 
 
-import dominio.actores.Ciudadano;
-import dominio.dataBase.Persistente;
-import dominio.entidades.Establecimiento;
-import dominio.notificaciones.Notificador;
-import dominio.servicios.Incidente;
-import dominio.servicios.Servicio;
+import models.dominio.actores.Ciudadano;
+import models.dataBase.Persistente;
+import models.dominio.notificaciones.Notificador;
+import models.dominio.servicios.Incidente;
 import lombok.Getter;
 import lombok.Setter;
 

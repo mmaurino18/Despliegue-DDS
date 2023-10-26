@@ -1,8 +1,8 @@
 package controllers;
 
-import dominio.actores.Ciudadano;
-import dominio.actores.Usuario;
-import dominio.dataBase.repositorios.CiudadanoRepository;
+import models.dominio.actores.Ciudadano;
+import models.dominio.actores.Usuario;
+import models.dataBase.repositorios.CiudadanoRepository;
 import io.javalin.http.Context;
 import io.javalin.http.HttpStatus;
 import server.utils.ICrudViewsHandler;

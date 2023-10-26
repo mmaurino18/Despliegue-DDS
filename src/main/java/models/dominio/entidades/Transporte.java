@@ -1,4 +1,4 @@
-package dominio.entidades;
+package models.dominio.entidades;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,4 +1,4 @@
-package models.dominio.dataBase;
+package models.dataBase;
 
 import lombok.Getter;
 import lombok.Setter;

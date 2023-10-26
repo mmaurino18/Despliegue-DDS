@@ -1,7 +1,7 @@
-package dominio.api;
+package models.dominio.api;
 
 
-import dominio.servicios.Ubicacion;
+import models.dominio.servicios.Ubicacion;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -1,4 +1,4 @@
-package dominio.validacionContrasenia;
+package models.dominio.validacionContrasenia;
 
 public class CambiarContraseña {
     ValidacionContraseña validacion = new ValidacionContraseña();

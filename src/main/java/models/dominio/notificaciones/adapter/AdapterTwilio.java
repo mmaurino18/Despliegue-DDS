@@ -1,8 +1,8 @@
-package dominio.notificaciones.adapter;
+package models.dominio.notificaciones.adapter;
 
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
-import dominio.actores.Ciudadano;
+import models.dominio.actores.Ciudadano;
 
 public class AdapterTwilio implements WhatsappAdapter{
 

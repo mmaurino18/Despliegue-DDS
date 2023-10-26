@@ -1,4 +1,4 @@
-package dominio.api;
+package models.dominio.api;
 
 public class Municipio {
     private int id;

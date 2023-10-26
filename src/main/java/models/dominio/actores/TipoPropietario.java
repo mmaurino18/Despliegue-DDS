@@ -1,4 +1,4 @@
-package dominio.actores;
+package models.dominio.actores;
 
 public enum TipoPropietario {
     ORGANISMO_DE_CONTROL,

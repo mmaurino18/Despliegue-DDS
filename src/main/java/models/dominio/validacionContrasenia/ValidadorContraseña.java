@@ -1,7 +1,7 @@
-package dominio.validacionContrasenia;
+package models.dominio.validacionContrasenia;
 
-import dominio.actores.Usuario;
-import dominio.dataBase.repositorios.UsuarioRepository;
+import models.dominio.actores.Usuario;
+import models.dataBase.repositorios.UsuarioRepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
