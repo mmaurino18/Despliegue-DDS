@@ -1,9 +1,9 @@
-package models.dominio.api;
+package models.dominio.api.mapeo;
 
-public class Provincia {
+public class Municipio {
     private int id;
     private String nombre;
-
+    private Centroide centroide;
 
     public int getId() {
         return id;
@@ -20,4 +20,13 @@ public class Provincia {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    public Centroide getCentroide() {
+        return centroide;
+    }
+
+    public void setCentroide(Centroide centroide) {
+        this.centroide = centroide;
+    }
 }
+

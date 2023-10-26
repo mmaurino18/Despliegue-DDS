@@ -1,16 +1,15 @@
 package models.dominio.api;
 
 
-import models.dominio.servicios.Ubicacion;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 public class Localizacion {
-    public String nombre;
-    public TipoLocalizacion tipoLocalizacion;
-    public Ubicacion ubicacion;
+    private String nombre;
+    private TipoLocalizacion tipoLocalizacion;
+    private Ubicacion ubicacion;
 
     public Localizacion(){
 

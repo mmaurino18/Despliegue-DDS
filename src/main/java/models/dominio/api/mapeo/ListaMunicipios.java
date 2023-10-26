@@ -1,4 +1,4 @@
-package models.dominio.api;
+package models.dominio.api.mapeo;
 
 import java.util.List;
 public class ListaMunicipios {

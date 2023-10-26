@@ -1,6 +1,7 @@
 package models.dominio.servicios;
 
 import models.dominio.actores.Ciudadano;
+import models.dominio.api.Ubicacion;
 import models.dominio.notificaciones.Notificador;
 
 import java.util.List;

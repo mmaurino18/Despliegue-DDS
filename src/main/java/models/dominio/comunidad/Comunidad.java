@@ -20,7 +20,7 @@ public class Comunidad extends Persistente {
 
 
     @Column(name = "nombre")
-    public String nombre;
+    private String nombre;
 
     @OneToMany
     @JoinColumn(name = "comunidad_id")

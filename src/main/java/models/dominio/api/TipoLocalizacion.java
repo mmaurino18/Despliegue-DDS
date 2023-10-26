@@ -1,7 +1,7 @@
 package models.dominio.api;
 
 public enum TipoLocalizacion {
-    MUNICPIO,
+    MUNICiPIO,
     DEPARTAMENTO,
     PROVINCIA
 }

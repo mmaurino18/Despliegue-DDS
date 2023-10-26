@@ -1,5 +1,9 @@
 package models.dominio.api;
 
+import models.dominio.api.mapeo.ListaDepartamentos;
+import models.dominio.api.mapeo.ListaMunicipios;
+import models.dominio.api.mapeo.ListaProvincias;
+import models.dominio.api.mapeo.Municipio;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import java.io.IOException;
@@ -51,6 +55,21 @@ public class GeorefApi {
         Response<ListaMunicipios> responseListadoDeMunicipios = requestListadoDeMunicipios.execute();
         return OrdenarMunicipiosAlf(responseListadoDeMunicipios.body());
     }
+
+    public ListaDepartamentos listadoDeDepartamentosDeProvincia(String nombreProvincia) throws IOException {
+        GeorefApiService servicio = this.retrofit.create(GeorefApiService.class);
+        Call<ListaDepartamentos> requetsListadoDeDepartamentos = servicio.departamentosPor(nombreProvincia);
+        Response<ListaDepartamentos> responseListadoDeDepartamentos = requetsListadoDeDepartamentos.execute();
+        return responseListadoDeDepartamentos.body();
+    }
+
+    public ListaMunicipios listadoDeMunicipiosDeProvincia(String nombreProvincia) throws IOException {
+        GeorefApiService servicio = this.retrofit.create(GeorefApiService.class);
+        Call<ListaMunicipios> requetsKistadoDeMunicipios = servicio.municipiosPor(nombreProvincia);
+        Response<ListaMunicipios> responseListaDeMunicipios = requetsKistadoDeMunicipios.execute();
+        return responseListaDeMunicipios.body();
+    }
+
 
     private ListaProvincias OrdenarProvinciasId(ListaProvincias provincias) {
         provincias.getProvincias().sort((p1,p2)->p1.getId() >= p2.getId()? 1:-1);

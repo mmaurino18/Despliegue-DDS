@@ -10,7 +10,7 @@ import lombok.Getter;
 import lombok.Setter;
 import models.dominio.servicios.Incidente;
 import models.dominio.servicios.PrestacionDeServicio;
-import models.dominio.servicios.Ubicacion;
+import models.dominio.api.Ubicacion;
 
 import javax.persistence.*;
 import java.time.LocalTime;
