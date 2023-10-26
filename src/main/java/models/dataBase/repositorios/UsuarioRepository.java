@@ -1,9 +1,8 @@
-package dominio.dataBase.repositorios;
+package models.dominio.dataBase.repositorios;
 
-import dominio.actores.Usuario;
+import models.dominio.actores.Usuario;
 import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;
 
-import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import java.util.List;

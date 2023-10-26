@@ -1,11 +1,8 @@
-package dominio.dataBase.repositorios;
+package models.dominio.dataBase.repositorios;
 
-import dominio.actores.Ciudadano;
-import dominio.servicios.Servicio;
+import models.dominio.actores.Ciudadano;
 import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;
-import org.hibernate.Transaction;
 
-import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import java.util.List;
 

@@ -1,8 +1,7 @@
-package dominio.dataBase.repositorios;
+package models.dominio.dataBase.repositorios;
 
-import dominio.servicios.Servicio;
+import models.dominio.servicios.Servicio;
 
-import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import java.util.List;
 import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;

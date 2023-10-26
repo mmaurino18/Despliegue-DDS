@@ -1,4 +1,4 @@
-package dominio.dataBase.converters;
+package models.dominio.dataBase.converters;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;

@@ -1,7 +1,6 @@
-package dominio.dataBase.repositorios;
+package models.dominio.dataBase.repositorios;
 
-import dominio.actores.Permiso;
-import dominio.entidades.EntidadPrestadora;
+import models.dominio.actores.Permiso;
 import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;
 
 import javax.persistence.EntityManager;

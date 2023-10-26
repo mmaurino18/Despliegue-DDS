@@ -1,7 +1,6 @@
-package dominio.dataBase.repositorios;
+package models.dominio.dataBase.repositorios;
 
-import dominio.actores.Usuario;
-import dominio.entidades.Establecimiento;
+import models.dominio.entidades.Establecimiento;
 
 import javax.persistence.EntityManager;
 import java.util.List;

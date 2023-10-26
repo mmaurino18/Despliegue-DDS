@@ -1,4 +1,4 @@
-package dominio.dataBase.repositorios;
+package models.dominio.dataBase.repositorios;
 
 import java.util.List;
 
