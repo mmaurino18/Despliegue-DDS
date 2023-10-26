@@ -64,6 +64,7 @@ public class Ciudadano extends Persistente {
 
     @Transient
     private Localizacion localizacionDeInteres;
+
     @Transient
     private Ubicacion ubicacion;
 
@@ -112,6 +113,7 @@ public class Ciudadano extends Persistente {
                 LocalTime.now());
         nuevoIncidente.abrirIncidente();
         comunidad.reportarIncidente(nuevoIncidente, this);
+        // avisadorDeIncidentes.avisarApertura(nuevoIncidente, this)
     }
 
     // sera una busqueda, luego preguntar, por el momento asumo que se pasa
