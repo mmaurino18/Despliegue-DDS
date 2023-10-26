@@ -31,7 +31,6 @@ public class LoginController extends Controller implements ICrudViewsHandler {
         }
         else{
             context.render("errorLogin.hbs");
-
         }
 
 // EL RESULTADO DE LA BUSQUEDA SOLO DEBE SER UN USUARIO, LUEGO VALIDAR AL HACER LOS REGISTROS QUE EL NOMBRE DE USUARIO ES UNICO

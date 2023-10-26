@@ -1,6 +1,7 @@
 package server;
 import controllers.*;
 import dominio.actores.Rol;
+import dominio.actores.TipoRol;
 
 import static io.javalin.apibuilder.ApiBuilder.*;
 
@@ -12,7 +13,7 @@ public class Router {
         Server.app().get("/inicio",ctx -> ctx.render("inicio.hbs"));
 
         Server.app().routes(() -> {
-            get("servicios", ((ServiciosController) FactoryController.controller("Servicios"))::index);
+            get("servicios", ((ServiciosController) FactoryController.controller("Servicios"))::index,TipoRol.CIUDADANO);
             get("servicios/crear", ((ServiciosController) FactoryController.controller("Servicios"))::create);
             get("servicios/{id}", ((ServiciosController) FactoryController.controller("Servicios"))::show);
             get("servicios/{id}/editar", ((ServiciosController) FactoryController.controller("Servicios"))::edit);

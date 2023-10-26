@@ -1,54 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de Inicio</title>
-    <!-- Incluye la hoja de estilos de Bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Tu Sitio Web</title>
+    <style>
+        body {
+            background-image: url('/img/comunidad.jpg'); /* Reemplaza 'ruta_de_la_imagen.jpg' con la ruta de tu imagen de fondo */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        .container {
+            color: white; /* Hacer el texto dentro de la clase "container" de color blanco */
+        }
+    </style>
 </head>
 <body>
-<!-- Barra de navegación -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Mi Sitio Web</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Inicio</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Acerca de</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Servicios</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Contacto</a>
-            </li>
-        </ul>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand" href="#">Sistema de comunidades</a>
+        <div class="navbar-nav ml-auto">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/inicio">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Acerca de Nosotros</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Ayuda</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Más</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link btn btn-primary" href="/login">Iniciar Sesión</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-primary" href="/registro">Registrarse</a>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>
 
-<!-- Contenido principal -->
-<div class="container mt-5">
-    <h1>Bienvenido </h1>
-    <p>Esta es la página de inicio de nuestro sitio web. Puedes agregar contenido adicional aquí, como imágenes y texto.</p>
-    <a class="btn btn-primary" href="#">Leer más</a>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="jumbotron mt-5">
+                <h1 class="display-4">Bienvenido a Nuestra Página</h1>
+                <p class="lead">Aquí encontrarás todo lo que necesitas.</p>
+                <hr class="my-4">
+                <p>Haz clic en las opciones de arriba para explorar nuestro sitio.</p>
+            </div>
+        </div>
+    </div>
 </div>
 
-<!-- Pie de página -->
-<footer class="bg-dark text-light mt-5">
-    <div class="container py-3">
-        <p>&copy; 2023 Mi Sitio Web</p>
-    </div>
+<!-- Pie de página en la parte inferior pegado al "suelo" -->
+<footer class="bg-primary text-white text-center py-2 fixed-bottom">
+    © 2023 Tu Sitio Web. Todos los derechos reservados.
 </footer>
 
-<!-- Incluye los scripts de Bootstrap (jQuery y Popper.js) -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

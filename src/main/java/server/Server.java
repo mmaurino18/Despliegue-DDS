@@ -28,7 +28,7 @@ public class Server {
             Integer port = Integer.parseInt(System.getProperty("port", "8080"));
             app = Javalin.create(config()).start(port);
             initTemplateEngine();
-            //AppHandlers.applyHandlers(app); // 2
+            AppHandlers.applyHandlers(app); // 2
             Router.init();
         }
     }
@@ -39,7 +39,7 @@ public class Server {
                 staticFiles.hostedPath = "/";
                 staticFiles.directory = "/public";
             });
-            //AuthMiddleware.apply(config); // 1
+            AuthMiddleware.apply(config); // 1
         };
     }
 
