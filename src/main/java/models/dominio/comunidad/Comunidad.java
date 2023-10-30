@@ -23,7 +23,7 @@ public class Comunidad extends Persistente {
     private String nombre;
 
     @OneToMany
-    @JoinColumn(name = "comunidad_id")
+    @JoinColumn(name = "comunidad_id", nullable = true)
     private List<Incidente> incidentesOcurridos;
 
     @Transient

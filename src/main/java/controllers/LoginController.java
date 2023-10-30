@@ -26,7 +26,7 @@ public class LoginController extends Controller implements ICrudViewsHandler {
 
         if( ( Objects.equals(usuario.getNombre(), nombreUsuario) ) && ( Objects.equals(usuario.getContrasenia(), contrasenia) ) ){
             context.sessionAttribute("id_usuario",usuario.getId());
-            context.render("homeCiudadano.hbs");
+            context.redirect("/home");
 
         }
         else{

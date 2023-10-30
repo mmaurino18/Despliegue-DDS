@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no ,initial-scale=1 ,maximum-scale=1 ,minimum-scale=1">
     <title> Mi comunidad</title>
 
-    <link rel="stylesheet" href="/public/css/stylecomunidad.css">
+    <link rel="stylesheet" href="/css/stylecomunidad.css">
 
     <script src="https://kit.fontawesome.com/e15e8c34af.js" crossorigin="anonymous"></script>
 
@@ -14,19 +14,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
 </head>
-<body background ="/public/img/comunidad.jpg">
+<body background ="/img/comunidad.jpg">
 <header>
     <div class="contenedor">
         <h1 class= "titulo"> Sistema de Comunidades </h1>
         <input type="checkbox" id="menu-bar">
 
         <nav class="menu">
-            <a href="/comunidad">Mis Comunidades</a>
-            <a href="/incidente">Incidentes</a>
-            <a href="/ranking">Rankings</a>
-            <a href="/servicios">Servicios</a>
-            <a href="/iniciarSesion">Cerrar Sesion</a>
-
+            <a href="/incidentes">Incidentes</a>
+            <a href="/incidentes/crear">Abrir Incidentes</a>
+            <a href="#">Rankings</a>
+            <a href="#">Servicios</a>
+            <a href="/login">Cerrar Sesion</a>
         </nav>
 
     </div>
@@ -38,22 +37,22 @@
             <th>Nombre del Servicio </th>
             <th>Lugar </th>
             <th>Fecha y hora </th>
-            <th>Comunidad </th>
+            <th>Observaciones </th>
             <th> </th>
         </tr>
         </thead>
         <tbody>
         {{#each incidenteDTO}}
             <tr>
-                <td>{{this.prestacionDServicio.getNombre}}</td>
-                <td>{{this.establecimiento.getNombre}}</td>
-                <td>{{this.fechaHora}}</td>
-                <td>{{this.comunidad}}</td>
-                <td><button class="buttons" type="submit"><a href="/comunidad">Cerrar incidente</a></button</td>
+                <td>{{this.getServicio}}</td>
+                <td>{{this.getEstablecimiento}}</td>
+                <td>{{this.getFechaHora}}</td>
+                <td>{{this.getObservaciones}}</td>
+                <td><button class="buttons" type="submit"><a href="/incidentes">Cerrar incidente</a></button></td>
             </tr>
             {{/each}}
     </table>
-    <button class="buttonConfig" type="submit"><a href="/configuracion">Configuración</a></button>
+    <button class="buttonConfig" type="submit"><a href="#">Configuración</a></button>
 </div>
 
 

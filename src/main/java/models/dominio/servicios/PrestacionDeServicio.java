@@ -24,7 +24,7 @@ public class PrestacionDeServicio extends Persistente {
     @JoinColumn(name = "establecimiento_id", referencedColumnName = "id")
     private Establecimiento establecimiento;
 
-    @Transient
+    @Column(name = "estado", columnDefinition = "Boolean")
     private Boolean estadoDeServicioPrestado;
 
     public PrestacionDeServicio(){

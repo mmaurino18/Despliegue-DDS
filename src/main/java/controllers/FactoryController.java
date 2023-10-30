@@ -1,9 +1,6 @@
 package controllers;
 
-import models.dataBase.repositorios.CiudadanoRepository;
-import models.dataBase.repositorios.IncidenteRepository;
-import models.dataBase.repositorios.ServicioRepository;
-import models.dataBase.repositorios.UsuarioRepository;
+import models.dataBase.repositorios.*;
 
 public class FactoryController {
 
@@ -11,9 +8,10 @@ public class FactoryController {
         Object controller = null;
         switch (nombre) {
             case "Servicios": controller = new ServiciosController(new ServicioRepository());break;
-            case "Incidentes": controller = new IncidentesController(new IncidenteRepository());break;
+            case "Incidentes": controller = new IncidentesController(new IncidenteRepository(), new PrestacionRepository());break;
             case "registroCiudadano": controller = new RegistroCiudadanoController(new CiudadanoRepository());break;
             case "login": controller = new LoginController(new UsuarioRepository()); break;
+            case "home": controller = new HomeController(); break;
         }
         return controller;
     }

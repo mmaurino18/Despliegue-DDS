@@ -9,29 +9,29 @@
     <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap" rel="stylesheet">
 </head>
 
-<body background="imagenes/comunidad.jpg">
+<body>
 <header>
     <div class="contenedor">
         <h1 class="titulo">Sistema de Comunidades</h1>
         <nav class="menu">
-            <a href="#">Mi Comunidad</a>
-            <a href="#">Incidentes</a>
+            <a href="/incidentes">Incidentes</a>
+            <a href="/incidentes/crear">Abrir Incidentes</a>
             <a href="#">Rankings</a>
             <a href="#">Servicios</a>
-            <a href="iniciarSesion.html">Cerrar Sesion</a>
+            <a href="/login">Cerrar Sesion</a>
         </nav>
     </div>
 </header>
 
-<section class="form-login">
+<section class="form-login" >
     <h5>Bienvenido!</h5>
-    <form method="post" action="/login">
+    <form method="post" >
         <input class="controls" type="text" name="usuario" placeholder="Ingrese usuario">
         <input class="controls" type="password" name="Contrasenia" pattern=".{8,}" placeholder="Ingrese contraseña">
         <button class="buttons" type="submit">Iniciar Sesion</button>
     </form>
     <p><a href="#">¿Olvidó su contraseña?</a></p>
-    <button class="buttons" type="submit"><a href="/registro">Registrarse</a></button>
+    <button class="buttons" type="submit"><a>Registrarse</a></button>
 </section>
 </body>
 </html>

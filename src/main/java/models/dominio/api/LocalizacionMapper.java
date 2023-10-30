@@ -18,7 +18,7 @@ public class LocalizacionMapper {
     public static Localizacion mapMunicipio(Municipio municipio){
         Localizacion localizacion = new Localizacion();
         localizacion.setNombre(municipio.getNombre());
-        localizacion.setTipoLocalizacion(TipoLocalizacion.MUNICiPIO);
+        localizacion.setTipoLocalizacion(TipoLocalizacion.MUNICIPIO);
         localizacion.setUbicacion(mapUbicacion(municipio.getCentroide()));
         return localizacion;
     }

@@ -22,7 +22,7 @@ public class AuthMiddleware {
     }
 
     private static void rutasPermitidas(Handler handler, Context context, Set<? extends RouteRole> routeRoles) throws Exception {
-        boolean validas = context.path().equals("/login") || context.path().equals("/inicio") || context.path().equals("/registro");
+        boolean validas = context.path().equals("/login") || context.path().equals("/home") || context.path().equals("/registro");
 
         if (context.sessionAttribute("id_usuario") == null && !validas) {
             throw new AccessDeniedException();

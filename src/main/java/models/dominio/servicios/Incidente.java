@@ -38,6 +38,9 @@ public class Incidente extends Persistente {
     private Boolean estadoIncidente;
 
     public Incidente(){
+        this.fechaIncidente = LocalDate.now();
+        this.horarioIncidente = LocalTime.now();
+        this.estadoIncidente = true;
     }
 
     public Incidente(String nombreincidente,
@@ -48,7 +51,7 @@ public class Incidente extends Persistente {
         this.prestacionDeServicioIncidente = prestacionDeServicioIncidente;
         this.observaciones = observaciones;
         this.fechaIncidente = LocalDate.now();
-        this.horarioIncidente = horarioIncidente;
+        this.horarioIncidente = LocalTime.now();
     }
 
     public Boolean getEstadoIncidente(){
@@ -76,7 +79,7 @@ public class Incidente extends Persistente {
     }
 
     public String fechaHora (){
-        return LocalDateTime.of(fechaIncidente,horarioIncidente).toString();
+        return fechaIncidente.toString() + " - " + horarioIncidente.toString();
     }
 
     public String estadoIncidente (){

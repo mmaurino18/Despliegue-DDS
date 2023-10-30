@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no ,initial-scale=1 ,maximum-scale=1 ,minimum-scale=1">
     <title> Incidentes </title>
 
-    <link rel="stylesheet" href="/public/css/styleincidentes.css">
+    <link rel="stylesheet" href="/css/styleincidentes.css">
 
     <script src="https://kit.fontawesome.com/e15e8c34af.js" crossorigin="anonymous"></script>
 
@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
 </head>
 
-<body  background ="/public/img/comunidad.jpg">
+<body  background ="/img/comunidad.jpg">
 <header>
 
     <div class="contenedor">
@@ -23,12 +23,11 @@
         <input type="checkbox" id="menu-bar">
 
         <nav class="menu">
-            <a href="/comunidad">Mis Comunidades</a>
-            <a href="/incidente">Incidentes</a>
-            <a href="/ranking">Rankings</a>
-            <a href="/servicios">Servicios</a>
-            <a href="/iniciarSesion">Cerrar Sesion</a>
-
+            <a href="/incidentes">Incidentes</a>
+            <a href="/incidentes/crear">Abrir Incidentes</a>
+            <a href="#">Rankings</a>
+            <a href="#">Servicios</a>
+            <a href="/login">Cerrar Sesion</a>
         </nav>
 
     </div>
@@ -37,7 +36,7 @@
 
 <main>
 
-    <form class="form-login" method="post" action="/comunidad">
+    <form class="form-login" method="post" >
 
         <h5>Apertura de incidente </h5>
 
@@ -46,17 +45,18 @@
 
         <label>Servicio:</label>
         <select class="controls"  name="servicio">
+            <option></option>
             {{#each servicio}}
-                <option>{{this.getNombre}}</option>
+                <option>{{this.getNombreServicioPrestado}}</option>
                 {{/each}}
         </select>
 
         <br>
 
-        <textarea name="mensaje" placeholder="Escriba aquí una observación..."></textarea>
+        <textarea name="observaciones" placeholder="Escriba aquí una observación..."></textarea>
 
         <br>
-        <button class="buttons" type="submit"><a href="/comunidad"> Agregar incidente </a></button><!--registro usuario nuevo-->
+        <button class="buttons" type="submit"><a> Agregar incidente </a></button><!--registro usuario nuevo-->
 
     </form>
 

@@ -8,8 +8,7 @@ public class Router {
 
     public static void init() {
         //
-        Server.app().get("/",ctx -> ctx.result("hola Maquina"));
-        Server.app().get("/inicio",ctx -> ctx.render("inicio.hbs"));
+        Server.app().get("/",ctx -> ctx.render("inicio.hbs"));
 
         Server.app().routes(() -> {
             get("servicios", ((ServiciosController) FactoryController.controller("Servicios"))::index,TipoRol.CIUDADANO);
@@ -24,8 +23,8 @@ public class Router {
             get("incidentes/crear", ((IncidentesController) FactoryController.controller("Incidentes"))::create);
             get("incidentes/{id}", ((IncidentesController) FactoryController.controller("Incidentes"))::show);
             get("incidentes/{id}/editar", ((IncidentesController) FactoryController.controller("Incidentes"))::edit);
+            post("incidentes/crear", ((IncidentesController) FactoryController.controller("Incidentes"))::save);
             post("incidentes/{id}", ((IncidentesController) FactoryController.controller("Incidentes"))::update);
-            post("incidentes", ((IncidentesController) FactoryController.controller("Incidentes"))::save);
             delete("incidentes/{id}", ((IncidentesController) FactoryController.controller("Incidentes"))::delete);
 
             // registro
@@ -35,6 +34,9 @@ public class Router {
             // Login
             get("login", ((LoginController) FactoryController.controller("login")):: index);
             post("login",((LoginController) FactoryController.controller("login")):: addSesion);
+
+            //home
+            get("home",((HomeController) FactoryController.controller("home")) :: index );
 
 
             /*path("servicios/{id}/tareas", () -> {

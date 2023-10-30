@@ -12,6 +12,7 @@ body{
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+    background-image: url("../img/comunidad.jpg");
     background-size: 100%;
 }
 
@@ -74,7 +75,7 @@ tbody tr:hover{
     text-decoration: none;
 }
 
-.buttonConfi {
+.buttonConfig {
     position: absolute;
     left: 45%;
     top: 75%;
