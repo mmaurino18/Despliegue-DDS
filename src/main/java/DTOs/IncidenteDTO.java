@@ -11,7 +11,6 @@ public class IncidenteDTO {
 
     private Long id;
 
-
     private String servicio;
 
     private String observaciones;

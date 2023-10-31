@@ -1,6 +1,7 @@
 package controllers;
 
 import lombok.Getter;
+import models.dataBase.repositorios.UsuarioRepository;
 import models.dominio.actores.Ciudadano;
 import models.dominio.actores.Usuario;
 import models.dataBase.repositorios.CiudadanoRepository;
@@ -10,13 +11,16 @@ import models.dominio.validacionContrasenia.ValidacionCaracteres;
 import models.dominio.validacionContrasenia.ValidacionContraseña;
 import server.utils.ICrudViewsHandler;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 public class RegistroCiudadanoController extends Controller implements ICrudViewsHandler {
     private final ValidacionContraseña validador  = new ValidacionContraseña();;
     CiudadanoRepository repositorioCiudadano;
-    public RegistroCiudadanoController(CiudadanoRepository repositorioCiudadano){
+    UsuarioRepository repositorioUsuario;
+    public RegistroCiudadanoController(CiudadanoRepository repositorioCiudadano, UsuarioRepository repositorioUsuario){
         this.repositorioCiudadano = repositorioCiudadano;
+        this.repositorioUsuario = repositorioUsuario;
     }
 
     @Override
@@ -36,17 +40,23 @@ public class RegistroCiudadanoController extends Controller implements ICrudView
 
     @Override
     public void save(Context context) {
+        boolean usuarioValido = this.usuarioValido(context.formParam("usuario"));
         String contrasenia = context.formParam("contrasenia");
         boolean esValida = validador.validar(contrasenia);
-        if(esValida) {
+
+        if(esValida && usuarioValido) {
             Ciudadano ciudadano = new Ciudadano();
             this.asignarParametros(ciudadano, context);
             this.repositorioCiudadano.save(ciudadano);
             context.status(HttpStatus.CREATED);
             context.render("registroOk.hbs");
        }else{
+            Map<String, Object> model = new HashMap<>();
             String errores = validador.errores(contrasenia);
-            context.render("registroError.hbs", Map.of("error", errores));
+            String mensajeUsuario = mensajeDeUsaurio(usuarioValido);
+            model.put("error", errores);
+            model.put("usuario",mensajeUsuario);
+            context.render("registroError.hbs", model);
         }
     }
 
@@ -66,19 +76,23 @@ public class RegistroCiudadanoController extends Controller implements ICrudView
     }
 
     private void asignarParametros(Ciudadano ciudadano, Context context) {
-        if(!Objects.equals(context.formParam("usuario"), "")) {
-            ciudadano.setNombre(context.formParam("nombre"));
-            ciudadano.setApellido(context.formParam("apellido"));
-            ciudadano.setMail(context.formParam("email"));
+        ciudadano.setNombre(context.formParam("nombre"));
+        ciudadano.setApellido(context.formParam("apellido"));
+        ciudadano.setMail(context.formParam("email"));
 
-            Usuario usuario = new Usuario();
-            usuario.setNombre(context.formParam("usuario"));
-            usuario.setContrasenia(context.formParam("contrasenia"));
+        Usuario usuario = new Usuario();
+        usuario.setNombre(context.formParam("usuario"));
+        usuario.setContrasenia(context.formParam("contrasenia"));
 
-            ciudadano.setUsuario(usuario);
+        ciudadano.setUsuario(usuario);
+    }
 
-            // tendriamos que lanzar una excepcion si el usuario o la contrasenia ya existen
-            // y en esa excepcion redirigir a otra ruta o avisar que fallo
-        }
+    private boolean usuarioValido (String nombreUsuario){
+        Usuario usuario = repositorioUsuario.findByNombre(nombreUsuario);
+        return (usuario == null) ? true : false;
+    }
+
+    private String mensajeDeUsaurio (boolean bool) {
+        return bool ? "" : "El Nombre de Usuario ya existe";
     }
 }
