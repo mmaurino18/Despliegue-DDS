@@ -1,16 +1,19 @@
 package controllers;
 
+import lombok.Getter;
 import models.dominio.actores.Ciudadano;
 import models.dominio.actores.Usuario;
 import models.dataBase.repositorios.CiudadanoRepository;
 import io.javalin.http.Context;
 import io.javalin.http.HttpStatus;
+import models.dominio.validacionContrasenia.ValidacionCaracteres;
+import models.dominio.validacionContrasenia.ValidacionContraseña;
 import server.utils.ICrudViewsHandler;
 
+import java.util.Map;
 import java.util.Objects;
-
 public class RegistroCiudadanoController extends Controller implements ICrudViewsHandler {
-
+    private final ValidacionContraseña validador  = new ValidacionContraseña();;
     CiudadanoRepository repositorioCiudadano;
     public RegistroCiudadanoController(CiudadanoRepository repositorioCiudadano){
         this.repositorioCiudadano = repositorioCiudadano;
@@ -33,11 +36,18 @@ public class RegistroCiudadanoController extends Controller implements ICrudView
 
     @Override
     public void save(Context context) {
-        Ciudadano ciudadano = new Ciudadano();
-        this.asignarParametros(ciudadano, context);
-        this.repositorioCiudadano.save(ciudadano);
-        context.status(HttpStatus.CREATED);
-        context.render("registroOk.hbs");
+        String contrasenia = context.formParam("contrasenia");
+        boolean esValida = validador.validar(contrasenia);
+        if(esValida) {
+            Ciudadano ciudadano = new Ciudadano();
+            this.asignarParametros(ciudadano, context);
+            this.repositorioCiudadano.save(ciudadano);
+            context.status(HttpStatus.CREATED);
+            context.render("registroOk.hbs");
+       }else{
+            String errores = validador.errores(contrasenia);
+            context.render("registroError.hbs", Map.of("error", errores));
+        }
     }
 
     @Override

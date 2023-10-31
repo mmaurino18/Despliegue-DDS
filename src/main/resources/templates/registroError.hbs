@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registro Fallido</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            max-width: 400px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            color: #cc3333; /* Cambiamos el color a rojo para indicar un error */
+        }
+        .btn {
+            background-color: #33cc33;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .error-message {
+            color: #cc3333; /* Color rojo para el mensaje de error */
+            font-weight: bold;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Registro Fallido</h1>
+    <p class="error-message">{{error}}</p> <!-- Aquí es donde se mostrarán los errores -->
+    <p>Por favor, corrige los errores e intenta de nuevo.</p>
+    <a href="/registro"><button class="btn">Volver al Registro</button></a>
+</div>
+
+</body>
+</html>
+

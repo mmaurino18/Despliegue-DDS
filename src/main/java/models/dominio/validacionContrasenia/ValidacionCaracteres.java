@@ -36,22 +36,22 @@ public class ValidacionCaracteres {
         String conversion = "";
         switch (error){
             case "TOO_SHORT":
-                conversion = "Cantidad de caracteres insuficientes.Debe tener entre 8 y 30";
+                conversion = "Cantidad de caracteres insuficientes.Debe tener entre 8 y 30.";
                 break;
             case "INSUFFICIENT_SPECIAL" :
-                conversion = "Falta un caracter especial.(Ej: #,$,% etc)";
+                conversion = "Falta un caracter especial (Ej: #,$,% etc).";
                 break;
             case "INSUFFICIENT_UPPERCASE" :
-                conversion= "Falta una mayuscula";
+                conversion= "Falta una mayuscula.";
                 break;
             case "INSUFFICIENT_LOWERCASE" :
-                conversion = "Falta una minuscula";
+                conversion = "Falta una minuscula.";
                 break;
             case "INSUFFICIENT_DIGIT":
-                conversion = "Falta un numero";
+                conversion = "Falta un numero.";
                 break;
             default:
-                conversion = "Error desconocido";
+                conversion = "Error desconocido.";
                 break;
         }
         return conversion;
