@@ -9,6 +9,7 @@ public class Router {
     public static void init() {
         //
         Server.app().get("/",ctx -> ctx.render("inicio.hbs"));
+        Server.app().get("/homePropietario",ctx -> ctx.render("homePropietario.hbs"));
 
         Server.app().routes(() -> {
             get("servicios", ((ServiciosController) FactoryController.controller("Servicios"))::index,TipoRol.CIUDADANO);
