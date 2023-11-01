@@ -10,6 +10,7 @@ public class Router {
         //
         Server.app().get("/",ctx -> ctx.render("inicio.hbs"));
         Server.app().get("/homePropietario",ctx -> ctx.render("homePropietario.hbs"));
+        Server.app().get("/cargaMasiva",ctx -> ctx.render("cargaMasiva.hbs"));
 
         Server.app().routes(() -> {
             get("servicios", ((ServiciosController) FactoryController.controller("Servicios"))::index,TipoRol.CIUDADANO);

@@ -30,7 +30,7 @@ public class LoginController extends Controller implements ICrudViewsHandler {
             if ((Objects.equals(usuario.getNombre(), nombreUsuario)) && (Objects.equals(usuario.getContrasenia(), contrasenia))) {
                 System.out.println("Encontreee el usuario");
                 context.sessionAttribute("id_usuario", usuario.getId());
-                context.redirect("/inicio");
+                context.redirect("/home");
 
             } else {
                 System.out.println("NO ENCONTRE EL USUARIO");
