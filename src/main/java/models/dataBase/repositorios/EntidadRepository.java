@@ -1,40 +1,62 @@
 package models.dataBase.repositorios;
 
+import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;
 import models.dominio.entidades.Entidad;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import java.util.List;
 
-public class EntidadRepository implements Repository<Entidad> {
+public class EntidadRepository implements Repository<Entidad>, WithSimplePersistenceUnit {
 
-    private final EntityManager em;
 
-    public EntidadRepository(EntityManager em) {
-        this.em = em;
-    }
+    public EntidadRepository() {
 
-    @Override
-    public void save(Entidad entidad) {
-        if (entidad.getId() == null)
-            em.persist(entidad);
-        else
-            em.merge(entidad);
     }
 
     @Override
     public List<Entidad> findAll() {
-        return em.createQuery("FROM entidad",Entidad.class).getResultList();
+        return entityManager().createQuery("FROM " + Entidad.class.getName()).getResultList();
     }
 
     @Override
     public Entidad findById(Long id) {
-        return em.find(Entidad.class,id);
+        return entityManager().find(Entidad.class, id);
+    }
+
+
+    @Override
+    public void save(Entidad entidad) {
+        EntityTransaction tx = entityManager().getTransaction();
+
+        if(!tx.isActive())
+            tx.begin();
+        if (entidad.getId() == null)
+            entityManager().persist(entidad);
+        else
+            entityManager().merge(entidad);
+
+        tx.commit();
+    }
+
+    @Override
+    public void update(Entidad entidad){
+        EntityTransaction tx = entityManager().getTransaction();
+
+        if(!tx.isActive())
+            tx.begin();
+
+        entityManager().merge(entidad);
+        tx.commit();
     }
 
     @Override
     public void delete(Entidad entidad) {
+        EntityTransaction tx = entityManager().getTransaction();
+        if(!tx.isActive())
+            tx.begin();
 
+        entityManager().remove(entidad);
+        tx.commit();
     }
-    @Override
-    public void update(Entidad entidad){}
 }

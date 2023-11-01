@@ -1,40 +1,61 @@
 package models.dataBase.repositorios;
 
+import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;
 import models.dominio.entidades.EntidadPrestadora;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import java.util.List;
 
-public class EntidadPrestadoraRepository implements Repository<EntidadPrestadora> {
+public class EntidadPrestadoraRepository implements Repository<EntidadPrestadora>, WithSimplePersistenceUnit {
 
-    private final EntityManager em;
+    public EntidadPrestadoraRepository() {
 
-    public EntidadPrestadoraRepository(EntityManager em) {
-        this.em = em;
-    }
-
-    @Override
-    public void save(EntidadPrestadora entidadPrestadora) {
-        if (entidadPrestadora.getId() == null)
-            em.persist(entidadPrestadora);
-        else
-            em.merge(entidadPrestadora);
     }
 
     @Override
     public List<EntidadPrestadora> findAll() {
-        return em.createQuery("FROM entidad_prestadora", EntidadPrestadora.class).getResultList();
+        return entityManager().createQuery("FROM " + EntidadPrestadora.class.getName()).getResultList();
     }
 
     @Override
     public EntidadPrestadora findById(Long id) {
-        return em.find(EntidadPrestadora.class,id);
+        return entityManager().find(EntidadPrestadora.class, id);
+    }
+
+    @Override
+    public void save(EntidadPrestadora entidadPrestadora) {
+        EntityTransaction tx = entityManager().getTransaction();
+
+        if(!tx.isActive())
+            tx.begin();
+        if (entidadPrestadora.getId() == null)
+            entityManager().persist(entidadPrestadora);
+        else
+            entityManager().merge(entidadPrestadora);
+
+        tx.commit();
+    }
+
+    @Override
+    public void update(EntidadPrestadora entidadPrestadora){
+        EntityTransaction tx = entityManager().getTransaction();
+
+        if(!tx.isActive())
+            tx.begin();
+
+        entityManager().merge(entidadPrestadora);
+        tx.commit();
     }
 
     @Override
     public void delete(EntidadPrestadora entidadPrestadora) {
+        EntityTransaction tx = entityManager().getTransaction();
+        if(!tx.isActive())
+            tx.begin();
 
+        entityManager().remove(entidadPrestadora);
+        tx.commit();
     }
-    @Override
-    public void update(EntidadPrestadora entidadPrestadora){}
+
 }

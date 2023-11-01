@@ -1,40 +1,60 @@
 package models.dataBase.repositorios;
 
+import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;
 import models.dominio.entidades.OrganismoDeControl;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import java.util.List;
 
-public class OrganismoControlRepository implements Repository<OrganismoDeControl> {
+public class OrganismoControlRepository implements Repository<OrganismoDeControl>, WithSimplePersistenceUnit {
 
-    private final EntityManager em;
+    public OrganismoControlRepository() {
 
-    public OrganismoControlRepository(EntityManager em) {
-        this.em = em;
-    }
-
-    @Override
-    public void save(OrganismoDeControl organismoDeControl) {
-        if (organismoDeControl.getId() == null)
-            em.persist(organismoDeControl);
-        else
-            em.merge(organismoDeControl);
     }
 
     @Override
     public List<OrganismoDeControl> findAll() {
-        return em.createQuery("FROM organismo_de_control",OrganismoDeControl.class).getResultList();
+        return entityManager().createQuery("FROM " + OrganismoDeControl.class.getName()).getResultList();
     }
 
     @Override
     public OrganismoDeControl findById(Long id) {
-        return em.find(OrganismoDeControl.class,id);
+        return entityManager().find(OrganismoDeControl.class, id);
+    }
+
+    @Override
+    public void save(OrganismoDeControl organismoDeControl) {
+        EntityTransaction tx = entityManager().getTransaction();
+
+        if(!tx.isActive())
+            tx.begin();
+        if (organismoDeControl.getId() == null)
+            entityManager().persist(organismoDeControl);
+        else
+            entityManager().merge(organismoDeControl);
+
+        tx.commit();
+    }
+
+    @Override
+    public void update(OrganismoDeControl organismoDeControl){
+        EntityTransaction tx = entityManager().getTransaction();
+
+        if(!tx.isActive())
+            tx.begin();
+
+        entityManager().merge(organismoDeControl);
+        tx.commit();
     }
 
     @Override
     public void delete(OrganismoDeControl organismoDeControl) {
+        EntityTransaction tx = entityManager().getTransaction();
+        if(!tx.isActive())
+            tx.begin();
 
+        entityManager().remove(organismoDeControl);
+        tx.commit();
     }
-    @Override
-    public void update(OrganismoDeControl organismoDeControl){}
 }

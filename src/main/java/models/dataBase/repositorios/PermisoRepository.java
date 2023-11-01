@@ -9,7 +9,7 @@ import java.util.List;
 
 public class PermisoRepository implements Repository<Permiso>, WithSimplePersistenceUnit {
 
-    public PermisoRepository(EntityManager em) {
+    public PermisoRepository() {
     }
 
     @Override

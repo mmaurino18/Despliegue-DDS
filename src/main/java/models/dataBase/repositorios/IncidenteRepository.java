@@ -13,6 +13,16 @@ public class IncidenteRepository implements Repository<Incidente>, WithSimplePer
     }
 
     @Override
+    public List<Incidente> findAll() {
+        return entityManager().createQuery("FROM " + Incidente.class.getName()).getResultList();
+    }
+
+    @Override
+    public Incidente findById(Long id) {
+        return entityManager().find(Incidente.class, id);
+    }
+
+    @Override
     public void save(Incidente incidente) {
         EntityTransaction tx = entityManager().getTransaction();
 
@@ -27,13 +37,14 @@ public class IncidenteRepository implements Repository<Incidente>, WithSimplePer
     }
 
     @Override
-    public List<Incidente> findAll() {
-        return entityManager().createQuery("FROM " + Incidente.class.getName()).getResultList();
-    }
+    public void update(Incidente incidente) {
+        EntityTransaction tx = entityManager().getTransaction();
 
-    @Override
-    public Incidente findById(Long id) {
-        return entityManager().find(Incidente.class, id);
+        if(!tx.isActive())
+            tx.begin();
+
+        entityManager().merge(incidente);
+        tx.commit();
     }
 
     @Override
@@ -46,14 +57,4 @@ public class IncidenteRepository implements Repository<Incidente>, WithSimplePer
         tx.commit();
     }
 
-    @Override
-    public void update(Incidente incidente) {
-        EntityTransaction tx = entityManager().getTransaction();
-
-        if(!tx.isActive())
-            tx.begin();
-
-        entityManager().merge(incidente);
-        tx.commit();
-    }
 }
