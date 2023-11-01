@@ -1,71 +1,34 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>Tu Sitio Web</title>
-    <style>
-        body {
-            background-image: url('/img/comunidad.jpg'); /* Reemplaza 'ruta_de_la_imagen.jpg' con la ruta de tu imagen de fondo */
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-        }
-        .container {
-            color: white; /* Hacer el texto dentro de la clase "container" de color blanco */
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1">
+    <title>Home</title>
+    <link rel="stylesheet" href="css/styleinicio.css">
+    <script src="https://kit.fontawesome.com/e15e8c34af.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
 </head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container">
-        <a class="navbar-brand" href="#">Sistema de comunidades</a>
-        <div class="navbar-nav ml-auto">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="/inicio">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Acerca de Nosotros</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Ayuda</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Más</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link btn btn-primary" href="/login">Iniciar Sesión</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link btn btn-primary" href="/registro">Registrarse</a>
-                </li>
-            </ul>
-        </div>
+<body background="imagenes/comunidad.jpg">
+<header>
+    <div class="contenedor">
+        <h1 class="titulo">Sistema de Comunidades</h1>
+        <input type="checkbox" id="menu-bar">
+        <nav class="menu">
+            <a href="#">Inicio</a>
+            <a href="#">Acerca de Nosotros</a>
+            <a href="/login">Iniciar Sesion</a>
+            <a href="/registro">Registrase</a>
+        </nav>
     </div>
-</nav>
+</header>
 
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <div class="jumbotron mt-5">
-                <h1 class="display-4">Bienvenido a Nuestra Página</h1>
-                <p class="lead">Aquí encontrarás todo lo que necesitas.</p>
-                <hr class="my-4">
-                <p>Haz clic en las opciones de arriba para explorar nuestro sitio.</p>
-            </div>
-        </div>
-    </div>
+<div class="welcome-text">
+    <h1>Bienvenido a Nuestra Página</h1>
+    <p>Aqui encontraras todo lo que necesesites</p>
+    <p>haz clic en las opciones de arriba para explirar nuestro sitio</p>
 </div>
 
-<!-- Pie de página en la parte inferior pegado al "suelo" -->
-<footer class="bg-primary text-white text-center py-2 fixed-bottom">
-    © 2023 Tu Sitio Web. Todos los derechos reservados.
-</footer>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
