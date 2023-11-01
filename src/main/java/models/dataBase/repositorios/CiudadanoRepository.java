@@ -55,4 +55,8 @@ public class CiudadanoRepository implements Repository<Ciudadano>, WithSimplePer
         tx.commit();
     }
 
+    public Ciudadano findByUsuarioID(Long usuario){
+        return entityManager().createQuery("SELECT c From Ciudadano c where c.usuario= :usuario", Ciudadano.class).setParameter("usuario", usuario).getSingleResult();
+    }
+
 }

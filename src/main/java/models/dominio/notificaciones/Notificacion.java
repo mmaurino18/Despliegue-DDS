@@ -30,7 +30,7 @@ public class Notificacion {
     public Boolean incidenteYaRegistrado(Incidente incidente){
         return this.incidentesYaNotificados.
                 stream().
-                anyMatch(e -> e.getNombreIcidente().equals(incidente.getNombreIcidente()));
+                anyMatch(e -> e.getNombreIncidente().equals(incidente.getNombreIncidente()));
         //return this.incidentesYaNotificados.contains(incidente);
     }
 

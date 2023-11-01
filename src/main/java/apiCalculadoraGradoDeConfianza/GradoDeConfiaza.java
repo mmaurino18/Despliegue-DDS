@@ -10,16 +10,14 @@ import java.io.IOException;
 public class GradoDeConfiaza {
     //"https://github.com/a-sandoval/servicio-entrega4-tpa-grupo5/tree/master/ServicioCalculadorGradoDeConfianza"
     private static GradoDeConfiaza instancia = null;
-    private final String urlUsuario = /*"https://localhost:7295/gradoDeConfianza/usuario/"; //*/ "http://localhost:5191/gradoDeConfianza/usuario/";
+    private final String urlUsuario = /*"https://localhost:7295/gradoDeConfianza/usuario/"; //*/ "http://localhost:5191/";
     private final String urlComunidad = "https://localhost:7295/gradoDeConfianza/comunidad";
     private Retrofit retrofit;
-    Gson gson = new GsonBuilder()
-
-            .create();
+    Gson gson = new GsonBuilder().create();
     private GradoDeConfiaza() {
         this.retrofit = new Retrofit.Builder()
                 .baseUrl(urlUsuario)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
     }
 

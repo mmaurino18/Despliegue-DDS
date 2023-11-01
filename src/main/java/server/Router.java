@@ -40,6 +40,9 @@ public class Router {
             //home
             get("home",((HomeController) FactoryController.controller("home")) :: index );
 
+            //notificaciones
+            get("config-notificacion", ((NotifController) FactoryController.controller("notif"))::index );
+            post("config-notificacion",((NotifController) FactoryController.controller("notif"))::save );
 
             /*path("servicios/{id}/tareas", () -> {
                // get(((TareasController) FactoryController.controller("Tareas"))::index);

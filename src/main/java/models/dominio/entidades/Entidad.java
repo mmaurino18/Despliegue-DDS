@@ -15,8 +15,7 @@ public abstract class  Entidad extends Persistente {
     @Column(name = "nombre")
     public String nombre;
 
-    @OneToMany
-    @JoinColumn(name = "entidad_id")
+    @OneToMany(mappedBy = "entidad")
     public List<Establecimiento> establecimientos;
 
     @Transient

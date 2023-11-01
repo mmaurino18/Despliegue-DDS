@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -19,7 +20,7 @@ import java.time.temporal.ChronoUnit;
 public class Incidente extends Persistente {
 
     @Column(name = "nombre", columnDefinition = "VARCHAR(55)")
-    private String nombreIcidente;
+    private String nombreIncidente;
 
     @ManyToOne
     @JoinColumn(name = "prestacionDeServicio_id",referencedColumnName = "id")
@@ -28,18 +29,20 @@ public class Incidente extends Persistente {
     @Column(name = "observaciones", columnDefinition = "TEXT")
     private String observaciones;
 
-    @Column(name = "fecha", columnDefinition = "DATE")
-    private LocalDate fechaIncidente;
 
-    @Column(name = "hora", columnDefinition = "TIME")
-    private LocalTime horarioIncidente;
+
+    @Column(name = "fechaApertura", columnDefinition = "DATETIME")
+    private LocalDateTime fechaApertura;
+
+    @Column(name = "fechaCierre", columnDefinition = "DATETIME", nullable = true)
+    private LocalDateTime fechaCierre;
 
     @Column(name = "estadoIncidente", columnDefinition = "BOOLEAN")
     private Boolean estadoIncidente;
 
     public Incidente(){
-        this.fechaIncidente = LocalDate.now();
-        this.horarioIncidente = LocalTime.now();
+        this.fechaApertura = LocalDateTime.now();
+        this.fechaCierre = null;
         this.estadoIncidente = true;
     }
 
@@ -47,11 +50,11 @@ public class Incidente extends Persistente {
                      PrestacionDeServicio prestacionDeServicioIncidente,
                      String observaciones,
                      LocalTime horarioIncidente){
-        this.nombreIcidente = nombreincidente;
+        this.nombreIncidente = nombreincidente;
         this.prestacionDeServicioIncidente = prestacionDeServicioIncidente;
         this.observaciones = observaciones;
-        this.fechaIncidente = LocalDate.now();
-        this.horarioIncidente = LocalTime.now();
+        this.fechaApertura = LocalDateTime.now();
+        this.fechaCierre = null;
     }
 
     public Boolean getEstadoIncidente(){
@@ -66,22 +69,19 @@ public class Incidente extends Persistente {
     public void cerrarIncidente(){
         this.estadoIncidente = false;
         this.prestacionDeServicioIncidente.reestablecerServicio();
+        this.fechaCierre = LocalDateTime.now();
     }
 
     public Boolean incidenteActual(){
-        long horastranscurridad = this.horarioIncidente.until(LocalTime.now(), ChronoUnit.HOURS);
-        if (horastranscurridad < 24 && fechaIncidente.equals(LocalDate.now())){
-            return true;
-        }
-        else {
-            return false;
-        }
+        return Duration.between(fechaApertura,LocalDateTime.now()).toHours() < 24;
     }
 
     public String fechaHora (){
-        return fechaIncidente.toString() + " - " + horarioIncidente.toString();
+        return fechaApertura.toString();
     }
-
+    public long duracionMinutos(){
+        return Duration.between(fechaApertura,fechaCierre).toMinutes();
+    }
     public String estadoIncidente (){
         if (this.estadoIncidente){
             return "Con Incidentes";

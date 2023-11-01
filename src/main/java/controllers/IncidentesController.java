@@ -68,19 +68,14 @@ public class IncidentesController extends Controller implements ICrudViewsHandle
 
     @Override
     public void save(Context context) {
-        try {
-            System.out.print("inicio POST");
+
             Incidente incidente = new Incidente();
-            System.out.print("hago POST");
             this.asignarParametros(incidente, context);
             this.repositorioDeIncidentes.save(incidente);
             context.status(HttpStatus.CREATED);
-            System.out.print("guardado el incidente");
             context.redirect("/incidentes");
-        }
-        catch (Exception e){
-            System.out.print("me cague uwu");
-        }
+
+
     }
 
     @Override
@@ -110,7 +105,7 @@ public class IncidentesController extends Controller implements ICrudViewsHandle
 
         if(!Objects.equals(context.formParam("nombre"), "")) {
             incidente.setObservaciones(context.formParam("observaciones"));
-            incidente.setNombreIcidente(context.formParam("nombre"));
+            incidente.setNombreIncidente(context.formParam("nombre"));
             System.out.print("nombre y obs asignados");
             incidente.setPrestacionDeServicioIncidente(servicioRepository.findByNombre(context.formParam("servicio")));
             System.out.print("asignado el servicio");

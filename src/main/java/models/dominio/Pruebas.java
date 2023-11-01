@@ -29,7 +29,7 @@ public class Pruebas implements WithSimplePersistenceUnit{
     public static void main(String[] args) {
 
         //new Pruebas().testrepoUsuario();
-        //new Pruebas().transaccion();
+        new Pruebas().transaccion();
         //new Pruebas().testJavalin();
         //new Pruebas().testRepositorio();
        // new Pruebas().testController();

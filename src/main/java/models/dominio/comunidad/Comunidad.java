@@ -3,8 +3,10 @@ package models.dominio.comunidad;
 
 import models.dominio.actores.Ciudadano;
 import models.dataBase.Persistente;
+import models.dominio.entidades.Establecimiento;
 import models.dominio.notificaciones.Notificador;
 import models.dominio.servicios.Incidente;
+import models.dominio.servicios.Servicio;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -76,14 +78,24 @@ public class Comunidad extends Persistente {
     public Incidente buscarIncidente(String nombreIncidente){
         Incidente incidenteEncontrado = null;
         for (Incidente incidente : this.incidentesOcurridos) {
-            if ( incidente.getNombreIcidente().equals(nombreIncidente) && incidente.getEstadoIncidente() ) {
+            if ( incidente.getNombreIncidente().equals(nombreIncidente) && incidente.getEstadoIncidente() ) {
                 incidenteEncontrado = incidente;
                 break;
             }
         }
         return incidenteEncontrado;
     }
+    public List<Establecimiento> obtenerEstablecimientosObservados(){
+        List<Establecimiento> establecimientos = new ArrayList<>();
+        this.incidentesOcurridos.forEach(incidente -> establecimientos.add(incidente.getEstablecimiento()));
+        return establecimientos;
+    }
 
+    public List<Servicio> obtenerServiciosObservados(){
+        List<Servicio> servicios = new ArrayList<>();
+        this.incidentesOcurridos.forEach(incidente -> servicios.add(incidente.getServicio()));
+        return servicios;
+    }
 
 
 }

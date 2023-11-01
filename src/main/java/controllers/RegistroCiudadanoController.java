@@ -79,11 +79,9 @@ public class RegistroCiudadanoController extends Controller implements ICrudView
         ciudadano.setNombre(context.formParam("nombre"));
         ciudadano.setApellido(context.formParam("apellido"));
         ciudadano.setMail(context.formParam("email"));
-
         Usuario usuario = new Usuario();
         usuario.setNombre(context.formParam("usuario"));
         usuario.setContrasenia(context.formParam("contrasenia"));
-
         ciudadano.setUsuario(usuario);
     }
 
@@ -93,6 +91,6 @@ public class RegistroCiudadanoController extends Controller implements ICrudView
     }
 
     private String mensajeDeUsaurio (boolean bool) {
-        return bool ? "" : "El Nombre de Usuario ya existe";
+        return bool ? "" : "El nombre de usuario ya existe";
     }
 }

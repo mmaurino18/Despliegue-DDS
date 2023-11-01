@@ -1,12 +1,15 @@
 package models.dominio.entidades;
 
 
+import lombok.Getter;
+import lombok.Setter;
 import models.dataBase.Persistente;
 import models.dominio.servicios.PrestacionDeServicio;
 
 import javax.persistence.*;
 import java.util.List;
-
+@Getter
+@Setter
 @Entity
 @Table(name = "establecimiento")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -15,6 +18,10 @@ public abstract class Establecimiento extends Persistente {
 
     @Column(name = "nombre", columnDefinition = "VARCHAR(55)")
     public String nombre;
+
+    @ManyToOne
+    @JoinColumn(name ="entidad_id", referencedColumnName = "id")
+    public Entidad entidad;
 
     @Column(name = "descripcion", columnDefinition = "TEXT")
     public String descripcion;
