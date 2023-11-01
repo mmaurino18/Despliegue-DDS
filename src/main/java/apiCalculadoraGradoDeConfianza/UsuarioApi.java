@@ -12,6 +12,5 @@ public class UsuarioApi {
     public String apellido;
     public long id;
     public float puntosDeConfianza;
-    public List<IncidenteApi> incidentes;
 
 }

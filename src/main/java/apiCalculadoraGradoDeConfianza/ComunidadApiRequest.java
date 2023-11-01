@@ -6,7 +6,7 @@ import lombok.Setter;
 import java.util.List;
 @Getter
 @Setter
-public class ComunidadApi {
-    public List<UsuarioApi> miembros;
-    public String gradoDeConfianza;
+public class ComunidadApiRequest {
+    public ComunidadApi comunidad;
+    public List<IncidenteApi> inicidentes;
 }

@@ -21,18 +21,22 @@ public class LoginController extends Controller implements ICrudViewsHandler {
 
     public void addSesion(Context context){
         String nombreUsuario = context.formParam("usuario");
-        String contrasenia = context.formParam("Contrasenia");
+        String contrasenia = context.formParam("contrasenia");
         Usuario usuario = repositorioUsuario.findByNombre(nombreUsuario);
-
-        if( ( Objects.equals(usuario.getNombre(), nombreUsuario) ) && ( Objects.equals(usuario.getContrasenia(), contrasenia) ) ){
-            context.sessionAttribute("id_usuario",usuario.getId());
-            context.redirect("/home");
-
-        }
-        else{
+        if(usuario == null) {
+            System.out.println("Usuario no encontrado");
             context.render("errorLogin.hbs");
-        }
+        }else {
+            if ((Objects.equals(usuario.getNombre(), nombreUsuario)) && (Objects.equals(usuario.getContrasenia(), contrasenia))) {
+                System.out.println("Encontreee el usuario");
+                context.sessionAttribute("id_usuario", usuario.getId());
+                context.redirect("/inicio");
 
+            } else {
+                System.out.println("NO ENCONTRE EL USUARIO");
+                context.render("errorLogin.hbs");
+            }
+        }
 // EL RESULTADO DE LA BUSQUEDA SOLO DEBE SER UN USUARIO, LUEGO VALIDAR AL HACER LOS REGISTROS QUE EL NOMBRE DE USUARIO ES UNICO
 
     }

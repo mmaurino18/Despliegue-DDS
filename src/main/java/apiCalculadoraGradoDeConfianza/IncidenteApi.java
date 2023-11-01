@@ -4,14 +4,15 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Getter
 @Setter
 public class IncidenteApi {
     public long id;
-    public LocalDateTime fechaApertura;
+    public String fechaApertura;
     public UsuarioApi usuarioReportador;
-    public LocalDateTime fechaCierre ;
+    public String fechaCierre ;
     public UsuarioApi usuarioAnalizador  ;
     public PrestacionDeServicioApi servicioAfectado;
 }
