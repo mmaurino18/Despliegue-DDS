@@ -12,9 +12,6 @@ import java.util.List;
 public class Tupla {
     public Entidad entidad;
     public List<Incidente> incidentes;
-
-
-
     public int calcularPromedioMinutos(){
         long sumaLong = incidentes.stream()
                 .mapToLong(incidente -> incidente.duracionMinutos())

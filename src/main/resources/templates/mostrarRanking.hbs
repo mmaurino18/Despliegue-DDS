@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ranking de Entidades</title>
+    <!-- Añadir enlaces a CSS si es necesario -->
+</head>
+<body>
+    <h1>Ranking de Entidades</h1>
+
+    {{!-- Chequeamos si hay entidades para mostrar --}}
+    {{#if ranking}}
+        <table>
+            <thead>
+                <tr>
+                    <th>entidad</th>
+                    <th>cantidad de incidentes</th>
+                    <th>promedio de resolucion</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{!-- Iteramos sobre la lista de entidades --}}
+                {{#each ranking}}
+                    <tr>
+                        <td>{{this.getEntidad.getNombre}}</td> <!-- Asumiendo que 'id' es una propiedad en la clase 'Entidad' -->
+                        <td>{{this.cantidadIncidentes}}</td>
+                        <td>{{this.calcularPromedioMinutos}}</td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    {{else}}
+        <p>No hay entidades para mostrar.</p>
+    {{/if}}
+</body>
+</html>

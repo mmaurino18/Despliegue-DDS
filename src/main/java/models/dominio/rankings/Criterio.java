@@ -7,5 +7,5 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public interface Criterio {
-    default List<Entidad> generarRanking(List<Comunidad> comunidades){return null;}
+    default List<Tupla> generarRanking(List<Comunidad> comunidades){return null;}
 }

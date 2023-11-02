@@ -27,8 +27,9 @@ public class Router {
             get("incidentes/{id}/editar", ((IncidentesController) FactoryController.controller("Incidentes"))::edit);
             post("incidentes/crear", ((IncidentesController) FactoryController.controller("Incidentes"))::save);
             post("incidentes/{id}", ((IncidentesController) FactoryController.controller("Incidentes"))::update);
+            post("ranking", ((RankingController) FactoryController.controller("Ranking"))::show);
+            get("ranking", ((RankingController) FactoryController.controller("Ranking"))::index);
             get("cerrarIncidente/{id}", ((IncidentesController) FactoryController.controller("Incidentes"))::delete);
-
             // registro
             get("registro", ((RegistroCiudadanoController) FactoryController.controller("registroCiudadano"))::index);
             post("registro", ((RegistroCiudadanoController) FactoryController.controller("registroCiudadano"))::save);

@@ -13,6 +13,7 @@ public class FactoryController {
             case "login": controller = new LoginController(new UsuarioRepository()); break;
             case "home": controller = new HomeController(); break;
             case "notif": controller = new NotifController(new CiudadanoRepository()); break;
+            case "Ranking": controller = new RankingController(); break;
         }
         return controller;
     }

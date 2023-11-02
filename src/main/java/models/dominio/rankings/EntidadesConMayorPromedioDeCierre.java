@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 public class EntidadesConMayorPromedioDeCierre implements Criterio{
     @Override
-    public List <Entidad> generarRanking(List<Comunidad> comunidades ){
+    public List <Tupla> generarRanking(List<Comunidad> comunidades ){
         List<Incidente> incidentes = new ArrayList<>();
         List<Tupla> tuplas = new ArrayList<>();
 
@@ -41,12 +41,10 @@ public class EntidadesConMayorPromedioDeCierre implements Criterio{
                 tuplas.add(tupla);
             }
         }
-        List<Tupla> tuplasOrdenadas = tuplas.stream()
+         List<Tupla> tuplasOrdenadas = tuplas.stream()
                 .sorted(Comparator.comparingInt(Tupla::calcularPromedioMinutos))
                 .collect(Collectors.toList());
-        return tuplasOrdenadas.stream()
-                .map(tupla -> tupla.entidad)
-                .collect(Collectors.toList());
+            return tuplasOrdenadas;
 
 
     }
