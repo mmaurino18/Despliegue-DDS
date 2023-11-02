@@ -48,7 +48,7 @@
                 <td>{{this.getEstablecimiento}}</td>
                 <td>{{this.getFechaHora}}</td>
                 <td>{{this.getObservaciones}}</td>
-                <td><button class="buttons" type="submit"><a href="/incidentes">Cerrar incidente</a></button></td>
+                <td><button class="buttons" type="submit" formmethod="post" formaction="/cerrarIncidente/{{this.getId}}"><a href=/cerrarIncidente/{{this.getId}}>Cerrar incidente</a></button></td>
             </tr>
             {{/each}}
     </table>

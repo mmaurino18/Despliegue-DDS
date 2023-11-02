@@ -77,7 +77,7 @@ public class Incidente extends Persistente {
     }
 
     public String fechaHora (){
-        return fechaApertura.toString();
+        return fechaApertura.toLocalDate().toString() + " - "+ fechaApertura.toLocalTime().toString();
     }
     public long duracionMinutos(){
         return Duration.between(fechaApertura,fechaCierre).toMinutes();

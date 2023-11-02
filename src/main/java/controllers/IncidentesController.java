@@ -1,10 +1,9 @@
 package controllers;
 
 import DTOs.IncidenteDTO;
-import models.dataBase.repositorios.PrestacionRepository;
-import models.dataBase.repositorios.ServicioRepository;
+import models.dataBase.repositorios.*;
+import models.dominio.actores.Ciudadano;
 import models.dominio.actores.Usuario;
-import models.dataBase.repositorios.IncidenteRepository;
 import models.dominio.servicios.Incidente;
 import io.javalin.http.Context;
 import io.javalin.http.HttpStatus;
@@ -12,21 +11,26 @@ import models.dominio.servicios.PrestacionDeServicio;
 import server.exception.AccessDeniedException;
 import server.utils.ICrudViewsHandler;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 public class IncidentesController extends Controller implements ICrudViewsHandler {
     private IncidenteRepository repositorioDeIncidentes;
     private PrestacionRepository servicioRepository;
 
-    public IncidentesController(IncidenteRepository repositorioDeIncidentes, PrestacionRepository servicioRepository) {
+    private CiudadanoRepository usuarioRepository;
+
+    public IncidentesController(IncidenteRepository repositorioDeIncidentes, PrestacionRepository servicioRepository, CiudadanoRepository usuarioRepository) {
         this.repositorioDeIncidentes = repositorioDeIncidentes;
         this.servicioRepository= servicioRepository;
+        this.usuarioRepository = usuarioRepository;
+
     }
 
     @Override
     public void index(Context context) {
         Map<String, Object> model = new HashMap<>();
-        List<Incidente> incidentes = this.repositorioDeIncidentes.findAll();
+        List<Incidente> incidentes = this.repositorioDeIncidentes.findAll().stream().filter(incidente -> incidente.getEstadoIncidente().equals(true)).toList();
         List<IncidenteDTO> incidenteDTOS = this.convertirADTO(incidentes);
         model.put("incidenteDTO", incidenteDTOS);
         context.render("comunidad.hbs", model);
@@ -71,7 +75,10 @@ public class IncidentesController extends Controller implements ICrudViewsHandle
 
             Incidente incidente = new Incidente();
             this.asignarParametros(incidente, context);
+            //Ciudadano usuario = this.usuarioRepository.findByUsuarioID(context.sessionAttribute("usuario_id"));
+            //usuario.getIncidentesReportados().add(incidente);
             this.repositorioDeIncidentes.save(incidente);
+            //this.usuarioRepository.save(usuario);
             context.status(HttpStatus.CREATED);
             context.redirect("/incidentes");
 
@@ -96,8 +103,13 @@ public class IncidentesController extends Controller implements ICrudViewsHandle
 
     @Override
     public void delete(Context context) {
+        System.out.print("entre al delete");
         Incidente incidente = (Incidente) this.repositorioDeIncidentes.findById(Long.parseLong(context.pathParam("id")));
-        this.repositorioDeIncidentes.delete(incidente);
+        System.out.print("encontre el incidente");
+        incidente.setEstadoIncidente(false);
+        incidente.setFechaCierre(LocalDateTime.now());
+        this.repositorioDeIncidentes.save(incidente);
+        System.out.print("cambie el incidente");
         context.redirect("/incidentes");
     }
 
