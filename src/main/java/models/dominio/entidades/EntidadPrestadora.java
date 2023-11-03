@@ -25,4 +25,12 @@ public class EntidadPrestadora extends Persistente {
         this.entidades = new ArrayList<>();
     }
 
+    public void agregarEntidad(Entidad entidad){
+        this.entidades.add(entidad);
+    }
+
+    public boolean entidadesVacia(){
+        return this.entidades.isEmpty();
+    }
+
 }

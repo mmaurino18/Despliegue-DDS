@@ -18,9 +18,6 @@ public class Transporte extends Entidad{
     private List<Estacion> recorrido;
 
 
-
-
-
     public Transporte() {
         this.recorrido = new ArrayList<>();
     }

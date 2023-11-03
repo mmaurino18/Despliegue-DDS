@@ -2,6 +2,7 @@ package models.dominio;
 
 import controllers.FactoryController;
 import controllers.ServiciosController;
+import models.dominio.actores.Propietario;
 import models.dominio.actores.Usuario;
 import models.dominio.comunidad.Comunidad;
 import models.dominio.comunidad.CuandoNotificar;
@@ -11,7 +12,9 @@ import models.dataBase.repositorios.ServicioRepository;
 import models.dataBase.repositorios.UsuarioRepository;
 import models.dominio.entidades.Establecimiento;
 import models.dominio.entidades.Estacion;
+import models.dominio.entidades.OrganismoDeControl;
 import models.dominio.entidades.Sucursal;
+import models.dominio.lectorCSV.CSV;
 import models.dominio.notificaciones.Notificador;
 import models.dominio.servicios.PrestacionDeServicio;
 
@@ -20,19 +23,21 @@ import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;
 import io.javalin.Javalin;
 
 import javax.persistence.EntityTransaction;
+import java.io.IOException;
 import java.util.List;
 
 import static io.javalin.apibuilder.ApiBuilder.get;
 
 public class Pruebas implements WithSimplePersistenceUnit{
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         //new Pruebas().testrepoUsuario();
-        new Pruebas().transaccion();
+        //new Pruebas().transaccion();
         //new Pruebas().testJavalin();
         //new Pruebas().testRepositorio();
        // new Pruebas().testController();
+        new Pruebas().testLectorCSV();
 
     }
 
@@ -126,6 +131,20 @@ public class Pruebas implements WithSimplePersistenceUnit{
 
         System.out.println(usuario.getNombre());
         System.out.println(usuario.getContrasenia());
+
+    }
+
+    private void testLectorCSV() throws IOException {
+        CSV lector = new CSV();
+
+        Propietario propietario = new Propietario();
+
+        List<String> lineas = lector.lectorDeCSV("src\\main\\java\\models\\dominio\\archivos\\archivo.csv");
+
+        lector.mapearDatos(lineas,propietario);
+
+        System.out.println(propietario.getOrganismosDeControl().get(0).getNombre());
+        System.out.println(propietario.getOrganismosDeControl().get(0).getEntidadesPrestadoras().get(0).getNombre());
 
     }
 

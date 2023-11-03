@@ -1,5 +1,9 @@
 Tipo,Nombre,Padre
 OrganismoDeControl,CNRT,Sin Padre
-EntidadPrestadora,Trenes Argentinos
+EntidadPrestadora,Trenes Argentinos,CNRT
 Entidad,Linea Mitre,Trenes Argentinos
-Establecimiento,Retiro,Linea Mitre
+Establecimiento,Estacion Retiro,Linea Mitre
+Establecimiento,Estacion Victoria,Linea Mitre
+Entidad,Linea San Martin,Trenes Argentinos
+Establecimiento,Estacion Retiro,Linea San Martin
+Establecimiento,Estacion Pilar,Linea San Martin
