@@ -1,7 +1,7 @@
 package models.dominio.actores;
 
 
-import models.dominio.api.Localizacion;
+import models.dominio.api.localizacion.Localizacion;
 import models.dominio.comunidad.Comunidad;
 import models.dominio.comunidad.CuandoNotificar;
 import models.dominio.comunidad.MedioDeNotificaion;
@@ -10,7 +10,7 @@ import lombok.Getter;
 import lombok.Setter;
 import models.dominio.servicios.Incidente;
 import models.dominio.servicios.PrestacionDeServicio;
-import models.dominio.api.Ubicacion;
+import models.dominio.api.localizacion.Ubicacion;
 
 import javax.persistence.*;
 import java.time.LocalTime;
@@ -62,9 +62,11 @@ public class Ciudadano extends Persistente {
     @JoinColumn(name = "ciudadano_id")
     private List<Incidente> incidentesReportados;
 
-    @Transient
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "localizacion_id")
     private Localizacion localizacionDeInteres;
 
+    // creo que no hace falta persistirlo ya que se activa temporalmente, va nose
     @Transient
     private Ubicacion ubicacion;
 

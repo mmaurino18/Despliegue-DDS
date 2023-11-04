@@ -4,7 +4,7 @@ package models.dominio.entidades;
 import lombok.Getter;
 import lombok.Setter;
 import models.dataBase.Persistente;
-import models.dominio.api.Localizacion;
+import models.dominio.api.localizacion.Localizacion;
 import models.dominio.servicios.PrestacionDeServicio;
 
 import javax.persistence.*;
@@ -28,7 +28,8 @@ public class Establecimiento extends Persistente {
     @OneToMany(mappedBy = "establecimiento")
     public List<PrestacionDeServicio> serviciosPrestados;
 
-    @Transient
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "localizacion_id")
     private Localizacion localizacion;
 
     @Transient
@@ -64,9 +65,14 @@ public class Establecimiento extends Persistente {
         return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
     }
 
+    // para evitar recursividad
     public void agregarServiciosPrestados(PrestacionDeServicio prestacionDeServicio){
         this.serviciosPrestados.add(prestacionDeServicio);
         prestacionDeServicio.setEstablecimiento(this);
+    }
+
+    public void setearEntidad(Entidad entidad){
+        this.entidad = entidad;
     }
 
 }

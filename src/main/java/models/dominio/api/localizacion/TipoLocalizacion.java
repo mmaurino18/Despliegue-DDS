@@ -1,4 +1,4 @@
-package models.dominio.api;
+package models.dominio.api.localizacion;
 
 public enum TipoLocalizacion {
     MUNICIPIO,

@@ -2,7 +2,7 @@ package models.dominio.entidades;
 
 import lombok.Getter;
 import lombok.Setter;
-import models.dominio.api.Localizacion;
+import models.dominio.api.localizacion.Localizacion;
 import models.dataBase.Persistente;
 
 import javax.persistence.*;
@@ -21,11 +21,18 @@ public class Entidad extends Persistente {
     @OneToMany(mappedBy = "entidad")
     public List<Establecimiento> establecimientos;
 
-    @Transient
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "localizacion_id")
     public Localizacion localizacion;
 
     public Entidad(){
         this.establecimientos = new ArrayList<>();
+    }
+
+    // para evitar recursividad
+    public void agregarEstablecimiento (Establecimiento establecimiento){
+        this.establecimientos.add(establecimiento);
+        establecimiento.setearEntidad(this);
     }
 
 }
