@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class CSV implements LectorCSV{
+public class CSV implements LectorCSVAdapter {
 
     public CSV() {
 
@@ -75,28 +75,73 @@ public class CSV implements LectorCSV{
         switch (tipo) {
             case "OrganismoDeControl":
                 if (Objects.equals(padre, "Sin Padre")) {
+                    System.out.println("propietario Organismo De Control");
                     organismoDeControl.setNombre(nombre);
                     propietario.agregarOrganismoDeControl(organismoDeControl);
-                    System.out.println("se agrego organismo " + nombre);
+                    System.out.println("-se agrego organismo " + nombre);
                 }
                 break;
             case "EntidadPrestadora":
                 if (Objects.equals(padre, "Sin Padre")) {
+                    System.out.println("propietario Entidad Prestadora");
                     entidadPrestadora.setNombre(nombre);
                     propietario.agregarEntidadPrestadora(entidadPrestadora);
+                    System.out.println("-se agrego entidadPrestadora " + nombre);
                 } else {
-                    entidadPrestadora.setNombre(nombre);
-                    organismoDeControl.agregarEntidadPrestadora(entidadPrestadora);
-                    System.out.println("se agrego entidadPrestadora " + nombre);
+                    System.out.println("propietario Organismo De Control");
+                    EntidadPrestadora entidadPrestadora1 = new EntidadPrestadora();
+                    entidadPrestadora1.setNombre(nombre);
+                    propietario.getOrganismosDeControl().get(0).agregarEntidadPrestadora(entidadPrestadora1);
+                    System.out.println("-se agrego entidadPrestadora " + nombre);
                 }
                 break;
             case "Entidad":
-                System.out.println("se agrego entidad " + nombre);
-                //
+                Entidad entidad = new Entidad();
+                entidad.setNombre(nombre);
+
+                if(!propietario.getOrganismosDeControl().isEmpty()){
+                    System.out.println("propietario Organismo De control");
+                    for (EntidadPrestadora entidadPrestadora1 : propietario.getOrganismosDeControl().get(0).getEntidadesPrestadoras()) {
+                        if (entidadPrestadora1.getNombre().equals(padre)){
+                            entidadPrestadora1.agregarEntidad(entidad);
+                            System.out.println("-se agrego entidad: " + nombre + " con padre: " + padre);
+                        }
+                    }
+                }
+                else {
+                    System.out.println("propietario Entidad Prestadora");
+                    for (EntidadPrestadora entidadPrestadora1 : propietario.getEntidadesPrestadoras()) {
+                        if (entidadPrestadora1.getNombre().equals(padre)) {
+                            entidadPrestadora1.agregarEntidad(entidad);
+                            System.out.println("-se agrego entidad: " + nombre + " con padre: " + padre);
+                        }
+                    }
+                }
                 break;
             case "Establecimiento":
-                System.out.println("se agrego establecimiento " + nombre);
-                //
+                Establecimiento establecimiento = new Establecimiento();
+                establecimiento.setNombre(nombre);
+
+                if(!propietario.getOrganismosDeControl().isEmpty()) {
+                    System.out.println("propietario Organismo De Control");
+                    for (EntidadPrestadora entidadPrestadora1 : propietario.getOrganismosDeControl().get(0).getEntidadesPrestadoras()) {
+                        for(Entidad entidad1 : entidadPrestadora1.getEntidades()) {
+                            if (entidad1.getNombre().equals(padre)) {
+                                entidad1.agregarEstablecimiento(establecimiento);
+                                System.out.println("-se agrego establecimiento " + nombre + " con padre: " + padre);
+                            }
+                        }
+                    }
+                }
+                else {
+                    System.out.println("propietario Entidad Prestadora");
+                    for(Entidad entidad1 : propietario.getEntidadesPrestadoras().get(0).getEntidades()){
+                        if(entidad1.getNombre().equals(padre)){
+                            entidad1.agregarEstablecimiento(establecimiento);
+                            System.out.println("-se agrego establecimiento " + nombre + " con padre: " + padre);
+                        }
+                    }
+                }
                 break;
             default:
                 System.out.println("Tipo de entidad no reconocido: " + tipo);
@@ -124,4 +169,6 @@ public class CSV implements LectorCSV{
     public void procesarArchivoCSV(Propietario propietario, String path) {
 
     }
+
+
 }
