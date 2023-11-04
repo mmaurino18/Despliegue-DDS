@@ -47,7 +47,6 @@ public class PrestacionDeServicio extends Persistente {
         //todo
     }
 
-
     public String deEstablecimiento(){
         return this.establecimiento.getNombre();
     }

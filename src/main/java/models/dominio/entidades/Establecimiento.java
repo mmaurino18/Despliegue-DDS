@@ -4,17 +4,16 @@ package models.dominio.entidades;
 import lombok.Getter;
 import lombok.Setter;
 import models.dataBase.Persistente;
+import models.dominio.api.Localizacion;
 import models.dominio.servicios.PrestacionDeServicio;
 
 import javax.persistence.*;
 import java.util.List;
-@Getter
-@Setter
 @Entity
 @Table(name = "establecimiento")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "tipo")
-public abstract class Establecimiento extends Persistente {
+@Getter
+@Setter
+public class Establecimiento extends Persistente {
 
     @Column(name = "nombre", columnDefinition = "VARCHAR(55)")
     public String nombre;
@@ -28,15 +27,15 @@ public abstract class Establecimiento extends Persistente {
 
     @OneToMany(mappedBy = "establecimiento")
     public List<PrestacionDeServicio> serviciosPrestados;
-    //public Localizacion localizacion;
+
+    @Transient
+    private Localizacion localizacion;
 
     @Transient
     private Double coordenadax;
 
     @Transient
     private Double coordenaday;
-
-    public abstract String getNombre();
 
     public static double getCoordenadaX() {
         return 0;

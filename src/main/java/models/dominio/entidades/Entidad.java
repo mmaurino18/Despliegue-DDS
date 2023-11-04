@@ -1,5 +1,7 @@
 package models.dominio.entidades;
 
+import lombok.Getter;
+import lombok.Setter;
 import models.dominio.api.Localizacion;
 import models.dataBase.Persistente;
 
@@ -8,9 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "tipo")
-public abstract class  Entidad extends Persistente {
+@Table(name = "entidad")
+@Getter
+@Setter
+public class Entidad extends Persistente {
 
     @Column(name = "nombre")
     public String nombre;
@@ -23,9 +26,6 @@ public abstract class  Entidad extends Persistente {
 
     public Entidad(){
         this.establecimientos = new ArrayList<>();
-    }
-    public void ObtenerInforme(){
-
     }
 
 }

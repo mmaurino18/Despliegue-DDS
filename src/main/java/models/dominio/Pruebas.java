@@ -10,13 +10,8 @@ import models.dominio.comunidad.MedioDeNotificaion;
 import models.dominio.actores.Ciudadano;
 import models.dataBase.repositorios.ServicioRepository;
 import models.dataBase.repositorios.UsuarioRepository;
-import models.dominio.entidades.Establecimiento;
-import models.dominio.entidades.Estacion;
-import models.dominio.entidades.OrganismoDeControl;
-import models.dominio.entidades.Sucursal;
 import models.dominio.lectorCSV.CSV;
 import models.dominio.notificaciones.Notificador;
-import models.dominio.servicios.PrestacionDeServicio;
 
 import models.dominio.servicios.Servicio;
 import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;
@@ -33,11 +28,11 @@ public class Pruebas implements WithSimplePersistenceUnit{
     public static void main(String[] args) throws IOException {
 
         //new Pruebas().testrepoUsuario();
-        //new Pruebas().transaccion();
+        new Pruebas().transaccion();
         //new Pruebas().testJavalin();
         //new Pruebas().testRepositorio();
        // new Pruebas().testController();
-        new Pruebas().testLectorCSV();
+        //new Pruebas().testLectorCSV();
 
     }
 
@@ -88,17 +83,17 @@ public class Pruebas implements WithSimplePersistenceUnit{
         jose.agregarComunidad(unaComunidad);
         alicia.agregarComunidad(unaComunidad);
 
-        Establecimiento estacionRetiro = new Estacion("Estacion Retiro");
-        Establecimiento sucursarAlmagro = new Sucursal("Sucursal Almagro");
+       //1 Establecimiento estacionRetiro = new Estacion("Estacion Retiro");
+       //1 Establecimiento sucursarAlmagro = new Sucursal("Sucursal Almagro");
 
-        PrestacionDeServicio escaleraMecanica = new PrestacionDeServicio("Escalera Mecanica" ,estacionRetiro);
-        PrestacionDeServicio banio = new PrestacionDeServicio("banio", sucursarAlmagro);
+        //1 PrestacionDeServicio escaleraMecanica = new PrestacionDeServicio("Escalera Mecanica" ,estacionRetiro);
+        //1 PrestacionDeServicio banio = new PrestacionDeServicio("banio", sucursarAlmagro);
 
         // escalera mecanica de estacion retiro - servicio dependiente
         //System.out.println(escaleraMecanica.informacionDeServicioPrestado());
 
-        juan.reportarIncidente(unaComunidad, escaleraMecanica, "corte de luz");
-        juan.reportarIncidente(unaComunidad, banio, "se acabo el papel");
+        //1 juan.reportarIncidente(unaComunidad, escaleraMecanica, "corte de luz");
+        //1 juan.reportarIncidente(unaComunidad, banio, "se acabo el papel");
         //alicia.reportarIncidente(unaComunidad, banio, "se acabo el papel");
 
         //alicia.cerrarIncidente(unaComunidad,"corte de luz");
