@@ -16,7 +16,7 @@ body {
 
 .form-registro{
     width: 420px;
-    height: 630px;
+    height: 750px;
     background: rgb(219, 218, 218);
     margin: auto;
     margin-top: 70px;
@@ -72,4 +72,24 @@ body {
 .buttons a{
     color:#ffffff;
     text-decoration: none;
+}
+
+label {
+    height: 10px;
+    text-align: left;
+    font-weight: bold;
+    margin-bottom:10px;
+    font-weight: lighter;
+    font-size: 20px;
+    margin-right: 222px;
+}
+
+.controls1{
+    width: 100%;
+    border: 1px solid #2ba9db;
+    margin-bottom: 5%;
+    padding: 11px 10px;
+    background: #ffffff;
+    font-size: 16px;
+    text-align: left;
 }

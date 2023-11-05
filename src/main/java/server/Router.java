@@ -9,8 +9,7 @@ public class Router {
     public static void init() {
         //
         Server.app().get("/",ctx -> ctx.render("inicio.hbs"));
-        Server.app().get("/homePropietario",ctx -> ctx.render("homePropietario.hbs"));
-        Server.app().get("/cargaMasiva",ctx -> ctx.render("cargaMasiva.hbs"));
+        //Server.app().get("/cargaMasiva",ctx -> ctx.render("cargaMasiva.hbs"));
 
         Server.app().routes(() -> {
             get("servicios", ((ServiciosController) FactoryController.controller("Servicios"))::index,TipoRol.CIUDADANO);
@@ -41,9 +40,16 @@ public class Router {
             //home
             get("home",((HomeController) FactoryController.controller("home")) :: index );
 
+            //home Propietario
+            get("homePropietario",((HomePropietarioController) FactoryController.controller("homePropietario")) :: index );
+
             //notificaciones
             get("config-notificacion", ((NotifController) FactoryController.controller("notif"))::index );
             post("config-notificacion",((NotifController) FactoryController.controller("notif"))::save );
+
+            // Carga Masiva
+            get("cargaMasiva",((CargaMasivaController) FactoryController.controller("cargaMasiva"))::index);
+            post("cargaMasiva",((CargaMasivaController) FactoryController.controller("cargaMasiva"))::carga);
 
             /*path("servicios/{id}/tareas", () -> {
                // get(((TareasController) FactoryController.controller("Tareas"))::index);

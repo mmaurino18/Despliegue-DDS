@@ -18,6 +18,7 @@ import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;
 import io.javalin.Javalin;
 
 import javax.persistence.EntityTransaction;
+import javax.persistence.NoResultException;
 import java.io.IOException;
 import java.util.List;
 
@@ -28,11 +29,12 @@ public class Pruebas implements WithSimplePersistenceUnit{
     public static void main(String[] args) throws IOException {
 
         //new Pruebas().testrepoUsuario();
-        //new Pruebas().transaccion();
+        new Pruebas().transaccion();
         //new Pruebas().testJavalin();
         //new Pruebas().testRepositorio();
        // new Pruebas().testController();
-        new Pruebas().testLectorCSV();
+        //new Pruebas().testLectorCSV();
+        //new Pruebas().testJOIN();
 
     }
 
@@ -66,6 +68,9 @@ public class Pruebas implements WithSimplePersistenceUnit{
         tx.begin();
         // accion
         tx.commit();
+        String currentWorkingDirectory = System.getProperty("user.dir");
+        System.out.println("Directorio de trabajo actual: " + currentWorkingDirectory);
+
     }
 
     private void testNotificador(){
@@ -149,6 +154,15 @@ public class Pruebas implements WithSimplePersistenceUnit{
         // System.out.println(propietario.getOrganismosDeControl().get(0).getEntidadesPrestadoras().get(0).getEntidades().get(0).getNombre());
         //System.out.println(propietario.getOrganismosDeControl().get(0).getEntidadesPrestadoras().get(0).getEntidades().get(0).getEstablecimientos().get(0).getNombre());
 
+    }
+
+    private void testJOIN (){
+        String hql = "SELECT c FROM Ciudadano c JOIN c.usuario u WHERE u.id = :usuarioId";
+        Ciudadano ciudadano = entityManager().createQuery(hql, Ciudadano.class)
+                .setParameter("usuarioId", Long.parseLong("2"))
+                .getSingleResult();
+
+        System.out.println(ciudadano.getNombre());
     }
 
 }

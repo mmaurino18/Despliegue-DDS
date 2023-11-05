@@ -1,5 +1,6 @@
 package controllers;
 
+import models.dominio.actores.TipoRol;
 import models.dominio.actores.Usuario;
 import models.dataBase.repositorios.UsuarioRepository;
 import io.javalin.http.Context;
@@ -28,12 +29,15 @@ public class LoginController extends Controller implements ICrudViewsHandler {
             context.render("errorLogin.hbs");
         }else {
             if ((Objects.equals(usuario.getNombre(), nombreUsuario)) && (Objects.equals(usuario.getContrasenia(), contrasenia))) {
-                System.out.println("Encontreee el usuario");
+                System.out.println("Encontre el usuario");
                 context.sessionAttribute("id_usuario", usuario.getId());
-                context.redirect("/home");
-
+                if(usuario.getRol().getTipo().equals(TipoRol.CIUDADANO)) {
+                    context.redirect("/home");
+                } else {
+                    context.redirect("/homePropietario");
+                }
             } else {
-                System.out.println("NO ENCONTRE EL USUARIO");
+                System.out.println("No encontre el Usuario");
                 context.render("errorLogin.hbs");
             }
         }

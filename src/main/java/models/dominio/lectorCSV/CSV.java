@@ -166,8 +166,9 @@ public class CSV implements LectorCSVAdapter {
 
 
     @Override
-    public void procesarArchivoCSV(Propietario propietario, String path) {
-
+    public void procesarArchivoCSV(Propietario propietario, String path) throws IOException {
+        List<String> lineas = this.lectorDeCSV(path);
+        this.mapearDatos(lineas,propietario);
     }
 
 

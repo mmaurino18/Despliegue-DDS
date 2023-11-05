@@ -45,7 +45,7 @@
     </div>
 </header>
 
-<form class="form-registro" method="post" action="/cargarCSV" enctype="multipart/form-data">
+<form class="form-registro" method="post" action="/cargaMasiva" enctype="multipart/form-data">
     <h5>Cargar archivo CSV</h5>
 
     <p>Por favor, asegúrese de que su archivo CSV cumpla con los siguientes requisitos de estructura antes de cargarlo</p>
@@ -58,12 +58,12 @@
         <p>Seleccione un archivo CSV:</p>
     </div>
     <div class="nivel1">
-        <input class="controls" type="file" name="archivo_csv" accept=".csv">
+        <input class="controls" type="file" name="CSVfile" accept=".csv">
     </div>
 
     <div class="nivel1">
         <button class="buttons" type="submit">Cargar CSV</button>
-        <button class="buttons" type="button"><a href="/login">Volver</a></button>
+        <button class="buttons" type="button"><a href="/homePropietario">Volver</a></button>
     </div>
 </form>
 

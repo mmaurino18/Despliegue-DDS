@@ -19,9 +19,9 @@ public class Usuario extends Persistente {
     @Column(name = "contrasenia", columnDefinition = "VARCHAR(55)")
     private String contrasenia;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "rol_id", referencedColumnName = "id")
-    public Rol rol;
+    private Rol rol;
 
     public Usuario() {
 

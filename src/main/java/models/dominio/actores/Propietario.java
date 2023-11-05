@@ -20,6 +20,9 @@ public class Propietario extends Persistente {
     @Column(name = "nombre",  columnDefinition = "VARCHAR(55)")
     private String nombre;
 
+    @Column(name = "apellido",  columnDefinition = "VARCHAR(55)")
+    private String apellido;
+
     @Column(name = "mail",  columnDefinition = "VARCHAR(55)")
     private String mail;
 
