@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1">
+    <title>Home Propietario</title>
+    <link rel="stylesheet" href="css/styleestructuraCsv.css">
+    <script src="https://kit.fontawesome.com/e15e8c34af.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+</head>
+<body background="imagenes/comunidad.jpg">
+<header>
+    <div class="contenedor">
+        <h1 class="titulo">Sistema de Comunidades</h1>
+        <input type="checkbox" id="menu-bar">
+        <nav class="menu">
+            <label for="menu-bar" class="menu-icon"><i class="fas fa-bars"></i></label>
+            <ul>
+                <li>
+                    <a href="#">Carga De Datos</a>
+                    <ul class="submenu">
+                        <li><a href="crear_incidente.html">Importar csv</a></li>
+                        <li><a href="mis_incidentes.html">Carga Manual</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Subidos</a>
+                    <ul class="submenu">
+                        <li><a href="crear_incidente.html">General</a></li>
+                        <li><a href="crear_incidente.html">Entidades Prestadoras</a></li>
+                        <li><a href="mis_incidentes.html">Organismos Control</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Configuracion</a>
+                    <ul class="submenu">
+                        <li><a href="mi_comunidad.html">Configuracion De Cuenta</a></li>
+                        <li><a href="comunidades.html">cerrar Sesion</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="welcome-text">
+
+    <h2 class="cambio" >ESTRUCTURA CSV:</h2>
+    <p></p>
+    <br>
+    <h3 class="cambio" > Propietario designado por un Organismo De Control: </h3>
+    <p> si el propietario es dueño de un Organismo De Control</p>
+    <p>(podrá tener muchas Entidades Prestadoras (las cuales tendrán entidades(las cuales tendrán establecimientos)))</p>
+    <p></p>
+    <h3 class="cambio" >Ejemplo:</h3>
+    <p class="estruc" >Tipo,Nombre,Padre</p>
+    <p class="estruc" >OrganismoDeControl,CNRT,Sin Padre</p>
+    <p class="estruc" >EntidadPrestadora,Trenes Argentinos,CNRT</p>
+    <p class="estruc" >Entidad,Linea Mitre,Trenes Argentinos</p>
+    <p class="estruc" >Establecimiento,Estacion Retiro,Linea Mitre</p>
+    <p class="estruc" >Establecimiento,Estacion Victoria,Linea Mitre</p>
+    <p class="estruc" >Entidad,Linea San Martin,Trenes Argentinos</p>
+    <p class="estruc" >Establecimiento,Estacion Retiro,Linea San Martin</p>
+    <p class="estruc" >Establecimiento,Estacion Pilar,Linea San Martin</p>
+    <p class="estruc" >EntidadPrestadora,EMOVA,CNRT</p>
+    <p class="estruc" >Entidad,Linea A,EMOVA</p>
+    <p class="estruc" >Establecimiento,Estacion Plaza De Mayo,Linea A</p>
+    <p class="estruc" >Establecimiento,Estacion San Pedrito,Linea A</p>
+    <p class="estruc" >Entidad,Linea C,EMOVA</p>
+    <p class="estruc" >Establecimiento,Estacion Retiro,Linea C</p>
+    <p class="estruc" >Establecimiento,Estacion Constitución,Linea C</p>
+    <p></p>
+    <br>
+    <h3 class="cambio" > Propietario designado por una Entidad Prestadora: </h3>
+    <p> si el propietario es dueño de una Entidad Prestadora</p>
+    <p>(podrá tener muchas entidades(las cuales tendrán establecimientos))</p>
+    <p></p>
+    <h3 class="cambio" >Ejemplo:</h3>
+    <p class="estruc" >Tipo,Nombre,Padre</p>
+    <p class="estruc" >EntidadPrestadora,Trenes Argentinos,Sin Padre</p>
+    <p class="estruc" >Entidad,Linea Mitre,Trenes Argentinos</p>
+    <p class="estruc" >Establecimiento,Estacion Retiro,Linea Mitre</p>
+    <p class="estruc" >Establecimiento,Estacion Victoria,Linea Mitre</p>
+    <p class="estruc" >Entidad,Linea San Martin,Trenes Argentinos</p>
+    <p class="estruc" >Establecimiento,Estacion Retiro,Linea San Martin</p>
+    <p class="estruc" >Establecimiento,Estacion Pilar,Linea San Martin</p>
+    <p></p>
+    <br>
+    <h3 class="cambio" >IMPORTANTE:</h3>
+    <p>no dejar espacios entre "," y no dar un salto de línea en la última línea del archivo.CSV</p>
+    <p></p>
+    <br>
+    <h3 class="cambio" >NOTAS:</h3>
+    <p>las localizaciones serán agregadas mediante la aplicación.</p>
+    <p>los servicos prestados seran agregados mediante la aplicacióna, a sus respectivos establecimientos.</p>
+
+</div>
+
+
+</body>
+</html>

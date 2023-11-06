@@ -2,6 +2,7 @@ package models.dominio;
 
 import controllers.FactoryController;
 import controllers.ServiciosController;
+import models.dataBase.repositorios.OrganismoControlRepository;
 import models.dominio.actores.Propietario;
 import models.dominio.actores.Usuario;
 import models.dominio.comunidad.Comunidad;
@@ -10,6 +11,10 @@ import models.dominio.comunidad.MedioDeNotificaion;
 import models.dominio.actores.Ciudadano;
 import models.dataBase.repositorios.ServicioRepository;
 import models.dataBase.repositorios.UsuarioRepository;
+import models.dominio.entidades.Entidad;
+import models.dominio.entidades.EntidadPrestadora;
+import models.dominio.entidades.Establecimiento;
+import models.dominio.entidades.OrganismoDeControl;
 import models.dominio.lectorCSV.CSV;
 import models.dominio.notificaciones.Notificador;
 
@@ -29,12 +34,14 @@ public class Pruebas implements WithSimplePersistenceUnit{
     public static void main(String[] args) throws IOException {
 
         //new Pruebas().testrepoUsuario();
-        new Pruebas().transaccion();
+       // new Pruebas().transaccion();
         //new Pruebas().testJavalin();
         //new Pruebas().testRepositorio();
        // new Pruebas().testController();
         //new Pruebas().testLectorCSV();
         //new Pruebas().testJOIN();
+        //new Pruebas().testGuardadoEnCascada();
+        new Pruebas().testUsurioController();
 
     }
 
@@ -163,6 +170,36 @@ public class Pruebas implements WithSimplePersistenceUnit{
                 .getSingleResult();
 
         System.out.println(ciudadano.getNombre());
+    }
+
+    private void testGuardadoEnCascada(){
+        OrganismoControlRepository repository = new OrganismoControlRepository();
+
+        OrganismoDeControl cnrt = new OrganismoDeControl();
+        EntidadPrestadora trenesArgentinos = new EntidadPrestadora();
+        Entidad lineaMitre = new Entidad();
+        Establecimiento estacionRetiro = new Establecimiento();
+
+        cnrt.setNombre("CNRT");
+
+        trenesArgentinos.setNombre("Trenes Argentinos");
+        cnrt.agregarEntidadPrestadora(trenesArgentinos);
+
+        lineaMitre.setNombre("Linea Mitre");
+        trenesArgentinos.agregarEntidad(lineaMitre);
+
+        estacionRetiro.setNombre("Estacion Retiro");
+        lineaMitre.agregarEstablecimiento(estacionRetiro);
+
+        repository.save(cnrt);
+
+    }
+
+    private  void testUsurioController(){
+
+
+        Usuario usuario = entityManager().find(Usuario.class, Long.parseLong("4"));
+        System.out.println(usuario.getNombre());
     }
 
 }

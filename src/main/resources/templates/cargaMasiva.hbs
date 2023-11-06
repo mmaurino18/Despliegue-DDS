@@ -51,7 +51,7 @@
     <p>Por favor, asegúrese de que su archivo CSV cumpla con los siguientes requisitos de estructura antes de cargarlo</p>
 
     <div class="nivel3">
-        <button class="buttons" type="button">Estrutura del CSV</button>
+        <button class="buttons" type="button"><a href="/estructura">Estructura del CSV</a></button>
     </div>
 
     <div class="nivel2">
@@ -65,6 +65,18 @@
         <button class="buttons" type="submit">Cargar CSV</button>
         <button class="buttons" type="button"><a href="/homePropietario">Volver</a></button>
     </div>
+
+    {{#if notic}}
+            <div class="hbsaOK">
+                <p>la carga del archivo se ha realizado exito</p>
+            </div>
+    {{/if}}
+    {{#if notif}}
+            <div class="hbsaFailed">
+                <p>la carga del archivo no se realizo correctamente</p>
+            </div>
+    {{/if}}
+
 </form>
 
 </body>

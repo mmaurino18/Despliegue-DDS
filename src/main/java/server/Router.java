@@ -9,7 +9,7 @@ public class Router {
     public static void init() {
         //
         Server.app().get("/",ctx -> ctx.render("inicio.hbs"));
-        //Server.app().get("/cargaMasiva",ctx -> ctx.render("cargaMasiva.hbs"));
+        Server.app().get("/estructura",ctx -> ctx.render("estructuraCsv.hbs"));
 
         Server.app().routes(() -> {
             get("servicios", ((ServiciosController) FactoryController.controller("Servicios"))::index,TipoRol.CIUDADANO);
@@ -49,7 +49,8 @@ public class Router {
 
             // Carga Masiva
             get("cargaMasiva",((CargaMasivaController) FactoryController.controller("cargaMasiva"))::index);
-            post("cargaMasiva",((CargaMasivaController) FactoryController.controller("cargaMasiva"))::carga);
+            //get("cargaMasiva/estructura",((CargaMasivaController) FactoryController.controller("cargaMasiva"))::edit);
+            post("cargaMasiva",((CargaMasivaController) FactoryController.controller("cargaMasiva"))::save);
 
             /*path("servicios/{id}/tareas", () -> {
                // get(((TareasController) FactoryController.controller("Tareas"))::index);

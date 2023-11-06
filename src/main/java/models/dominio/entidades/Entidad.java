@@ -18,7 +18,7 @@ public class Entidad extends Persistente {
     @Column(name = "nombre")
     public String nombre;
 
-    @OneToMany(mappedBy = "entidad")
+    @OneToMany(mappedBy = "entidad",cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     public List<Establecimiento> establecimientos;
 
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})

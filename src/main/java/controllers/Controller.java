@@ -7,6 +7,7 @@ import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;
 import io.javalin.http.Context;
 
 import javax.persistence.NoResultException;
+import java.util.Objects;
 
 
 public abstract class Controller implements WithSimplePersistenceUnit {
@@ -14,7 +15,9 @@ public abstract class Controller implements WithSimplePersistenceUnit {
     protected Usuario usuarioLogueado(Context ctx) {
         if(ctx.sessionAttribute("usuario_id") == null)
             return null;
-        return entityManager().find(Usuario.class, Long.parseLong(ctx.sessionAttribute("usuario_id")));
+        else {
+            return entityManager().find(Usuario.class, Long.parseLong(("" + ctx.sessionAttribute("id_usuario"))));
+        }
     }
 
     protected Ciudadano CiudadanoLogueado(Context ctx){
