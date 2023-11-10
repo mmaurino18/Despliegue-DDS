@@ -1,16 +1,22 @@
 package controllers;
 
 import io.javalin.http.Context;
+import models.dataBase.repositorios.EntidadRepository;
 import server.utils.ICrudViewsHandler;
 
-public class HomePropietarioController extends Controller implements ICrudViewsHandler {
+import java.io.IOException;
 
-    public HomePropietarioController(){
+public class EntidadPController extends Controller implements ICrudViewsHandler {
 
+    private EntidadRepository repository;
+
+    public EntidadPController(EntidadRepository repositorio){
+        this.repository = repositorio;
     }
+
     @Override
     public void index(Context context) {
-        context.render("bienvenidaP.hbs");
+        context.render("entidadesP.hbs");
     }
 
     @Override
@@ -24,7 +30,7 @@ public class HomePropietarioController extends Controller implements ICrudViewsH
     }
 
     @Override
-    public void save(Context context) {
+    public void save(Context context) throws IOException {
 
     }
 

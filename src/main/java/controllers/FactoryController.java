@@ -14,8 +14,14 @@ public class FactoryController {
             case "home": controller = new HomeController(); break;
             case "homePropietario": controller = new HomePropietarioController(); break;
             case "notif": controller = new NotifController(new CiudadanoRepository()); break;
+
             case "Ranking": controller = new RankingController(); break;
             case "cargaMasiva": controller = new CargaMasivaController(new PropietarioRepository()); break;
+            case "organismosDeControlP": controller = new OrganismoDeControlPController(new OrganismoControlRepository()); break;
+            case "entidadesPrestadorasP": controller = new EntidadPrestadoraPController(new EntidadPrestadoraRepository()); break;
+            case "entidadesP": controller = new EntidadPController(new EntidadRepository()); break;
+            case "establecimientosP": controller = new EstablecimientoPController(new EstablecimientoRepository()); break;
+
         }
         return controller;
     }

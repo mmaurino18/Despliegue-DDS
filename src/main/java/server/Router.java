@@ -51,6 +51,18 @@ public class Router {
             get("cargaMasiva/estructura",((CargaMasivaController) FactoryController.controller("cargaMasiva"))::edit);
             post("cargaMasiva",((CargaMasivaController) FactoryController.controller("cargaMasiva"))::save);
 
+            // organismoDeControlP
+            get("organismosDeControlP",((OrganismoDeControlPController) FactoryController.controller("organismosDeControlP"))::index);
+
+            // entidadPrestadoraP
+            get("entidadesPrestadorasP",((EntidadPrestadoraPController) FactoryController.controller("entidadesPrestadorasP"))::index);
+
+            // entidadP
+            get("entidadesP",((EntidadPController) FactoryController.controller("entidadesP"))::index);
+
+            // establecimientosP
+            get("establecimientosP",((EstablecimientoPController) FactoryController.controller("establecimientosP"))::index);
+
             /*path("servicios/{id}/tareas", () -> {
                // get(((TareasController) FactoryController.controller("Tareas"))::index);
                 //TODO
