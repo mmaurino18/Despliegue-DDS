@@ -41,7 +41,6 @@ public class GradoDeConfiaza {
 
     public UsuarioApiResponse usuarioDevuelto(UsuarioApiRequest usuario) throws IOException{
         GradoDeConfianzaService gradoDeConfianzaService = this.retrofit.create((GradoDeConfianzaService.class));
-        System.out.println("LEGUEEE");
         Call<UsuarioApiResponse> requestGradoConfianzaUsuario = gradoDeConfianzaService.obtenerGradoDeConfianzaUsuario (usuario);
         Response<UsuarioApiResponse> responseGradoConfianzaUsuario = requestGradoConfianzaUsuario.execute();
         System.out.println(responseGradoConfianzaUsuario);
