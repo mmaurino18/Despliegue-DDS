@@ -152,3 +152,85 @@ h1 {
     font-size: 24px;
     line-height: 1.4;
 }
+
+/* BEGIN - formulario de edicion*/
+
+.form-login{
+    width: 400px;
+    /*height: 380px;*/
+    background: rgb(219, 218, 218);
+    margin: auto;
+    margin-top: 100px;
+    box-shadow: 5px 12px 20px #4d4c4c;
+    padding: 20px 30px;
+    border-top: 4px solid rgb(36, 103, 248);
+    color: rgb(10, 10, 10);
+    font-size: 20px;
+
+
+}
+
+.form-login h5{
+    margin: 0;
+    text-align: center;
+    border-bottom: 1px solid;
+    font-size: 25px;
+    margin-bottom: 25px;
+    height: 40px;
+}
+
+.controls{
+    width: 100%;
+    border: 1px solid #2ba9db;
+    margin-bottom: 5%;
+    padding: 11px 10px;
+    background: #ffffff;
+    font-size: 16px;
+
+}
+
+.buttons{
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    background: #017bab;
+    border-color: #314ff8;
+    border-radius: 4px;
+    color: white;
+    margin-bottom: 16px;
+    font-size: 15px;
+
+
+}
+
+
+.form-login p{
+    height: 40px;
+    text-align: center;
+    border-bottom: 1px solid;
+    margin-bottom:16px;
+
+}
+
+.form-login a{
+    color: #314ff8;
+    text-decoration: none;
+}
+
+
+.buttons a{
+    color:#ffffff;
+    text-decoration: none;
+}
+
+section{
+    width: 100%;
+    margin-bottom: 25px;
+}
+textarea{
+    min-height: 100px;
+    max-height: 200px;
+    min-width: 100%; /* problema permite ampliar no deberia*/
+}
+
+/* END - formulario de edicion */

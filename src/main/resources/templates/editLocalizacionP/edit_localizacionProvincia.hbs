@@ -1,0 +1,100 @@
+{{#partial "contenidoP" }}
+
+    <script>
+        function enviarFormulario(ruta) {
+            var formulario = document.querySelector('.form-registro');
+            formulario.action = ruta;
+            formulario.submit();
+        }
+    </script>
+
+
+    {{#if tipoProvincia}}
+    <main>
+        <section class="form-login">
+
+            <h5>Editar Establecimiento </h5>
+
+            <form class="form-registro" method="post">
+            <p1>Nombre Establecimiento:</p1>
+            <input class="controls" type="text" name="nombreEstablecimiento" placeholder="Establecimiento">
+
+            <p1>Descripcion:</p1>
+            <textarea name="descripcion" placeholder="Escriba aquí una Descripcion..."></textarea>
+
+                <label>Provincia:</label>
+                <select class="controls"  name="tiposervicio">
+                    {{#each provincia}}
+                        <option value="{{this.getNombre}}">{{this.getNombre}}</option>
+                    {{/each}}
+                </select>
+                <br>
+
+                <button class="buttons" type="button" onclick="enviarFormulario('/localizacion/Tipo')">Seleccionar Provincia</button>
+                <button class="buttons" type="button" onclick="enviarFormulario('/localizacion/Tipo')">Volver</button>
+            </form>
+        </section>
+    </main>
+    {{/if}}
+
+    {{#if tipoMunicipio}}
+        <main>
+            <section class="form-login">
+
+                <h5>Editar Establecimiento </h5>
+
+                <form class="form-registro" method="post" >
+                    <p1>Nombre Establecimiento:</p1>
+                    <input class="controls" type="text" name="nombreEstablecimiento" placeholder="Establecimiento">
+
+                    <p1>Descripcion:</p1>
+                    <textarea name="descripcion" placeholder="Escriba aquí una Descripcion..."></textarea>
+
+                    <label>Provincia:</label>
+                    <select class="controls"  name="tiposervicio">
+                        {{#each provincia}}
+                            <option value="{{this.getNombre}}">{{this.getNombre}} {{this.getId}} </option>
+                        {{/each}}
+                    </select>
+                    <br>
+
+                    <button class="buttons" type="button" onclick="enviarFormulario('/localizacion/Tipo/{{@root.getId}}/municipio')">Seleccionar Provincia</button>
+                    <button class="buttons" type="button" onclick="enviarFormulario('/edit/establecimiento')">Volver</button>
+                </form>
+            </section>
+        </main>
+    {{/if}}
+
+    {{#if tipoDepartamento}}
+        <main>
+            <section class="form-login">
+
+                <h5>Editar Establecimiento </h5>
+
+                <form class="form-registro" method="post">
+                    <p1>Nombre Establecimiento:</p1>
+                    <input class="controls" type="text" name="nombreEstablecimiento" placeholder="Establecimiento">
+
+                    <p1>Descripcion:</p1>
+                    <textarea name="descripcion" placeholder="Escriba aquí una Descripcion..."></textarea>
+
+                    <label>Provincia:</label>
+                    <select class="controls"  name="tiposervicio">
+                        {{#each provincia}}
+                            <option value="{{this.getNombre}}">{{this.getNombre}}</option>
+                        {{/each}}
+                    </select>
+                    <br>
+                    <!-- no lee el this.id de la ruta-->
+                    <button class="buttons" type="button" onclick="enviarFormulario('/localizacion/Tipo/{{this.getId}}/departamento')">Seleccionar Provincia</button>
+                    <button class="buttons" type="button" onclick="enviarFormulario('/edit/establecimiento')">Volver</button>
+                </form>
+            </section>
+        </main>
+    {{/if}}
+
+
+
+
+{{/partial}}
+{{> templates/homePropietarioBase }}

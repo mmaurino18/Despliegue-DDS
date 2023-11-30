@@ -8,8 +8,10 @@ public class Main {
     public static void main(String[] args) throws IOException {
         //new Main().testMatias();
         //new Main().testCentroide();
+        //new Main().testMunicipiosPorNombreDeProvincia();
         //new Main().testDepartamentosPorNombreDeProvincia();
-        new Main().testMunicipiosPorNombreDeProvincia();
+        //new Main().testDepartamentosPorIDDeProvincia();
+        new Main().testMunicipiosPorIDDeProvincia();
 
     }
     private void testCentroide() throws IOException {
@@ -34,6 +36,17 @@ public class Main {
         }
     }
 
+    private void testDepartamentosPorIDDeProvincia() throws IOException{
+        GeorefApi servicio = GeorefApi.instancia();
+
+        ListaDepartamentos listaDepartamentos = servicio.listadoDeDepartamentosPorIDProvincia(2);
+
+        for(Departamento departamento : listaDepartamentos.getDepartamentos()){
+            System.out.println( "ID: " + departamento.getId() + " DEPARTAMENTO -> " + departamento.getNombre());
+            System.out.println("UBICACION -> LAT: " + departamento.getCentroide().getLat() + " LON: " + departamento.getCentroide().getLon() );
+        }
+    }
+
     private void testMunicipiosPorNombreDeProvincia() throws IOException {
         GeorefApi servicio = GeorefApi.instancia();
 
@@ -44,6 +57,18 @@ public class Main {
             System.out.println("UBICACION -> LAT: " + municipio.getCentroide().getLat() + " LON: " + municipio.getCentroide().getLon() );
         }
     }
+
+    private void testMunicipiosPorIDDeProvincia() throws IOException {
+        GeorefApi servicio = GeorefApi.instancia();
+
+        ListaMunicipios listaMunicipios = servicio.listadoDeMunicipiosPorIDProvincia(22);
+
+        for(Municipio municipio : listaMunicipios.getMunicipios()){
+            System.out.println( "ID: " + municipio.getId() + " MUNICIPIO -> " + municipio.getNombre());
+            System.out.println("UBICACION -> LAT: " + municipio.getCentroide().getLat() + " LON: " + municipio.getCentroide().getLon() );
+        }
+    }
+
 
     private void testMatias() throws IOException {
         GeorefApi georefApi = GeorefApi.instancia();

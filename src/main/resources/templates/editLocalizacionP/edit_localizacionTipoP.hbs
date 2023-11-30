@@ -1,0 +1,42 @@
+{{#partial "contenidoP" }}
+
+    <main>
+
+        <section class="form-login">
+
+            <h5>Editar Establecimiento </h5>
+
+            <form class="form-registro" method="post">
+                <p1>Nombre Establecimiento:</p1>
+                <input class="controls" type="text" name="nombreEstablecimiento" placeholder="Establecimiento">
+
+                <p1>Descripcion:</p1>
+                <textarea name="descripcion" placeholder="Escriba aquí una Descripcion..."></textarea>
+
+
+                <label>Tipo De Localizacion</label><br/>
+                <div class="controls1">
+                    <input  type="radio" name="tipo" value="Provincia" checked> Provincia </label><br/>
+                    <input  type="radio" name="tipo" value="Municipio">  Municipio </label><br/>
+                    <input  type="radio" name="tipo" value="Departamento">  Departamento </label><br/>
+                </div>
+                <br>
+
+                <button class="buttons" type="button" onclick="enviarFormulario('/localizacion/Tipo')">Cambiar Localizacion</button>
+
+                <button class="buttons" type="button" onclick="enviarFormulario('/edit/establecimiento')">Editar</button>
+            </form>
+
+            <script>
+                function enviarFormulario(ruta) {
+                    var formulario = document.querySelector('.form-registro');
+                    formulario.action = ruta;
+                    formulario.submit();
+                }
+            </script>
+
+        </section>
+
+    </main>
+{{/partial}}
+{{> templates/homePropietarioBase }}

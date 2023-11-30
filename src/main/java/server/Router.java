@@ -63,6 +63,14 @@ public class Router {
             // establecimientosP
             get("establecimientosP",((EstablecimientoPController) FactoryController.controller("establecimientosP"))::index);
 
+
+            // localizacionP
+            get("localizacion/Tipo",new LocalizacionPController():: index);
+            post("localizacion/Tipo",new LocalizacionPController():: tipoLocalizacion);
+            post("localizacion/Tipo/{idProvincia}/municipio",new LocalizacionPController() :: mostrarMunicipios);
+        
+
+
             /*path("servicios/{id}/tareas", () -> {
                // get(((TareasController) FactoryController.controller("Tareas"))::index);
                 //TODO

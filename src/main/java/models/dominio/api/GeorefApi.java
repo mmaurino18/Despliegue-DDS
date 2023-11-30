@@ -56,6 +56,13 @@ public class GeorefApi {
         return OrdenarMunicipiosAlf(responseListadoDeMunicipios.body());
     }
 
+    public ListaDepartamentos listadoDeDepartamentosPorIDProvincia(int id) throws IOException {
+        GeorefApiService servicio = this.retrofit.create(GeorefApiService.class);
+        Call<ListaDepartamentos> requetsListadoDeDepartamentos = servicio.departamentosPor(id);
+        Response<ListaDepartamentos> responseListadoDeDepartamentos = requetsListadoDeDepartamentos.execute();
+        return responseListadoDeDepartamentos.body();
+    }
+
     public ListaDepartamentos listadoDeDepartamentosDeProvincia(String nombreProvincia) throws IOException {
         GeorefApiService servicio = this.retrofit.create(GeorefApiService.class);
         Call<ListaDepartamentos> requetsListadoDeDepartamentos = servicio.departamentosPor(nombreProvincia);
@@ -66,6 +73,13 @@ public class GeorefApi {
     public ListaMunicipios listadoDeMunicipiosDeProvincia(String nombreProvincia) throws IOException {
         GeorefApiService servicio = this.retrofit.create(GeorefApiService.class);
         Call<ListaMunicipios> requetsKistadoDeMunicipios = servicio.municipiosPor(nombreProvincia);
+        Response<ListaMunicipios> responseListaDeMunicipios = requetsKistadoDeMunicipios.execute();
+        return responseListaDeMunicipios.body();
+    }
+
+    public ListaMunicipios listadoDeMunicipiosPorIDProvincia(int id) throws IOException {
+        GeorefApiService servicio = this.retrofit.create(GeorefApiService.class);
+        Call<ListaMunicipios> requetsKistadoDeMunicipios = servicio.municipiosPor(id);
         Response<ListaMunicipios> responseListaDeMunicipios = requetsKistadoDeMunicipios.execute();
         return responseListaDeMunicipios.body();
     }

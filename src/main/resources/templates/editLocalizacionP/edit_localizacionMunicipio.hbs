@@ -1,0 +1,40 @@
+{{#partial "contenidoP" }}
+
+        <main>
+            <section class="form-login">
+
+                <h5>Editar Establecimiento </h5>
+
+                <form class="form-registro" method="post">
+                    <p1>Nombre Establecimiento:</p1>
+                    <input class="controls" type="text" name="nombreEstablecimiento" placeholder="Establecimiento">
+
+                    <p1>Descripcion:</p1>
+                    <textarea name="descripcion" placeholder="Escriba aquí una Descripcion..."></textarea>
+
+                    <label>Municipio:</label>
+                    <select class="controls"  name="tiposervicio">
+                        {{#each municipio}}
+                            <option value="{{this.getNombre}}">{{this.getNombre}}</option>
+                        {{/each}}
+                    </select>
+                    <br>
+
+                    <button class="buttons" type="button" onclick="enviarFormulario('/localizacion/Tipo')">Seleccionar Municipio</button>
+                    <button class="buttons" type="button" onclick="enviarFormulario('/localizacion/Tipo')">Volver</button>
+                </form>
+            </section>
+        </main>
+
+    <script>
+        function enviarFormulario(ruta) {
+            var formulario = document.querySelector('.form-registro');
+            formulario.action = ruta;
+            formulario.submit();
+        }
+    </script>
+
+
+
+{{/partial}}
+{{> templates/homePropietarioBase }}

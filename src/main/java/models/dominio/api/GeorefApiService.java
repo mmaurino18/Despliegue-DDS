@@ -18,6 +18,7 @@ public interface GeorefApiService {
     @GET("municipios")
     Call<ListaMunicipios> municipios(@Query("provincia") int idProvincia);
 
+
     @GET("municipios")
     Call<ListaMunicipios> municipios(@Query("provincia") int idProvincia, @Query("campos") String campos);
 
@@ -33,6 +34,12 @@ public interface GeorefApiService {
     @GET("departamentos")
     Call<ListaDepartamentos> departamentosPor(@Query("provincia") String nombreProvincia);
 
+    @GET("departamentos")
+    Call<ListaDepartamentos> departamentosPor(@Query("provincia") int idProvincia);
+
     @GET("municipios")
     Call<ListaMunicipios> municipiosPor(@Query("provincia") String nombreProvincia);
+
+    @GET("municipios")
+    Call<ListaMunicipios> municipiosPor(@Query("provincia") int idProvincia);
 }
