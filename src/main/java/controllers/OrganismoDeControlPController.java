@@ -17,6 +17,10 @@ public class OrganismoDeControlPController extends Controller implements ICrudVi
         this.repository = repositorio;
     }
 
+    public void indexTest(Context context){
+        context.render("organismoDeControlP.hbs");
+    }
+
     @Override
     public void index(Context context) {
         PropietarioRepository repoPropietario = new PropietarioRepository();

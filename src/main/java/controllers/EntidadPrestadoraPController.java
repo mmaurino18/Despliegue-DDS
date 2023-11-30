@@ -14,6 +14,10 @@ public class EntidadPrestadoraPController extends Controller implements ICrudVie
         this.repository = repositorio;
     }
 
+    public void indexTest(Context context) {
+        context.render("entidadesPrestadorasP.hbs");
+    }
+
     @Override
     public void index(Context context) {
         context.render("entidadesPrestadorasP.hbs");

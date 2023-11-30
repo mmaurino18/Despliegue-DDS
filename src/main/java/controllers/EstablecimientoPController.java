@@ -14,6 +14,10 @@ public class EstablecimientoPController extends Controller implements ICrudViews
         this.repository = repositorio;
     }
 
+    public void indexTest(Context context) {
+        context.render("establecimientosP.hbs");
+    }
+
     @Override
     public void index(Context context) {
         context.render("establecimientosP.hbs");

@@ -14,6 +14,10 @@ public class EntidadPController extends Controller implements ICrudViewsHandler 
         this.repository = repositorio;
     }
 
+    public void indexTest(Context context) {
+        context.render("entidadesP.hbs");
+    }
+
     @Override
     public void index(Context context) {
         context.render("entidadesP.hbs");
