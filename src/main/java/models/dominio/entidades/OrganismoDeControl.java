@@ -15,11 +15,11 @@ import java.util.List;
 public class OrganismoDeControl extends Persistente {
 
     @Column(name = "nombre")
-    public String nombre;
+    private String nombre;
 
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "organismo_control_id")
-    public List<EntidadPrestadora> entidadesPrestadoras;
+    private List<EntidadPrestadora> entidadesPrestadoras;
 
     public OrganismoDeControl(){
         this.entidadesPrestadoras = new ArrayList<>();

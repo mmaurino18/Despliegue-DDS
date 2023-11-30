@@ -2,9 +2,12 @@ package controllers;
 
 import io.javalin.http.Context;
 import models.dataBase.repositorios.OrganismoControlRepository;
+import models.dataBase.repositorios.PropietarioRepository;
+import models.dominio.actores.Propietario;
 import server.utils.ICrudViewsHandler;
 
 import java.io.IOException;
+import java.util.*;
 
 public class OrganismoDeControlPController extends Controller implements ICrudViewsHandler {
 
@@ -16,7 +19,11 @@ public class OrganismoDeControlPController extends Controller implements ICrudVi
 
     @Override
     public void index(Context context) {
-        context.render("organismoDeControlP.hbs");
+        PropietarioRepository repoPropietario = new PropietarioRepository();
+        Propietario propietario = repoPropietario.findById(Long.parseLong("1"));
+        Map<String, Object> model = new HashMap<>();
+        model.put("organismoDeControl", propietario.getOrganismosDeControl());
+        context.render("organismoDeControlP.hbs",model);
     }
 
     @Override

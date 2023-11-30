@@ -10,12 +10,14 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>CNRT</td>
-                <td><button class="buttons" type="submit"><a href="comunidad.html"> Ver Entidades Prestadoras</a></button></td>
-                <td><button class="buttons" type="submit"><a href="comunidad.html">Editar</a></button></td>
-                <td><button class="buttons" type="submit"><a href="comunidad.html">Eliminar</a></button></td>
-            </tr>
+            {{#each organismoDeControl}}
+               <tr>
+                  <td>{{this.getNombre}}</td>
+                  <td><button class="buttons" type="submit"><a href="comunidad.html"> Ver Entidades Prestadoras</a></button></td>
+                  <td><button class="buttons" type="submit"><a href="comunidad.html">Editar</a></button></td>
+                  <td><button class="buttons" type="submit"><a href="comunidad.html">Eliminar</a></button></td>
+               </tr>
+            {{/each}}
             </tbody>
         </table>
         <!--<button class="buttonConfi" type="submit"><a href="configuracion.html">Configuración</a></button>-->
