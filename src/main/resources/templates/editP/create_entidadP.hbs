@@ -1,0 +1,39 @@
+{{#partial "contenidoP" }}
+    <main>
+        <section class="form-login">
+
+            <h5>Crear Entidad </h5>
+
+            <form class="form-registro" method="post" action="/registro">
+                <p1>Nombre Entidad:</p1>
+                <input class="controls" type="text" name="usuario" placeholder="Entidad">
+
+                <br>
+                <p1> ------------------------------------------------------ </p1>
+                <br>
+                <p1> Localizacion Actual:</p1>
+                <br>
+                <p1> Tipo: Provincia </p1>
+                <br>
+                <p1> Buenos Aires </p1>
+                <br>
+                <p1> ------------------------------------------------------  </p1>
+                <br>
+
+                <button class="buttons" type="button"><a href="comunidad.html"> Agregar Localizacion </a></button>
+                <button class="buttons" type="submit"><a href="comunidad.html"> Agregar Entidad </a></button>
+                <button class="buttons" type="button" onclick="volverAtras()">Volver</button>
+            </form>
+
+        </section>
+
+        <script>
+            function volverAtras() {
+                window.history.back();
+            }
+        </script>
+
+    </main>
+
+{{/partial}}
+{{> templates/homePropietarioBase }}

@@ -10,6 +10,8 @@ public class Router {
         //
         Server.app().get("/",ctx -> ctx.render("inicio.hbs"));
 
+        Server.app().get("/test",ctx -> ctx.render("/editP/create_organismoDeControlP.hbs"));
+
         Server.app().routes(() -> {
             get("servicios", ((ServiciosController) FactoryController.controller("Servicios"))::index,TipoRol.CIUDADANO);
             get("servicios/crear", ((ServiciosController) FactoryController.controller("Servicios"))::create);

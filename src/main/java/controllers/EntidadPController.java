@@ -16,6 +16,7 @@ public class EntidadPController extends Controller implements ICrudViewsHandler 
 
     public void indexTest(Context context) {
         context.render("entidadesP.hbs");
+        //context.render("editP/edit_entidadP.hbs"); edicion
     }
 
     @Override

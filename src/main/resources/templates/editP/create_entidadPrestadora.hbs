@@ -1,0 +1,28 @@
+{{#partial "contenidoP" }}
+    <main>
+
+        <section class="form-login">
+
+            <h5>Crear Entidad Prestadora</h5>
+
+            <form class="form-registro" method="post" action="/registro">
+                <p1>Nombre Entidad Prestadora:</p1>
+                <input class="controls" type="text" name="usuario" placeholder="Entidad Prestadora">
+
+                <button class="buttons" type="submit"><a href="comunidad.html"> Agregar Entidad Prestadora </a></button>
+                <button class="buttons" type="button" onclick="volverAtras()">Volver</button>
+                <!--<button class="buttons" type="button"><a href="comunidad.html"> Volver </a></button>-->
+            </form>
+
+        </section>
+
+        <script>
+            function volverAtras() {
+                window.history.back();
+            }
+        </script>
+
+
+    </main>
+{{/partial}}
+{{> templates/homePropietarioBase }}
