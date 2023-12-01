@@ -11,30 +11,18 @@
         </tr>
         </thead>
         <tbody>
+        {{#each entidad}}
         <tr>
-            <td></td>
-            <td></td>
-            <td><button class="buttons" type="submit"><a href="comunidad.html">Ver Establecimientos</a></button></td>
+            <td>{{this.getNombre}}</td>
+            <td>sin localizacion</td>
+            <td><button class="buttons" type="submit"><a href="/organismosDeControlP/{{organismo.getId}}/entidadesPrestadorasP/{{entidadPrestadora.getId}}/entidadesP/{{this.getId}}/establecimientosP">Ver Establecimientos</a></button></td>
             <td><button class="buttons" type="submit"><a href="comunidad.html">Editar</a></button></td>
             <td><button class="buttons" type="submit"><a href="comunidad.html">Eliminar</a></button></td>
         </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td><button class="buttons" type="submit"><a href="comunidad.html">Ver Establecimientos</a></button></td>
-            <td><button class="buttons" type="submit"><a href="comunidad.html">Editar</a></button></td>
-            <td><button class="buttons" type="submit"><a href="comunidad.html">Eliminar</a></button></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td><button class="buttons" type="submit"><a href="comunidad.html">Ver Establecimientos</a></button></td>
-            <td><button class="buttons" type="submit"><a href="comunidad.html">Editar</a></button></td>
-            <td><button class="buttons" type="submit"><a href="comunidad.html">Eliminar</a></button></td>
-        </tr>
+        {{/each}}
         </tbody>
     </table>
-    <button class="buttonConfi" type="submit"><a href="configuracion.html">Agregar</a></button>
+    <button class="buttonConfi" type="submit"><a href="configuracion.html">Agregar Entidad</a></button>
 </div>
 {{/partial}}
 {{> templates/homePropietarioBase }}

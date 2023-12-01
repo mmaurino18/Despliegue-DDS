@@ -75,4 +75,8 @@ public class Establecimiento extends Persistente {
         this.entidad = entidad;
     }
 
+    public String deEntidad(){
+        return this.entidad.getNombre();
+    }
+
 }
