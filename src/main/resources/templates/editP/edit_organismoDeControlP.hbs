@@ -5,15 +5,22 @@
 
           <h5>Editar Organismo de Control</h5>
 
-          <form class="form-registro" method="post" action="/registro">
+          <form class="form-registro" method="post" action="/organismosDeControlP/{{organismoDeControl.getId}}">
+              <p1>Nombre Organismo De Control:</p1>
 
-            <p1>Nombre Organismo De Control:</p1>
+              <input class="controls" type="text" name="nombre_edit" placeholder="{{organismoDeControl.getNombre}}">
 
-            <input class="controls" type="text" name="usuario" placeholder="CNRT">
-
-            <button class="buttons" type="submit"><a href="comunidad.html"> Editar </a></button><!--registro usuario nuevo-->
+              <button class="buttons" type="submit"> Editar Organismo De Control</button>
+              <button class="buttons" type="button" onclick="volverAtras()">Volver</button>
           </form>
       </section>
+
+      <script>
+          function volverAtras() {
+              window.history.back();
+          }
+      </script>
+
   </main>
 
 {{/partial}}
