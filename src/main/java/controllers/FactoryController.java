@@ -19,8 +19,8 @@ public class FactoryController {
             case "cargaMasiva": controller = new CargaMasivaController(new PropietarioRepository()); break;
             case "organismosDeControlP": controller = new OrganismoDeControlPController(new OrganismoControlRepository()); break;
             case "entidadesPrestadorasP": controller = new EntidadPrestadoraPController(new OrganismoControlRepository(), new EntidadPrestadoraRepository()); break;
-            case "entidadesP": controller = new EntidadPController(new OrganismoControlRepository(), new EntidadPrestadoraRepository()); break;
-            case "establecimientosP": controller = new EstablecimientoPController(new EntidadRepository(), new OrganismoControlRepository(), new EntidadPrestadoraRepository()); break;
+            case "entidadesP": controller = new EntidadPController(new OrganismoControlRepository(), new EntidadPrestadoraRepository(), new EntidadRepository()); break;
+            case "establecimientosP": controller = new EstablecimientoPController(new EntidadRepository(), new OrganismoControlRepository(), new EntidadPrestadoraRepository(), new EstablecimientoRepository()); break;
 
         }
         return controller;

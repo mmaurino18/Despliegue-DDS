@@ -4,9 +4,9 @@
 
         <h5>Editar Entidad </h5>
 
-        <form class="form-registro" method="post" action="/registro">
+        <form class="form-registro" method="post" action="/organismosDeControlP/{{organismo.getId}}/entidadesPrestadorasP/{{entidadPrestadora.getId}}/entidadesP/{{entidad.getId}}">
         <p1>Nombre Entidad:</p1>
-        <input class="controls" type="text" name="usuario" placeholder="Entidad">
+        <input class="controls" type="text" name="nombre" placeholder="{{entidad.getNombre}}">
 
             <br>
             <p1> ------------------------------------------------------ </p1>
@@ -21,7 +21,8 @@
             <br>
 
             <button class="buttons" type="button"><a href="comunidad.html"> Editar Localizacion </a></button>
-            <button class="buttons" type="submit"><a href="comunidad.html"> Editar </a></button>
+            <button class="buttons" type="submit"> Editar Entidad </button>
+            <button class="buttons" type="button" onclick="volverAtras()"> Volver </button>
         </form>
 
         <script>

@@ -1,6 +1,7 @@
 package controllers;
 
 import io.javalin.http.Context;
+import io.javalin.http.HttpStatus;
 import models.dataBase.repositorios.EntidadPrestadoraRepository;
 import models.dataBase.repositorios.OrganismoControlRepository;
 import models.dominio.entidades.EntidadPrestadora;
@@ -42,12 +43,23 @@ public class EntidadPrestadoraPController extends Controller implements ICrudVie
 
     @Override
     public void create(Context context) {
-
+        OrganismoDeControl organismo = (OrganismoDeControl) this.repositorioOrganismo.findById(Long.parseLong(context.pathParam("idODC")));
+        Map<String,Object> model = new HashMap<>();
+        model.put("organismo",organismo);
+        context.render("/editP/create_entidadPrestadora.hbs", model);
     }
 
     @Override
     public void save(Context context) throws IOException {
+        EntidadPrestadora entidadPrestadora = new EntidadPrestadora();
+        this.asignarParametrosCreate(entidadPrestadora, context);
+        OrganismoDeControl organismo = (OrganismoDeControl) this.repositorioOrganismo.findById(Long.parseLong(context.pathParam("idODC")));
+        organismo.agregarEntidadPrestadora(entidadPrestadora);
+        this.repositorioOrganismo.update(organismo);
 
+        context.status(HttpStatus.CREATED);
+        String idOrganismo = organismo.getId().toString();
+        context.redirect("/organismosDeControlP/" +idOrganismo+ "/entidadesPrestadorasP");
     }
 
     @Override
@@ -84,5 +96,9 @@ public class EntidadPrestadoraPController extends Controller implements ICrudVie
         if(context.formParam("nombre_edit") != null) {
             entidadPrestadora.setNombre(context.formParam("nombre_edit"));
         }
+    }
+
+    private void asignarParametrosCreate(EntidadPrestadora entidadPrestadora, Context context){
+            entidadPrestadora.setNombre(context.formParam("nombre"));
     }
 }

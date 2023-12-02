@@ -5,12 +5,12 @@
 
             <h5>Crear Establecimiento </h5>
 
-            <form class="form-registro" method="post" action="/registro">
+            <form class="form-registro" method="post" action="/organismosDeControlP/{{organismo.getId}}/entidadesPrestadorasP/{{entidadPrestadora.getId}}/entidadesP/{{entidad.getId}}/establecimientosP">
                 <p1>Nombre Establecimiento:</p1>
-                <input class="controls" type="text" name="usuario" placeholder="Establecimiento">
+                <input class="controls" type="text" name="nombre" placeholder="Establecimiento">
 
                 <p1>Descripcion:</p1>
-                <textarea name="mensaje" placeholder="Escriba aquí una Descripcion..."></textarea>
+                <textarea name="descripcion" placeholder="Escriba aquí una Descripcion..."></textarea>
 
                 <br>
                 <p1> ------------------------------------------------------ </p1>
@@ -25,7 +25,7 @@
                 <br>
 
                 <button class="buttons" type="button"><a href="comunidad.html"> Agregar Localizacion </a></button>
-                <button class="buttons" type="submit"><a href="comunidad.html"> Agregar Establecimiento </a></button>
+                <button class="buttons" type="submit"> Agregar Establecimiento </button>
                 <button class="buttons" type="button" onclick="volverAtras()">Volver</button>
             </form>
 
