@@ -117,7 +117,7 @@ public class EntidadPController extends Controller implements ICrudViewsHandler 
     }
 
     private void asignarParametrosEdit(Entidad entidad, Context context){
-        if(context.formParam("nombre") != null) {
+        if(context.formParam("nombre") != null && !context.formParam("nombre").isEmpty()) {
             entidad.setNombre(context.formParam("nombre"));
         }
     }

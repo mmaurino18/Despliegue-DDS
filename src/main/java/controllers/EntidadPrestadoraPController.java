@@ -93,7 +93,7 @@ public class EntidadPrestadoraPController extends Controller implements ICrudVie
     }
 
     private void asignarParametrosEdit(EntidadPrestadora entidadPrestadora, Context context){
-        if(context.formParam("nombre_edit") != null) {
+        if(context.formParam("nombre_edit") != null && !context.formParam("nombre_edit").isEmpty()) {
             entidadPrestadora.setNombre(context.formParam("nombre_edit"));
         }
     }

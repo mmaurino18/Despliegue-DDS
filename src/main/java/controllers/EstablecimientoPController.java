@@ -129,10 +129,11 @@ public class EstablecimientoPController extends Controller implements ICrudViews
     }
 
     private void asignarParametrosEdit(Establecimiento establecimiento, Context context){
-        if(context.formParam("nombre") != null) {
+        if(context.formParam("nombre") != null && !context.formParam("nombre").isEmpty()) {
+            System.out.println("ENTRE A MODIFICAR EL NOMBRE----------------------------------------------------------------");
             establecimiento.setNombre(context.formParam("nombre"));
         }
-        if(context.formParam("descripcion") != null) {
+        if(context.formParam("descripcion") != null && !context.formParam("descripcion").isEmpty()) {
             establecimiento.setDescripcion(context.formParam("descripcion"));
         }
     }

@@ -70,8 +70,7 @@ public class OrganismoDeControlPController extends Controller implements ICrudVi
     }
 
     private void asignarParametroEdit(OrganismoDeControl organismoDeControl,Context context){
-
-        if(context.formParam("nombre_edit") != null) {
+        if(context.formParam("nombre_edit") != null && !context.formParam("nombre_edit").isEmpty()) {
             organismoDeControl.setNombre(context.formParam("nombre_edit"));
         }
     }
