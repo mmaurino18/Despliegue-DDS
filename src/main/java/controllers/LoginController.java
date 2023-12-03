@@ -123,6 +123,11 @@ public class LoginController extends Controller implements ICrudViewsHandler {
 
     }
 
+    public void cerrarSesion(Context context){
+        context.removeCookie("id_usuario");
+        context.redirect("/");
+    }
+
 
     public Usuario UsuarioLogueadoDirecto(Context context){
         return entityManager().find(Usuario.class, Long.parseLong(("" + context.sessionAttribute("id_usuario"))));

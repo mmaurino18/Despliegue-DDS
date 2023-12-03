@@ -94,13 +94,19 @@ public class CargaMasivaController extends Controller implements ICrudViewsHandl
     
     public void cargaManual(Context context){
         Propietario propietario = super.PropietarioLogueadoSuper(context);
-        
-        if(propietario.getTipoPropietario().equals(TipoPropietario.ORGANISMO_DE_CONTROL)){
-            context.redirect("/organismosDeControlP/crear");
-        } else if (propietario.getTipoPropietario().equals(TipoPropietario.ENTIDAD_PRESTADORA)) {
-            context.redirect("/entidadesPrestadorasP/crear");
-        } else if (propietario.getTipoPropietario().equals(TipoPropietario.SIN_TIPO)) {
-            context.redirect("sinTipoDePropietario.hbs");
+        boolean primeraVez = propietario.getEntidadesPrestadoras().isEmpty() && propietario.getOrganismosDeControl().isEmpty();
+
+        if(primeraVez) {
+            if (propietario.getTipoPropietario().equals(TipoPropietario.ORGANISMO_DE_CONTROL)) {
+                context.redirect("/organismosDeControlP/crear");
+            } else if (propietario.getTipoPropietario().equals(TipoPropietario.ENTIDAD_PRESTADORA)) {
+                context.redirect("/entidadesPrestadorasP/crear");
+            } else if (propietario.getTipoPropietario().equals(TipoPropietario.SIN_TIPO)) {
+                context.redirect("sinTipoDePropietario.hbs");
+            }
+        }
+        else{
+            context.redirect("/subidos");
         }
     }
     

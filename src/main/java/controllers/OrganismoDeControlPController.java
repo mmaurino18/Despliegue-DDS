@@ -45,7 +45,7 @@ public class OrganismoDeControlPController extends Controller implements ICrudVi
 
     @Override
     public void create(Context context) {
-
+        context.render("/editP/create_organismoDeControlP.hbs");
     }
 
     @Override

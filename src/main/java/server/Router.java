@@ -40,6 +40,8 @@ public class Router {
             get("login/detalle", ((LoginController) FactoryController.controller("login")):: show);
             get("login/edit", ((LoginController) FactoryController.controller("login")):: edit);
             post("login/edit", ((LoginController) FactoryController.controller("login")):: update);
+            get("logout", ((LoginController) FactoryController.controller("login")):: cerrarSesion);
+
 
             //home
             get("home",((HomeController) FactoryController.controller("home")) :: index );
