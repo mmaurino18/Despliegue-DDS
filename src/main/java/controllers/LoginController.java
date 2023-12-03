@@ -1,18 +1,25 @@
 package controllers;
 
-import models.dominio.actores.TipoRol;
-import models.dominio.actores.Usuario;
+import models.dataBase.repositorios.CiudadanoRepository;
+import models.dataBase.repositorios.PropietarioRepository;
+import models.dominio.actores.*;
 import models.dataBase.repositorios.UsuarioRepository;
 import io.javalin.http.Context;
 import server.utils.ICrudViewsHandler;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class LoginController extends Controller implements ICrudViewsHandler {
     private UsuarioRepository repositorioUsuario;
+    private PropietarioRepository repositorioPropietario;
+    private CiudadanoRepository repositorioCiudadano;
 
-    public LoginController(UsuarioRepository repositorio){
+    public LoginController(UsuarioRepository repositorio ,PropietarioRepository repositorioPropietario, CiudadanoRepository repositorioCiudadano){
         this.repositorioUsuario = repositorio;
+        this.repositorioPropietario = repositorioPropietario;
+        this.repositorioCiudadano = repositorioCiudadano;
     }
 
     @Override
@@ -47,6 +54,22 @@ public class LoginController extends Controller implements ICrudViewsHandler {
 
     @Override
     public void show(Context context) {
+        Usuario usuario = super.usuarioLogueado(context);
+        Map<String,Object> model = new HashMap<>();
+
+        if(usuario.getRol().getTipo().equals(TipoRol.PROPIETARIO)){
+            Propietario propietario = super.PropietarioLogueadoSuper(context);
+            model.put("persona",propietario);
+            model.put("usuario",usuario);
+            model.put("tipoUsuario",usuario.getRol().getTipo().toString());
+            model.put("tipoPropietario",propietario.getTipoPropietario().toString());
+
+            context.render("/editP/configuracionCuentaP.hbs",model);
+            
+        }else if (usuario.getRol().getTipo().equals(TipoRol.CIUDADANO)){
+            //TODO
+        }
+
 
     }
 
@@ -62,11 +85,36 @@ public class LoginController extends Controller implements ICrudViewsHandler {
 
     @Override
     public void edit(Context context) {
+        Usuario usuario = super.usuarioLogueado(context);
+        Map<String,Object> model = new HashMap<>();
 
+        if(usuario.getRol().getTipo().equals(TipoRol.PROPIETARIO)){
+            Propietario propietario = super.PropietarioLogueadoSuper(context);
+            model.put("persona",propietario);
+            model.put("tipoUsuario",usuario.getRol().getTipo().toString());
+            context.render("/editP/edit_configuracionCuentaP.hbs",model);
+
+        }
+
+        else if (usuario.getRol().getTipo().equals(TipoRol.CIUDADANO)){
+            //TODO
+        }
     }
 
     @Override
     public void update(Context context) {
+        Usuario usuario = super.usuarioLogueado(context);
+
+        if(usuario.getRol().getTipo().equals(TipoRol.PROPIETARIO)){
+            Propietario propietario = super.PropietarioLogueadoSuper(context);
+            this.asignarParametrosPropietarioEdit(propietario, context);
+            this.repositorioPropietario.update(propietario);
+            context.redirect("/homePropietario");
+        }
+
+        else if (usuario.getRol().getTipo().equals(TipoRol.CIUDADANO)){
+            //TODO
+        }
 
     }
 
@@ -76,4 +124,28 @@ public class LoginController extends Controller implements ICrudViewsHandler {
     }
 
 
+    public Usuario UsuarioLogueadoDirecto(Context context){
+        return entityManager().find(Usuario.class, Long.parseLong(("" + context.sessionAttribute("id_usuario"))));
+    }
+
+    public void asignarParametrosPropietarioEdit(Propietario propietario, Context context){
+        if(context.formParam("nombre") != null && !context.formParam("nombre").isEmpty()) {
+            propietario.setNombre(context.formParam("nombre"));
+        }
+        if(context.formParam("apellido") != null && !context.formParam("apellido").isEmpty()) {
+            propietario.setApellido(context.formParam("apellido"));
+        }
+        if(context.formParam("mail") != null && !context.formParam("mail").isEmpty()) {
+            propietario.setMail(context.formParam("mail"));
+        }
+        if(context.formParam("category") != null && !context.formParam("category").isEmpty()) {
+            if(context.formParam("category").equals("DeOrganismo")){
+                propietario.setTipoPropietario(TipoPropietario.ORGANISMO_DE_CONTROL);
+            }
+            else if (context.formParam("category").equals("deEntidad")){
+                propietario.setTipoPropietario(TipoPropietario.ENTIDAD_PRESTADORA);
+            }
+
+        }
+    }
 }

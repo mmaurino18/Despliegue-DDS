@@ -1,4 +1,15 @@
 {{#partial "contenidoP" }}
+
+    {{#if vacio}}
+        <div class="welcome-text">
+            <p> no se cargo ningun Organismo de control</p>
+        </div>
+        <div>
+            <button class="boton_estructura" type="button" onclick="volverAtras()"> Volver </button>
+        </div>
+    {{/if}}
+
+    {{#if lleno}}
     <div class="conteiner-tabla">
         <table>
             <thead>
@@ -14,15 +25,21 @@
             {{#each organismoDeControl}}
                <tr>
                   <td>{{this.getNombre}}</td>
-                  <td><button class="buttons" type="button"><a href="/organismosDeControlP/{{this.getId}}/entidadesPrestadorasP"> Ver Entidades Prestadoras</a></button></td>
+                  <td><button class="buttons" type="button"><a href="/entidadesPrestadorasP"> Ver Entidades Prestadoras</a></button></td>
                   <td><button class="buttons" type="button"><a href="/organismosDeControlP/{{this.getId}}/editar">Editar</a></button></td>
                   <td><button class="buttons" type="submit"><a href="comunidad.html">Eliminar</a></button></td>
                </tr>
             {{/each}}
             </tbody>
         </table>
-
-        <!--<button class="buttonConfi" type="submit"><a href="configuracion.html">Configuración</a></button>-->
     </div>
+    {{/if}}
+
+    <script>
+        function volverAtras() {
+            window.history.back();
+        }
+    </script>
+
 {{/partial}}
 {{> templates/homePropietarioBase }}

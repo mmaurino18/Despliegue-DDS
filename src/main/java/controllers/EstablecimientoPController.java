@@ -36,13 +36,8 @@ public class EstablecimientoPController extends Controller implements ICrudViews
 
     @Override
     public void index(Context context) {
-        OrganismoDeControl organismo = (OrganismoDeControl) this.repositorioOrganismoDeControl.findById(Long.parseLong(context.pathParam("idODC")));
-        EntidadPrestadora entidadPrestadora = (EntidadPrestadora) this.repositorioEntidadPrestadora.findById(Long.parseLong(context.pathParam("idEP")));
         Entidad entidad = (Entidad) this.repositorioEntidad.findById(Long.parseLong(context.pathParam("idE")));
-
         Map<String,Object> model = new HashMap<>();
-        model.put("organismo",organismo);
-        model.put("entidadPrestadora",entidadPrestadora);
         model.put("entidad",entidad);
         model.put("establecimiento",entidad.getEstablecimientos());
 
@@ -56,12 +51,8 @@ public class EstablecimientoPController extends Controller implements ICrudViews
 
     @Override
     public void create(Context context) {
-        OrganismoDeControl organismo = (OrganismoDeControl) this.repositorioOrganismoDeControl.findById(Long.parseLong(context.pathParam("idODC")));
-        EntidadPrestadora entidadPrestadora = (EntidadPrestadora) this.repositorioEntidadPrestadora.findById(Long.parseLong(context.pathParam("idEP")));
         Entidad entidad = (Entidad) this.repositorioEntidad.findById(Long.parseLong(context.pathParam("idE")));
         Map<String,Object> model = new HashMap<>();
-        model.put("organismo",organismo);
-        model.put("entidadPrestadora",entidadPrestadora);
         model.put("entidad",entidad);
 
         context.render("/editP/create_establecimientoP.hbs",model);
@@ -75,27 +66,17 @@ public class EstablecimientoPController extends Controller implements ICrudViews
         entidad.agregarEstablecimiento(establecimiento);
         this.repositorioEntidad.update(entidad);
 
-        OrganismoDeControl organismo = (OrganismoDeControl) this.repositorioOrganismoDeControl.findById(Long.parseLong(context.pathParam("idODC")));
-        EntidadPrestadora entidadPrestadora = (EntidadPrestadora) this.repositorioEntidadPrestadora.findById(Long.parseLong(context.pathParam("idEP")));
-
-        String idOrganismo = organismo.getId().toString();
-        String idEntidadPrestadora = entidadPrestadora.getId().toString();
         String idEntidad = entidad.getId().toString();
-
         context.status(HttpStatus.CREATED);
-        context.redirect("/organismosDeControlP/"+idOrganismo+"/entidadesPrestadorasP/"+idEntidadPrestadora+"/entidadesP/"+idEntidad+"/establecimientosP");
+        context.redirect("/entidadesP/"+idEntidad+"/establecimientosP");
     }
 
     @Override
     public void edit(Context context) {
-        OrganismoDeControl organismo = (OrganismoDeControl) this.repositorioOrganismoDeControl.findById(Long.parseLong(context.pathParam("idODC")));
-        EntidadPrestadora entidadPrestadora = (EntidadPrestadora) this.repositorioEntidadPrestadora.findById(Long.parseLong(context.pathParam("idEP")));
         Entidad entidad = (Entidad) this.repositorioEntidad.findById(Long.parseLong(context.pathParam("idE")));
         Establecimiento establecimiento = (Establecimiento) this.repositorioEstablecimiento.findById(Long.parseLong(context.pathParam("id")));
 
         Map<String,Object> model = new HashMap<>();
-        model.put("organismo",organismo);
-        model.put("entidadPrestadora",entidadPrestadora);
         model.put("entidad",entidad);
         model.put("establecimiento", establecimiento);
 
@@ -108,14 +89,10 @@ public class EstablecimientoPController extends Controller implements ICrudViews
         this.asignarParametrosEdit(establecimiento, context);
         this.repositorioEstablecimiento.update(establecimiento);
 
-        OrganismoDeControl organismo = (OrganismoDeControl) this.repositorioOrganismoDeControl.findById(Long.parseLong(context.pathParam("idODC")));
-        EntidadPrestadora entidadPrestadora = (EntidadPrestadora) this.repositorioEntidadPrestadora.findById(Long.parseLong(context.pathParam("idEP")));
         Entidad entidad = (Entidad) this.repositorioEntidad.findById(Long.parseLong(context.pathParam("idE")));
-        String idOrganismo = organismo.getId().toString();
-        String idEntidadPrestadora = entidadPrestadora.getId().toString();
         String idEntidad = entidad.getId().toString();
 
-        context.redirect("/organismosDeControlP/"+idOrganismo+"/entidadesPrestadorasP/"+idEntidadPrestadora+"/entidadesP/"+idEntidad+"/establecimientosP");
+        context.redirect("/entidadesP/"+idEntidad+"/establecimientosP");
     }
 
     @Override
@@ -130,7 +107,6 @@ public class EstablecimientoPController extends Controller implements ICrudViews
 
     private void asignarParametrosEdit(Establecimiento establecimiento, Context context){
         if(context.formParam("nombre") != null && !context.formParam("nombre").isEmpty()) {
-            System.out.println("ENTRE A MODIFICAR EL NOMBRE----------------------------------------------------------------");
             establecimiento.setNombre(context.formParam("nombre"));
         }
         if(context.formParam("descripcion") != null && !context.formParam("descripcion").isEmpty()) {

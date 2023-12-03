@@ -24,12 +24,18 @@ public class OrganismoDeControlPController extends Controller implements ICrudVi
 
     @Override
     public void index(Context context) {
-        PropietarioRepository repoPropietario = new PropietarioRepository();
-        Propietario propietario = repoPropietario.findById(Long.parseLong("1"));
+        Propietario propietario = super.PropietarioLogueadoSuper(context);
+        Map<String,Object> model = new HashMap<>();
 
-        Map<String, Object> model = new HashMap<>();
-        model.put("organismoDeControl", propietario.getOrganismosDeControl());
-        context.render("organismoDeControlP.hbs",model);
+        if(!propietario.getOrganismosDeControl().isEmpty()){
+            model.put("lleno","ok");
+            model.put("organismoDeControl", propietario.getOrganismosDeControl());
+            context.render("organismoDeControlP.hbs",model);
+        }else {
+            model.put("vacio","ok");
+            context.render("organismoDeControlP.hbs",model);
+        }
+
     }
 
     @Override

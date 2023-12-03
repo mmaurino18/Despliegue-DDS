@@ -4,6 +4,7 @@ import io.javalin.http.Context;
 import io.javalin.http.UploadedFile;
 import models.dataBase.repositorios.PropietarioRepository;
 import models.dominio.actores.Propietario;
+import models.dominio.actores.TipoPropietario;
 import models.dominio.actores.Usuario;
 import models.dominio.lectorCSV.CSV;
 import models.dominio.lectorCSV.LectorCSVAdapter;
@@ -32,6 +33,10 @@ public class CargaMasivaController extends Controller implements ICrudViewsHandl
     @Override
     public void index(Context context) {
         context.render("cargaMasiva.hbs");
+
+        Propietario propietario = super.PropietarioLogueadoSuper(context);
+        System.out.println(propietario.getNombre());
+        System.out.println(propietario.getId());
     }
 
     @Override
@@ -86,6 +91,19 @@ public class CargaMasivaController extends Controller implements ICrudViewsHandl
     public void delete(Context context) {
 
     }
+    
+    public void cargaManual(Context context){
+        Propietario propietario = super.PropietarioLogueadoSuper(context);
+        
+        if(propietario.getTipoPropietario().equals(TipoPropietario.ORGANISMO_DE_CONTROL)){
+            context.redirect("/organismosDeControlP/crear");
+        } else if (propietario.getTipoPropietario().equals(TipoPropietario.ENTIDAD_PRESTADORA)) {
+            context.redirect("/entidadesPrestadorasP/crear");
+        } else if (propietario.getTipoPropietario().equals(TipoPropietario.SIN_TIPO)) {
+            context.redirect("sinTipoDePropietario.hbs");
+        }
+    }
+    
 
     public void guardarArchivo(UploadedFile uploadedFile, String nombre, String ruta) {
         try {

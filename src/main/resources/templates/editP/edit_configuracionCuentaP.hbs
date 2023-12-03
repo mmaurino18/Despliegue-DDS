@@ -1,0 +1,47 @@
+{{#partial "contenidoP" }}
+
+    <main>
+
+        <section class="form-login">
+
+            <h5>Configurar Cuenta</h5>
+
+            <form class="form-registro" method="post" action="/login/edit">
+            <p1>Nombre :</p1>
+            <input class="controls" type="text" name="nombre" placeholder="{{persona.getNombre}}">
+            <br>
+            <p1>Apellido:</p1>
+            <input class="controls" type="text" name="apellido" placeholder="{{persona.getApellido}}">
+            <br>
+            <p1>Mail:</p1>
+            <input class="controls" type="text" name="mail" placeholder="{{persona.getMail}}">
+            <br>
+            <p1> ------------------------------------------------------ </p1>
+            <br>
+            <p1>Tipo De Usuario:</p1>
+            <br>
+            <p1>{{tipoUsuario}}</p1>
+            <br>
+            <p1> ------------------------------------------------------ </p1>
+            <br>
+            <label>Tipo De Propietario</label><br/>
+            <div class="controls1">
+                <input  type="radio" name="category" value="DeOrganismo"> De Organismo De Control </label><br/>
+                <input  type="radio" name="category" value="deEntidad">  De Entidad Prestadora </label><br/>
+            </div>
+            <br>
+
+            <button class="buttons" type="submit"> Confirmar Edicion </button>
+            <button class="buttons" type="button" onclick="volverAtras()"> Volver </button>
+            </form>
+        </section>
+    </main>
+
+    <script>
+        function volverAtras() {
+            window.history.back();
+        }
+    </script>
+
+{{/partial}}
+{{> templates/homePropietarioBase }}

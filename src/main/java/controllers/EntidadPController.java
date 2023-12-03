@@ -5,6 +5,8 @@ import io.javalin.http.HttpStatus;
 import models.dataBase.repositorios.EntidadPrestadoraRepository;
 import models.dataBase.repositorios.EntidadRepository;
 import models.dataBase.repositorios.OrganismoControlRepository;
+import models.dominio.actores.Propietario;
+import models.dominio.actores.TipoPropietario;
 import models.dominio.entidades.Entidad;
 import models.dominio.entidades.EntidadPrestadora;
 import models.dominio.entidades.OrganismoDeControl;
@@ -12,6 +14,7 @@ import server.utils.ICrudViewsHandler;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class EntidadPController extends Controller implements ICrudViewsHandler {
@@ -35,14 +38,13 @@ public class EntidadPController extends Controller implements ICrudViewsHandler 
 
     @Override
     public void index(Context context) {
-        OrganismoDeControl organismo = (OrganismoDeControl) this.repositorioOrganismoDeControl.findById(Long.parseLong(context.pathParam("idODC")));
-        EntidadPrestadora entidadPrestadora = (EntidadPrestadora) this.repositorioEntidadPrestadora.findById(Long.parseLong(context.pathParam("idEP")));
+
         Map<String,Object> model = new HashMap<>();
-        model.put("organismo",organismo);
+        EntidadPrestadora entidadPrestadora = (EntidadPrestadora) this.repositorioEntidadPrestadora.findById(Long.parseLong(context.pathParam("idEP")));
         model.put("entidadPrestadora",entidadPrestadora);
         model.put("entidad",entidadPrestadora.getEntidades());
-
         context.render("entidadesP.hbs",model);
+
     }
 
     @Override
@@ -52,10 +54,8 @@ public class EntidadPController extends Controller implements ICrudViewsHandler 
 
     @Override
     public void create(Context context) {
-        OrganismoDeControl organismo = (OrganismoDeControl) this.repositorioOrganismoDeControl.findById(Long.parseLong(context.pathParam("idODC")));
         EntidadPrestadora entidadPrestadora = (EntidadPrestadora) this.repositorioEntidadPrestadora.findById(Long.parseLong(context.pathParam("idEP")));
         Map<String,Object> model = new HashMap<>();
-        model.put("organismo",organismo);
         model.put("entidadPrestadora",entidadPrestadora);
 
         context.render("/editP/create_entidadP.hbs",model);
@@ -70,23 +70,19 @@ public class EntidadPController extends Controller implements ICrudViewsHandler 
         entidadPrestadora.agregarEntidad(entidad);
         this.repositorioEntidadPrestadora.update(entidadPrestadora);
 
-        OrganismoDeControl organismo = (OrganismoDeControl) this.repositorioOrganismoDeControl.findById(Long.parseLong(context.pathParam("idODC")));
-        String idOrganismo = organismo.getId().toString();
         String idEntidadPrestadora = entidadPrestadora.getId().toString();
 
         context.status(HttpStatus.CREATED);
-        context.redirect("/organismosDeControlP/"+idOrganismo+"/entidadesPrestadorasP/"+idEntidadPrestadora+"/entidadesP");
+        context.redirect("/entidadesPrestadorasP/"+idEntidadPrestadora+"/entidadesP");
 
     }
 
     @Override
     public void edit(Context context) {
-        OrganismoDeControl organismo = (OrganismoDeControl) this.repositorioOrganismoDeControl.findById(Long.parseLong(context.pathParam("idODC")));
         EntidadPrestadora entidadPrestadora = (EntidadPrestadora) this.repositorioEntidadPrestadora.findById(Long.parseLong(context.pathParam("idEP")));
         Entidad entidad = (Entidad) this.repositorioEntidad.findById(Long.parseLong(context.pathParam("id")));
 
         Map<String,Object> model = new HashMap<>();
-        model.put("organismo",organismo);
         model.put("entidadPrestadora",entidadPrestadora);
         model.put("entidad",entidad);
 
@@ -99,12 +95,10 @@ public class EntidadPController extends Controller implements ICrudViewsHandler 
         this.asignarParametrosEdit(entidad, context);
         this.repositorioEntidad.update(entidad);
 
-        OrganismoDeControl organismo = (OrganismoDeControl) this.repositorioOrganismoDeControl.findById(Long.parseLong(context.pathParam("idODC")));
         EntidadPrestadora entidadPrestadora = (EntidadPrestadora) this.repositorioEntidadPrestadora.findById(Long.parseLong(context.pathParam("idEP")));
-        String idOrganismo = organismo.getId().toString();
         String idEntidadPrestadora = entidadPrestadora.getId().toString();
 
-        context.redirect("/organismosDeControlP/"+idOrganismo+"/entidadesPrestadorasP/"+idEntidadPrestadora+"/entidadesP");
+        context.redirect("/entidadesPrestadorasP/"+idEntidadPrestadora+"/entidadesP");
     }
 
     @Override

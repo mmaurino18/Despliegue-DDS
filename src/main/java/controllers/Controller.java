@@ -13,11 +13,7 @@ import java.util.Objects;
 public abstract class Controller implements WithSimplePersistenceUnit {
 
     protected Usuario usuarioLogueado(Context ctx) {
-        if(ctx.sessionAttribute("usuario_id") == null)
-            return null;
-        else {
-            return entityManager().find(Usuario.class, Long.parseLong(("" + ctx.sessionAttribute("id_usuario"))));
-        }
+        return entityManager().find(Usuario.class, Long.parseLong(("" + ctx.sessionAttribute("id_usuario"))));
     }
 
     protected Ciudadano CiudadanoLogueado(Context ctx){
@@ -31,11 +27,11 @@ public abstract class Controller implements WithSimplePersistenceUnit {
         }
     }
 
-    protected Propietario PropietarioLogueado(Context ctx){
+    protected Propietario PropietarioLogueadoSuper(Context ctx){
         try {
             String hql = "SELECT c FROM Propietario c JOIN c.usuario u WHERE u.id = :usuarioId";
             return entityManager().createQuery(hql, Propietario.class)
-                    .setParameter("usuarioId",  Long.parseLong(ctx.sessionAttribute("usuario_id")))
+                    .setParameter("usuarioId",  Long.parseLong(("" + ctx.sessionAttribute("id_usuario"))))
                     .getSingleResult();
         } catch (NoResultException e) {
             return null;

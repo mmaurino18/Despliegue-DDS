@@ -18,7 +18,6 @@ public class AuthMiddleware {
             rutasPermitidas(handler,context,routeRoles);
 
         } ) );
-
     }
 
     private static void rutasPermitidas(Handler handler, Context context, Set<? extends RouteRole> routeRoles) throws Exception {
@@ -44,6 +43,7 @@ public class AuthMiddleware {
         }
     }
 
+    //////////////////////////////////////////////////////////////////////////////
     private static TipoRol getUserRoleType(Context context) {
         if(context.sessionAttribute("id_usuario") == null){
             return null;

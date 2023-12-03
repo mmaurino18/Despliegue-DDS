@@ -3,7 +3,9 @@ package models.dominio;
 import controllers.FactoryController;
 import controllers.ServiciosController;
 import models.dataBase.repositorios.OrganismoControlRepository;
+import models.dataBase.repositorios.PropietarioRepository;
 import models.dominio.actores.Propietario;
+import models.dominio.actores.TipoPropietario;
 import models.dominio.actores.Usuario;
 import models.dominio.comunidad.Comunidad;
 import models.dominio.comunidad.CuandoNotificar;
@@ -34,14 +36,14 @@ public class Pruebas implements WithSimplePersistenceUnit{
     public static void main(String[] args) throws IOException {
 
         //new Pruebas().testrepoUsuario();
-       // new Pruebas().transaccion();
+        new Pruebas().transaccion();
         //new Pruebas().testJavalin();
         //new Pruebas().testRepositorio();
        // new Pruebas().testController();
         //new Pruebas().testLectorCSV();
         //new Pruebas().testJOIN();
         //new Pruebas().testGuardadoEnCascada();
-        new Pruebas().testUsurioController();
+        //new Pruebas().testUsurioController();
 
     }
 
@@ -74,6 +76,14 @@ public class Pruebas implements WithSimplePersistenceUnit{
         EntityTransaction tx = entityManager().getTransaction();
         tx.begin();
         // accion
+
+        /*
+        PropietarioRepository repo = new PropietarioRepository();
+        Propietario propietario = repo.findById(2L);
+        propietario.setTipoPropietario(TipoPropietario.SIN_TIPO);
+        repo.update(propietario);
+         */
+
         tx.commit();
         String currentWorkingDirectory = System.getProperty("user.dir");
         System.out.println("Directorio de trabajo actual: " + currentWorkingDirectory);

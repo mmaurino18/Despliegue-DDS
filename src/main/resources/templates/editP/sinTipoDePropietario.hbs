@@ -1,0 +1,23 @@
+{{#partial "contenidoP" }}
+
+    <div class="welcome-text">
+        <h2> Actualmente no tenemos información sobre su tipo de propietario </h2>
+        <br>
+        <p> Por favor, configure esta información en los detalles de su cuenta para una experiencia personalizada</p>
+        <br>
+        <br>
+        <button class="buttons" type="button" onclick="volverAtras()"> Volver </button>
+    </div>
+
+
+
+
+
+    <script>
+        function volverAtras() {
+            window.history.back();
+        }
+    </script>
+
+{{/partial}}
+{{> templates/homePropietarioBase }}

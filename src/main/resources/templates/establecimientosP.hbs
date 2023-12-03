@@ -20,13 +20,13 @@
             <td>{{this.getDescripcion}}</td>
             <td> sin localizacion </td>
             <td><button class="buttons" type="submit"><a href="comunidad.html">Ver Servicios Prestados</a></button></td>
-            <td><button class="buttons" type="button"><a href="/organismosDeControlP/{{organismo.getId}}/entidadesPrestadorasP/{{entidadPrestadora.getId}}/entidadesP/{{entidad.getId}}/establecimientosP/{{this.getId}}/editar">Editar</a></button></td>
+            <td><button class="buttons" type="button"><a href="/entidadesP/{{entidad.getId}}/establecimientosP/{{this.getId}}/editar">Editar</a></button></td>
             <td><button class="buttons" type="submit"><a href="comunidad.html">Eliminar</a></button></td>
         </tr>
         {{/each}}
         </tbody>
     </table>
-    <button class="buttonConfi" type="button"><a href="/organismosDeControlP/{{organismo.getId}}/entidadesPrestadorasP/{{entidadPrestadora.getId}}/entidadesP/{{entidad.getId}}/establecimientosP/crear">Agregar Establecimiento</a></button>
+    <button class="buttonConfi" type="button"><a href="/entidadesP/{{entidad.getId}}/establecimientosP/crear">Agregar Establecimiento</a></button>
 </div>
 {{/partial}}
 {{> templates/homePropietarioBase }}

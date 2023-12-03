@@ -10,7 +10,7 @@ public class Router {
         //
         Server.app().get("/",ctx -> ctx.render("inicio.hbs"));
 
-        Server.app().get("/test",ctx -> ctx.render("/editP/create_organismoDeControlP.hbs"));
+        Server.app().get("/test",ctx -> ctx.render("/editP/edit_configuracionCuentaP.hbs"));
 
         Server.app().routes(() -> {
             get("servicios", ((ServiciosController) FactoryController.controller("Servicios"))::index,TipoRol.CIUDADANO);
@@ -37,6 +37,9 @@ public class Router {
             // Login
             get("login", ((LoginController) FactoryController.controller("login")):: index);
             post("login",((LoginController) FactoryController.controller("login")):: addSesion);
+            get("login/detalle", ((LoginController) FactoryController.controller("login")):: show);
+            get("login/edit", ((LoginController) FactoryController.controller("login")):: edit);
+            post("login/edit", ((LoginController) FactoryController.controller("login")):: update);
 
             //home
             get("home",((HomeController) FactoryController.controller("home")) :: index );
@@ -52,8 +55,12 @@ public class Router {
 
             // Carga Masiva
             get("cargaMasiva",((CargaMasivaController) FactoryController.controller("cargaMasiva"))::index);
+            get("cargaMasiva/manual",((CargaMasivaController) FactoryController.controller("cargaMasiva"))::cargaManual);
             get("cargaMasiva/estructura",((CargaMasivaController) FactoryController.controller("cargaMasiva"))::edit);
             post("cargaMasiva",((CargaMasivaController) FactoryController.controller("cargaMasiva"))::save);
+
+            // subidos
+            get("subidos",((SubidosPController) (FactoryController.controller("subidos")))::index);
 
             // organismoDeControlP
             get("organismosDeControlP/Test",((OrganismoDeControlPController) FactoryController.controller("organismosDeControlP"))::indexTest); // TEST
@@ -69,36 +76,36 @@ public class Router {
             // entidadPrestadoraP
             get("entidadesPrestadorasP/Test",((EntidadPrestadoraPController) FactoryController.controller("entidadesPrestadorasP"))::indexTest); // TEST
 
-            get("organismosDeControlP/{idODC}/entidadesPrestadorasP",((EntidadPrestadoraPController) FactoryController.controller("entidadesPrestadorasP"))::index);
-            get("organismosDeControlP/{idODC}/entidadesPrestadorasP/crear", ((EntidadPrestadoraPController) FactoryController.controller("entidadesPrestadorasP"))::create);
-            get("organismosDeControlP/{idODC}/entidadesPrestadorasP/{id}", ((EntidadPrestadoraPController) FactoryController.controller("entidadesPrestadorasP"))::show);
-            get("organismosDeControlP/{idODC}/entidadesPrestadorasP/{id}/editar", ((EntidadPrestadoraPController) FactoryController.controller("entidadesPrestadorasP"))::edit);
-            post("organismosDeControlP/{idODC}/entidadesPrestadorasP/{id}", ((EntidadPrestadoraPController) FactoryController.controller("entidadesPrestadorasP"))::update);
-            post("organismosDeControlP/{idODC}/entidadesPrestadorasP", ((EntidadPrestadoraPController) FactoryController.controller("entidadesPrestadorasP"))::save);
-            delete("organismosDeControlP/{idODC}/entidadesPrestadorasP/{id}", ((EntidadPrestadoraPController) FactoryController.controller("entidadesPrestadorasP"))::delete);
+            get("entidadesPrestadorasP",((EntidadPrestadoraPController) FactoryController.controller("entidadesPrestadorasP"))::index);
+            get("entidadesPrestadorasP/crear", ((EntidadPrestadoraPController) FactoryController.controller("entidadesPrestadorasP"))::create);
+            get("entidadesPrestadorasP/{id}", ((EntidadPrestadoraPController) FactoryController.controller("entidadesPrestadorasP"))::show);
+            get("entidadesPrestadorasP/{id}/editar", ((EntidadPrestadoraPController) FactoryController.controller("entidadesPrestadorasP"))::edit);
+            post("entidadesPrestadorasP/{id}", ((EntidadPrestadoraPController) FactoryController.controller("entidadesPrestadorasP"))::update);
+            post("entidadesPrestadorasP", ((EntidadPrestadoraPController) FactoryController.controller("entidadesPrestadorasP"))::save);
+            delete("entidadesPrestadorasP/{id}", ((EntidadPrestadoraPController) FactoryController.controller("entidadesPrestadorasP"))::delete);
 
             // entidadP
             get("entidadesP/Test",((EntidadPController) FactoryController.controller("entidadesP"))::indexTest); // TEST
 
-            get("organismosDeControlP/{idODC}/entidadesPrestadorasP/{idEP}/entidadesP",((EntidadPController) FactoryController.controller("entidadesP"))::index);
-            get("organismosDeControlP/{idODC}/entidadesPrestadorasP/{idEP}/entidadesP/crear", ((EntidadPController) FactoryController.controller("entidadesP"))::create);
-            get("organismosDeControlP/{idODC}/entidadesPrestadorasP/{idEP}/entidadesP/{id}", ((EntidadPController) FactoryController.controller("entidadesP"))::show);
-            get("organismosDeControlP/{idODC}/entidadesPrestadorasP/{idEP}/entidadesP/{id}/editar", ((EntidadPController) FactoryController.controller("entidadesP"))::edit);
-            post("organismosDeControlP/{idODC}/entidadesPrestadorasP/{idEP}/entidadesP/{id}", ((EntidadPController) FactoryController.controller("entidadesP"))::update);
-            post("organismosDeControlP/{idODC}/entidadesPrestadorasP/{idEP}/entidadesP", ((EntidadPController) FactoryController.controller("entidadesP"))::save);
-            delete("organismosDeControlP/{idODC}/entidadesPrestadorasP/{idEP}/entidadesP/{id}", ((EntidadPController) FactoryController.controller("entidadesP"))::delete);
+            get("entidadesPrestadorasP/{idEP}/entidadesP",((EntidadPController) FactoryController.controller("entidadesP"))::index);
+            get("entidadesPrestadorasP/{idEP}/entidadesP/crear", ((EntidadPController) FactoryController.controller("entidadesP"))::create);
+            get("entidadesPrestadorasP/{idEP}/entidadesP/{id}", ((EntidadPController) FactoryController.controller("entidadesP"))::show);
+            get("entidadesPrestadorasP/{idEP}/entidadesP/{id}/editar", ((EntidadPController) FactoryController.controller("entidadesP"))::edit);
+            post("entidadesPrestadorasP/{idEP}/entidadesP/{id}", ((EntidadPController) FactoryController.controller("entidadesP"))::update);
+            post("entidadesPrestadorasP/{idEP}/entidadesP", ((EntidadPController) FactoryController.controller("entidadesP"))::save);
+            delete("entidadesPrestadorasP/{idEP}/entidadesP/{id}", ((EntidadPController) FactoryController.controller("entidadesP"))::delete);
 
 
             // establecimientosP
             get("establecimientosP/Test",((EstablecimientoPController) FactoryController.controller("establecimientosP"))::indexTest); // TEST
 
-            get("organismosDeControlP/{idODC}/entidadesPrestadorasP/{idEP}/entidadesP/{idE}/establecimientosP",((EstablecimientoPController) FactoryController.controller("establecimientosP"))::index);
-            get("organismosDeControlP/{idODC}/entidadesPrestadorasP/{idEP}/entidadesP/{idE}/establecimientosP/crear", ((EstablecimientoPController) FactoryController.controller("establecimientosP"))::create);
-            get("organismosDeControlP/{idODC}/entidadesPrestadorasP/{idEP}/entidadesP/{idE}/establecimientosP/{id}", ((EstablecimientoPController) FactoryController.controller("establecimientosP"))::show);
-            get("organismosDeControlP/{idODC}/entidadesPrestadorasP/{idEP}/entidadesP/{idE}/establecimientosP/{id}/editar", ((EstablecimientoPController) FactoryController.controller("establecimientosP"))::edit);
-            post("organismosDeControlP/{idODC}/entidadesPrestadorasP/{idEP}/entidadesP/{idE}/establecimientosP/{id}", ((EstablecimientoPController) FactoryController.controller("establecimientosP"))::update);
-            post("organismosDeControlP/{idODC}/entidadesPrestadorasP/{idEP}/entidadesP/{idE}/establecimientosP", ((EstablecimientoPController) FactoryController.controller("establecimientosP"))::save);
-            delete("organismosDeControlP/{idODC}/entidadesPrestadorasP/{idEP}/entidadesP/{idE}/establecimientosP/{id}", ((EstablecimientoPController) FactoryController.controller("establecimientosP"))::delete);
+            get("entidadesP/{idE}/establecimientosP",((EstablecimientoPController) FactoryController.controller("establecimientosP"))::index);
+            get("entidadesP/{idE}/establecimientosP/crear", ((EstablecimientoPController) FactoryController.controller("establecimientosP"))::create);
+            get("entidadesP/{idE}/establecimientosP/{id}", ((EstablecimientoPController) FactoryController.controller("establecimientosP"))::show);
+            get("entidadesP/{idE}/establecimientosP/{id}/editar", ((EstablecimientoPController) FactoryController.controller("establecimientosP"))::edit);
+            post("entidadesP/{idE}/establecimientosP/{id}", ((EstablecimientoPController) FactoryController.controller("establecimientosP"))::update);
+            post("entidadesP/{idE}/establecimientosP", ((EstablecimientoPController) FactoryController.controller("establecimientosP"))::save);
+            delete("entidadesP/{idE}/establecimientosP/{id}", ((EstablecimientoPController) FactoryController.controller("establecimientosP"))::delete);
 
             // localizacionP
             get("localizacion/Tipo",new LocalizacionPController():: index);

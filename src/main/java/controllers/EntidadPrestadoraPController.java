@@ -4,6 +4,8 @@ import io.javalin.http.Context;
 import io.javalin.http.HttpStatus;
 import models.dataBase.repositorios.EntidadPrestadoraRepository;
 import models.dataBase.repositorios.OrganismoControlRepository;
+import models.dominio.actores.Propietario;
+import models.dominio.actores.TipoPropietario;
 import models.dominio.entidades.EntidadPrestadora;
 import models.dominio.entidades.OrganismoDeControl;
 import server.utils.ICrudViewsHandler;
@@ -28,12 +30,30 @@ public class EntidadPrestadoraPController extends Controller implements ICrudVie
 
     @Override
     public void index(Context context) {
-        OrganismoDeControl organismo = (OrganismoDeControl) this.repositorioOrganismo.findById(Long.parseLong(context.pathParam("idODC")));
+        Propietario propietario = super.PropietarioLogueadoSuper(context);
         Map<String,Object> model = new HashMap<>();
-        model.put("organismo",organismo);
-        model.put("entidadPrestadora",organismo.getEntidadesPrestadoras());
 
-        context.render("entidadesPrestadorasP.hbs",model);
+        if(propietario.getTipoPropietario().equals(TipoPropietario.ORGANISMO_DE_CONTROL)){
+
+            OrganismoDeControl organismo = propietario.getOrganismosDeControl().get(0);
+            model.put("entidadPrestadora",organismo.getEntidadesPrestadoras());
+            model.put("propietarioOrganismo","ok");
+            context.render("entidadesPrestadorasP.hbs",model);
+
+        } else if (propietario.getTipoPropietario().equals(TipoPropietario.ENTIDAD_PRESTADORA)) {
+
+            if(!propietario.getEntidadesPrestadoras().isEmpty()) {
+                EntidadPrestadora entidadPrestadora = propietario.getEntidadesPrestadoras().get(0);
+                model.put("entidadPrestadora", entidadPrestadora);
+                model.put("propietarioEntidad", "ok");
+                context.render("entidadesPrestadorasP.hbs", model);
+            }
+            else{
+                model.put("vacio","ok");
+                context.render("entidadesPrestadorasP.hbs",model);
+            }
+        }
+
     }
 
     @Override
@@ -43,32 +63,37 @@ public class EntidadPrestadoraPController extends Controller implements ICrudVie
 
     @Override
     public void create(Context context) {
-        OrganismoDeControl organismo = (OrganismoDeControl) this.repositorioOrganismo.findById(Long.parseLong(context.pathParam("idODC")));
-        Map<String,Object> model = new HashMap<>();
-        model.put("organismo",organismo);
-        context.render("/editP/create_entidadPrestadora.hbs", model);
+        context.render("/editP/create_entidadPrestadora.hbs");
     }
 
     @Override
     public void save(Context context) throws IOException {
         EntidadPrestadora entidadPrestadora = new EntidadPrestadora();
-        this.asignarParametrosCreate(entidadPrestadora, context);
-        OrganismoDeControl organismo = (OrganismoDeControl) this.repositorioOrganismo.findById(Long.parseLong(context.pathParam("idODC")));
-        organismo.agregarEntidadPrestadora(entidadPrestadora);
-        this.repositorioOrganismo.update(organismo);
+        Propietario propietario = super.PropietarioLogueadoSuper(context);
 
-        context.status(HttpStatus.CREATED);
-        String idOrganismo = organismo.getId().toString();
-        context.redirect("/organismosDeControlP/" +idOrganismo+ "/entidadesPrestadorasP");
+        if(propietario.getTipoPropietario().equals(TipoPropietario.ORGANISMO_DE_CONTROL)){
+
+            this.asignarParametrosCreate(entidadPrestadora, context);
+            OrganismoDeControl organismo = propietario.getOrganismosDeControl().get(0);
+            organismo.agregarEntidadPrestadora(entidadPrestadora);
+            this.repositorioOrganismo.update(organismo);
+
+            context.status(HttpStatus.CREATED);
+            context.redirect("/entidadesPrestadorasP");
+
+        } else if (propietario.getTipoPropietario().equals(TipoPropietario.ENTIDAD_PRESTADORA)) {
+            //TODO
+            //solo puede tener un entidad
+        }
     }
+
+
 
     @Override
     public void edit(Context context) {
-        OrganismoDeControl organismo = (OrganismoDeControl) this.repositorioOrganismo.findById(Long.parseLong(context.pathParam("idODC")));
         EntidadPrestadora entidadPrestadora = (EntidadPrestadora) this.repositorioEntidadPrestadora.findById(Long.parseLong(context.pathParam("id")));
 
         Map<String,Object> model = new HashMap<>();
-        model.put("organismo",organismo);
         model.put("entidadPrestadora",entidadPrestadora);
 
         context.render("/editP/edit_entidadPrestadoraP.hbs",model);
@@ -77,14 +102,12 @@ public class EntidadPrestadoraPController extends Controller implements ICrudVie
 
     @Override
     public void update(Context context) {
-        OrganismoDeControl organismo = (OrganismoDeControl) this.repositorioOrganismo.findById(Long.parseLong(context.pathParam("idODC")));
+
         EntidadPrestadora entidadPrestadora = (EntidadPrestadora) this.repositorioEntidadPrestadora.findById(Long.parseLong(context.pathParam("id")));
         this.asignarParametrosEdit(entidadPrestadora,context);
         this.repositorioEntidadPrestadora.update(entidadPrestadora);
 
-        String idOrganismo = organismo.getId().toString();
-
-        context.redirect("/organismosDeControlP/" +idOrganismo+ "/entidadesPrestadorasP");
+        context.redirect("/entidadesPrestadorasP");
     }
 
     @Override

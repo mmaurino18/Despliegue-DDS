@@ -1,4 +1,16 @@
 {{#partial "contenidoP" }}
+
+    {{#if vacio}}
+        <div class="welcome-text">
+            <p> no se cargo ninguna Entidad Prestadora</p>
+            <br>
+            <button class="buttons" type="button" onclick="volverAtras()"> Volver </button>
+
+        </div>
+
+    {{/if}}
+
+    {{#if propietarioOrganismo}}
     <div class="conteiner-tabla">
         <table>
             <thead>
@@ -14,14 +26,50 @@
             {{#each entidadPrestadora}}
                 <tr>
                     <td>{{this.getNombre}}</td>
-                    <td><button class="buttons" type="button"><a href="/organismosDeControlP/{{organismo.getId}}/entidadesPrestadorasP/{{this.getId}}/entidadesP">Ver Entidades</a></button></td>
-                    <td><button class="buttons" type="button"><a href="/organismosDeControlP/{{organismo.getId}}/entidadesPrestadorasP/{{this.getId}}/editar">Editar</a></button></td>
+                    <td><button class="buttons" type="button"><a href="/entidadesPrestadorasP/{{this.getId}}/entidadesP">Ver Entidades</a></button></td>
+                    <td><button class="buttons" type="button"><a href="/entidadesPrestadorasP/{{this.getId}}/editar">Editar</a></button></td>
                     <td><button class="buttons" type="button"><a href="comunidad.html">Eliminar</a></button></td>
                 </tr>
             {{/each}}
             </tbody>
         </table>
-        <button class="buttonConfi" type="button"><a href="/organismosDeControlP/{{organismo.getId}}/entidadesPrestadorasP/crear">Agregar Entidad Prestadora</a></button>
+        <button class="buttonConfi" type="button"><a href="/entidadesPrestadorasP/crear">Agregar Entidad Prestadora</a></button>
     </div>
+    {{/if}}
+
+
+    {{#if propietarioEntidad}}
+    <div class="conteiner-tabla">
+        <table>
+            <thead>
+            <tr>
+                <th>Nombre Entidad Prestadora</th>
+                <th>Entidades</th>
+                <th><img src="/img/edit.svg" width="60" height="22"></th>
+                <th><img src="/img/delete.svg" width="60" height="22"></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            
+                <tr>
+                    <td>{{entidadPrestadora.getNombre}}</td>
+                    <td><button class="buttons" type="button"><a href="/entidadesPrestadorasP/{{entidadPrestadora.getId}}/entidadesP">Ver Entidades</a></button></td>
+                    <td><button class="buttons" type="button"><a href="/entidadesPrestadorasP/{{entidadPrestadora.getId}}/editar">Editar</a></button></td>
+                    <td><button class="buttons" type="button"><a href="comunidad.html">Eliminar</a></button></td>
+                </tr>
+            
+            </tbody>
+        </table>
+        
+    </div>
+    {{/if}}
+
+    <script>
+        function volverAtras() {
+            window.history.back();
+        }
+    </script>
+
 {{/partial}}
 {{> templates/homePropietarioBase }}

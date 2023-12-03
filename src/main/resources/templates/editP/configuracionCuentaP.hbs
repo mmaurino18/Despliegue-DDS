@@ -1,0 +1,65 @@
+{{#partial "contenidoP" }}
+
+    <main>
+
+        <section class="form-login">
+
+            <h5>Detalle De Cuenta</h5>
+
+            <p1>Nombre de Usuario:</p1>
+            <br>
+            <p1>{{usuario.getNombre}}</p1>
+            <br>
+            <p1> ------------------------------------------------------ </p1>
+            <br>
+            <p1>Nombre :</p1>
+            <br>
+            <p1>{{persona.getNombre}}</p1>
+            <br>
+            <p1> ------------------------------------------------------ </p1>
+            <br>
+            <p1>Apellido:</p1>
+            <br>
+            <p1>{{persona.getApellido}}</p1>
+            <br>
+            <p1> ------------------------------------------------------ </p1>
+            <br>
+            <p1>Mail:</p1>
+            <br>
+            <p1>{{persona.getApellido}}</p1>
+            <br>
+            <p1> ------------------------------------------------------ </p1>
+            <br>
+            <p1>Tipo De Usuario:</p1>
+            <br>
+            <p1>{{tipoUsuario}}</p1>
+            <br>
+            <p1> ------------------------------------------------------ </p1>
+            <br>
+            <p1>Tipo De Propietario:</p1>
+            <br>
+            <p1>{{tipoPropietario}}</p1>
+            <br>
+            <p1> ------------------------------------------------------ </p1>
+            <br>
+            <p1>Contraseña:</p1>
+            <br>
+            <p1>{{usuario.getContrasenia}}</p1>
+            <br>
+            <p1> ------------------------------------------------------ </p1>
+            <br>
+
+
+            <button class="buttons" type="button"><a href="/login/edit"> Editar Cuenta </a></button><!--registro usuario nuevo-->
+            <button class="buttons" type="button" onclick="volverAtras()"> Volver </button>
+        </section>
+    </main>
+
+    <script>
+        function volverAtras() {
+            window.history.back();
+        }
+    </script>
+
+{{/partial}}
+{{> templates/homePropietarioBase }}
