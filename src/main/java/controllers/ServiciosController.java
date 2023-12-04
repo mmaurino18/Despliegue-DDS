@@ -32,7 +32,7 @@ public class ServiciosController extends Controller implements ICrudViewsHandler
         Map<String, Object> model = new HashMap<>();
         List<Servicio> servicios = this.repositorioDeServicios.findAll();
         model.put("servicios", servicios);
-        context.render("servicios/servicios.hbs", model);
+        context.render("servicio.hbs", model);
 
     }
 

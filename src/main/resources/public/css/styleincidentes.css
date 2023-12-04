@@ -29,21 +29,56 @@ header{
     z-index: 100;/*siempre estara por delante de los demas elementos*/
 }
 
-.contenedor{
-    width: 98%;
-    margin: auto;
+.contenedor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
 }
 
-h1{
-    float:left; /*para que flote*/
-    padding: 5px;
-
+.menu {
+    position: relative;
+    top: -10px;
 }
 
-header .contenedor{
-    display: table; /*para lipiar los float y que el contenedor ocupe todo el header*/
+.menu-icon {
+    display: none;
+    cursor: pointer;
 }
 
+.menu ul {
+    list-style: none;
+    display: flex;
+}
+
+.menu ul li {
+    position: relative;
+    margin-right: 20px;
+    margin-right: 5px; /**/
+}
+
+.menu ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.menu ul li ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #2315f1;
+}
+
+.menu ul li:hover ul {
+    display: block;
+}
+
+.menu ul li ul li {
+    display: block;
+    width: 200px;
+    padding: 10px;
+}
 section{
     width: 100%;
     margin-bottom: 25px;

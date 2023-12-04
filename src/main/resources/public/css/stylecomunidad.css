@@ -92,3 +92,55 @@ tbody tr:hover{
     text-decoration: none;
     color:#ffffff;
 }
+/* agrego */
+
+.contenedor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.menu {
+    position: relative;
+    top: -10px;
+}
+
+.menu-icon {
+    display: none;
+    cursor: pointer;
+}
+
+.menu ul {
+    list-style: none;
+    display: flex;
+}
+
+.menu ul li {
+    position: relative;
+    margin-right: 20px;
+    margin-right: 5px; /**/
+}
+
+.menu ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.menu ul li ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #2315f1;
+}
+
+.menu ul li:hover ul {
+    display: block;
+}
+
+.menu ul li ul li {
+    display: block;
+    width: 200px;
+    padding: 10px;
+}

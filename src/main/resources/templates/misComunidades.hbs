@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no ,initial-scale=1 ,maximum-scale=1 ,minimum-scale=1">
+
+    <link rel="stylesheet" href="/css/stylecomunidad.css">
+
+    <script src="https://kit.fontawesome.com/e15e8c34af.js" crossorigin="anonymous"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+</head>
+<body background ="/img/comunidad.jpg">
+<header>
+    <div class="contenedor">
+        <h1 class= "titulo"> Sistema de Comunidades </h1>
+        <input type="checkbox" id="menu-bar">
+        <nav class="menu">
+            <a href="/incidentes">Incidentes</a>
+            <a href="/incidentes/crear">Abrir Incidentes</a>
+            <a href="#">Rankings</a>
+            <a href="#">Servicios</a>
+            <a href="/logout">Cerrar Sesion</a>
+        </nav>
+
+    </div>
+</header>
+<div class="conteiner-tabla">
+    <table>
+        <thead>
+        <tr>
+            <th>Nombre de Comunidad </th>
+            <th>Cantidad de miembros </th>
+            <th> </th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each Comunidad}}
+            <tr>
+                <td>{{this.getNombre}}</td>
+                <td>{{this.cantidadMiembros}}</td>
+            </tr>
+            {{/each}}
+    </table>
+</div>
+</body>
+</html>
