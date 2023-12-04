@@ -31,7 +31,7 @@ public class Comunidad extends Persistente {
     @Transient
     public float gradoDeConfianza;
 
-    @ManyToMany(mappedBy = "comunidades")
+    @ManyToMany(mappedBy = "comunidades" )
     private List<Ciudadano> miembros;
 
     @Transient
@@ -96,6 +96,8 @@ public class Comunidad extends Persistente {
         this.incidentesOcurridos.forEach(incidente -> servicios.add(incidente.getServicio()));
         return servicios;
     }
-
+    public int cantidadMiembros(){
+        return this.getMiembros().size();
+    }
 
 }

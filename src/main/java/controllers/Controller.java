@@ -20,7 +20,7 @@ public abstract class Controller implements WithSimplePersistenceUnit {
         try {
             String hql = "SELECT c FROM Ciudadano c JOIN c.usuario u WHERE u.id = :usuarioId";
             return entityManager().createQuery(hql, Ciudadano.class)
-                    .setParameter("usuarioId",  Long.parseLong(ctx.sessionAttribute("usuario_id")))
+                    .setParameter("usuarioId",  Long.parseLong(("" + ctx.sessionAttribute("id_usuario"))))
                     .getSingleResult();
         } catch (NoResultException e) {
             return null;

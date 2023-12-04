@@ -41,7 +41,7 @@ public class Ciudadano extends Persistente {
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     private Usuario usuario;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private List<Comunidad> comunidades;
 
     @Enumerated(EnumType.STRING)

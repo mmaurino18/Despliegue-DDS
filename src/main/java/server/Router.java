@@ -13,7 +13,7 @@ public class Router {
         Server.app().get("/test",ctx -> ctx.render("/editP/edit_configuracionCuentaP.hbs"));
 
         Server.app().routes(() -> {
-            get("servicios", ((ServiciosController) FactoryController.controller("Servicios"))::index,TipoRol.CIUDADANO);
+            get("servicios", ((ServiciosController) FactoryController.controller("Servicios"))::index);
             get("servicios/crear", ((ServiciosController) FactoryController.controller("Servicios"))::create);
             get("servicios/{id}", ((ServiciosController) FactoryController.controller("Servicios"))::show);
             get("servicios/{id}/editar", ((ServiciosController) FactoryController.controller("Servicios"))::edit);
@@ -60,7 +60,6 @@ public class Router {
             get("cargaMasiva/manual",((CargaMasivaController) FactoryController.controller("cargaMasiva"))::cargaManual);
             get("cargaMasiva/estructura",((CargaMasivaController) FactoryController.controller("cargaMasiva"))::edit);
             post("cargaMasiva",((CargaMasivaController) FactoryController.controller("cargaMasiva"))::save);
-
             // subidos
             get("subidos",((SubidosPController) (FactoryController.controller("subidos")))::index);
 
@@ -120,6 +119,10 @@ public class Router {
                // get(((TareasController) FactoryController.controller("Tareas"))::index);
                 //TODO
             });*/
+            //COMUNIDAD
+            get("comunidades",((ComunidadController) FactoryController.controller("comunidad"))::index );
+            get("unirse/{id}", ((ComunidadController) FactoryController.controller("comunidad")):: save);
+            get("misComunidades",((ComunidadController)FactoryController.controller("comunidad"))::show );
         });
     }
 }

@@ -17,19 +17,45 @@
 
 <body  background ="/img/comunidad.jpg">
 <header>
-
     <div class="contenedor">
-        <h1 class= "titulo"> Sistema de Comunidades </h1>
+        <h1 class="titulo">Sistema de Comunidades</h1>
         <input type="checkbox" id="menu-bar">
-
         <nav class="menu">
-            <a href="/incidentes">Incidentes</a>
-            <a href="/incidentes/crear">Abrir Incidentes</a>
-            <a href="/rankings">Rankings</a>
-            <a href="#">Servicios</a>
-            <a href="/login">Cerrar Sesion</a>
+            <label for="menu-bar" class="menu-icon"><i class="fas fa-bars"></i></label>
+            <ul>
+                <li>
+                    <a href="#">Comunidad</a>
+                    <ul class="submenu">
+                        <li><a href="/misComunidades">Mis Comunidades</a></li>
+                        <li><a href="/comunidades">Comunidades</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Incidentes</a>
+                    <ul class="submenu">
+                        <li><a href="/incidentes/crear">Crear Incidente</a></li>
+                        <li><a href="/incidentes">Incidentes Reportados</a></li>
+                        {{!--<li><a href="mis_incidentes.html">Consultar Por Estado</a></li>--}}
+                        <li><a href="/ranking">Rankings</a></li>
+                    </ul>
+                </li>
+                    <a href="/servicios">Servicio</a>
+                <li>
+                    <a href="#">Notificacion</a>
+                    <ul class="submenu">
+                        {{!--<li><a href="mi_comunidad.html">Notificaciones</a></li>--}}
+                        <li><a href="/config-notificacion">Configurar Notificaciones</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Configuracion</a>
+                    <ul class="submenu">
+                        <li><a href="mi_comunidad.html">Configuracion De Cuenta</a></li>
+                        <li><a href="/logout">cerrar Sesion</a></li>
+                    </ul>
+                </li>
+            </ul>
         </nav>
-
     </div>
 </header>
 
