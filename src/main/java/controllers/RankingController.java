@@ -1,35 +1,45 @@
 package controllers;
 
 import io.javalin.http.Context;
+import models.dataBase.repositorios.CiudadanoRepository;
 import models.dataBase.repositorios.ComunidadRepository;
-import models.dominio.comunidad.Comunidad;
+import models.dataBase.repositorios.IncidenteRepository;
 import models.dominio.entidades.Entidad;
 import models.dominio.rankings.*;
+import models.dominio.servicios.Incidente;
 import server.utils.ICrudViewsHandler;
 
+import java.io.IOException;
 import java.util.*;
 
 public class RankingController extends Controller implements ICrudViewsHandler {
-    ComunidadRepository comunidadRepository;
-    CalculadoraRankings calculadoraRankings = new CalculadoraRankings();
+
+    private IncidenteRepository incidenteRepository;
+    private CalculadoraRankings calculadoraRankings = new CalculadoraRankings();
+    private GeneradorPDF generadorPDF = new GeneradorPDF();
     @Override
     public void index(Context context) {
         context.render("ranking.hbs");
     }
 
     @Override
-    public void show(Context context) {
-        System.out.println("LLEEEEEGWE primero");
-        List<Comunidad> comunidades = comunidadRepository.findAll();
-        calculadoraRankings.setComunidades(comunidades);
+    public void show(Context context) throws IOException {
+        List <Incidente> incidentes = incidenteRepository.findAll();
+        calculadoraRankings.setIncidentes(incidentes);
         List <Tupla> tuplas = new ArrayList<>();
-        System.out.println("LLEEEEEGWE");
         switch (context.formParam("ranking")){
             case "0":
-               tuplas = calculadoraRankings.generarRanking(new EntidadesConMasIncidentes());
+                tuplas = calculadoraRankings.generarRanking(new EntidadesConMasIncidentes());
+                for(Tupla tupla: tuplas){
+                    System.out.println(tupla.getEntidad().getNombre());
+                    System.out.println(tupla.cantidadIncidentes());
+                    System.out.println(tupla.calcularPromedioMinutos());
+                }
+                generadorPDF.pdfRakingMasIncidentes(tuplas, "C:\\Users\\Usuario\\Downloads\\ranking_mas_incidentes.pdf");
                 break;
             case "1":
-                tuplas = calculadoraRankings.generarRanking(new EntidadesConMayorPromedioDeCierre());
+               tuplas = calculadoraRankings.generarRanking(new EntidadesConMayorPromedioDeCierre());
+                generadorPDF.pdfRakingMayorPromedioCierre(tuplas, "C:\\Users\\Usuario\\Downloads\\ranking_mayor_promedio_cierre.pdf");
                 break;
             default: break;
         }
@@ -61,5 +71,8 @@ public class RankingController extends Controller implements ICrudViewsHandler {
     @Override
     public void delete(Context context) {
 
+    }
+    public RankingController(IncidenteRepository incidenteRepository ){
+        this.incidenteRepository= incidenteRepository;
     }
 }

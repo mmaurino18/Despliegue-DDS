@@ -11,10 +11,8 @@ import java.util.stream.Collectors;
 
 public class EntidadesConMasIncidentes implements Criterio{
     @Override
-    public List<Tupla> generarRanking(List<Comunidad> comunidades){
-        List<Incidente> incidentes = new ArrayList<>();
+    public List<Tupla> generarRanking( List<Incidente> incidentes){
         List<Tupla> tuplas = new ArrayList<>();
-        comunidades.forEach(comunidad -> incidentes.addAll(comunidad.getIncidentesOcurridos()));
 
         for(Incidente incidente:incidentes){
             Entidad entidad = incidente.getEstablecimiento().getEntidad();

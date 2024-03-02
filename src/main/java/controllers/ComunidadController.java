@@ -45,14 +45,14 @@ public class ComunidadController extends Controller implements ICrudViewsHandler
 
     @Override
     public void save(Context context) throws IOException {
-        System.out.print("entre");
        Ciudadano ciudadano = super.CiudadanoLogueado(context);
-       System.out.printf("encontre ciudadano"+ ciudadano.getNombre());
        Comunidad comunidad = comunidadRepository.findById(Long.parseLong(context.pathParam("id")));
-
-       ciudadano.agregarComunidad(comunidad);
-       ciudadanoRepository.save(ciudadano);
-
+       boolean coincide = ciudadano.getComunidades().stream()
+                .anyMatch(comunidadCiudadano -> comunidadCiudadano.getId().equals(comunidad.getId()));
+        if(!coincide) {
+            ciudadano.agregarComunidad(comunidad);
+            ciudadanoRepository.save(ciudadano);
+        }
        context.redirect("/comunidades");
     }
 

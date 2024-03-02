@@ -15,7 +15,7 @@ public class FactoryController {
             case "homePropietario": controller = new HomePropietarioController(); break;
             case "notif": controller = new NotifController(new CiudadanoRepository()); break;
 
-            case "Ranking": controller = new RankingController(); break;
+            case "Ranking": controller = new RankingController(new IncidenteRepository()); break;
             case "cargaMasiva": controller = new CargaMasivaController(new PropietarioRepository()); break;
             case "subidos": controller =new SubidosPController(); break;
             case "organismosDeControlP": controller = new OrganismoDeControlPController(new OrganismoControlRepository()); break;

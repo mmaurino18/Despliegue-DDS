@@ -1,11 +1,11 @@
 package models.dominio.rankings;
 
-import models.dominio.comunidad.Comunidad;
-import models.dominio.entidades.Entidad;
+
+import models.dominio.servicios.Incidente;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 public interface Criterio {
-    default List<Tupla> generarRanking(List<Comunidad> comunidades){return null;}
+    default List<Tupla> generarRanking( List<Incidente> incidentes){return null;}
 }

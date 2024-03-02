@@ -80,7 +80,12 @@ public class Incidente extends Persistente {
         return fechaApertura.toLocalDate().toString() + " - "+ fechaApertura.toLocalTime().toString();
     }
     public long duracionMinutos(){
-        return Duration.between(fechaApertura,fechaCierre).toMinutes();
+        if(fechaCierre!= null){
+            return Duration.between(fechaApertura,fechaCierre).toMinutes();
+        }
+        else{
+            return 0;
+        }
     }
     public String estadoIncidente (){
         if (this.estadoIncidente){
