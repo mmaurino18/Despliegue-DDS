@@ -30,11 +30,6 @@ public class RankingController extends Controller implements ICrudViewsHandler {
         switch (context.formParam("ranking")){
             case "0":
                 tuplas = calculadoraRankings.generarRanking(new EntidadesConMasIncidentes());
-                for(Tupla tupla: tuplas){
-                    System.out.println(tupla.getEntidad().getNombre());
-                    System.out.println(tupla.cantidadIncidentes());
-                    System.out.println(tupla.calcularPromedioMinutos());
-                }
                 generadorPDF.pdfRakingMasIncidentes(tuplas, "C:\\Users\\Usuario\\Downloads\\ranking_mas_incidentes.pdf");
                 break;
             case "1":
